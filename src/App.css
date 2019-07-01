@@ -1,0 +1,38 @@
+.App {
+  margin: 0;
+  text-align: center;
+}
+
+.main {
+  width: 60%;
+  margin-top: 50px;
+  margin-left: 20%;
+  margin-right: 20%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.module {
+  background-color: #F2F2F2;
+  width: 30%;
+  min-width: 350px;
+  height: 750px;
+}
+
+.module-title {
+  text-align: center;
+  margin: 0;
+  padding-top: 12px;
+  height: 28px;
+  color: white;
+  background-color: #048E00;
+  width: 100%;
+  
+}
+
+.module-content {
+  padding: 10px;
+}
+
+

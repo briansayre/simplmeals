@@ -1,0 +1,24 @@
+.bar {
+    background-color: #06C100;
+    color: white;
+    width: 100%;
+    height: 55px;
+}
+
+.name {
+    font-size: 30px;
+    font-family: 'Bitter', serif;
+    font-weight: normal;
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 20%;
+}
+
+.log-in {
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 20%;
+}
+
