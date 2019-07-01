@@ -20,7 +20,7 @@ class Planner extends React.Component {
             </div>
 
             <div className="module-content">
-                <Calendar />
+                <Calendar className="calendar"/>
             </div>
 
             

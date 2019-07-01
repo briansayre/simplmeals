@@ -1,20 +1,37 @@
 import React from 'react';
 import './Nav.css';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, { GoogleLogout } from 'react-google-login';
 
 
 const responseGoogle = (response) => {
     console.log(response);
 }
 
-const loginButton = (<GoogleLogin
-    className="log-in"
-    clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-/>);
+var loginButton;
+
+if (1) {
+    loginButton = <GoogleLogin
+        className="log-in"
+        clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
+        buttonText="Login to simplmeals"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+    />;
+} else {
+    loginButton = (
+    <div>
+    <GoogleLogout
+        className="log-in"
+        clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
+        buttonText="Logout of simplmeals"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+    />
+    </div>);
+}
+
 
 class Nav extends React.Component {
 
@@ -29,11 +46,15 @@ class Nav extends React.Component {
 
     render() {
         return (
-        <div className="bar">
+        <div className="nav">
 
-            <span className="name"><b>simpl</b>meals</span>
-            {loginButton}
-            
+            <div className="nav-container">
+
+                <span className="name"><b>simpl</b>meals</span>
+                {loginButton}
+                
+            </div>
+
         </div>
         );
     }

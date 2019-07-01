@@ -13,8 +13,9 @@ function App() {
     <div>
 
       <Nav />
-      
-      <div className="main">
+
+
+      <div className="module-container">
 
         <Planner/>
         <List/>
