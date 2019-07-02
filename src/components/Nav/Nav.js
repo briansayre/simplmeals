@@ -11,9 +11,9 @@ var loginButton;
 
 if (1) {
     loginButton = <GoogleLogin
-        className="log-in"
+        className="login"
         clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
-        buttonText="Login to simplmeals"
+        buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
@@ -22,9 +22,9 @@ if (1) {
     loginButton = (
     <div>
     <GoogleLogout
-        className="log-in"
+        className="login"
         clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
-        buttonText="Logout of simplmeals"
+        buttonText="Logout"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
@@ -42,8 +42,6 @@ class Nav extends React.Component {
         }
     }
 
-    
-
     render() {
         return (
         <div className="nav">
@@ -52,7 +50,7 @@ class Nav extends React.Component {
 
                 <span className="name"><b>simpl</b>meals</span>
                 {loginButton}
-                
+
             </div>
 
         </div>
