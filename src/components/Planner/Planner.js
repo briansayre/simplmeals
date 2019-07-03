@@ -47,6 +47,7 @@ class Planner extends React.Component {
                     maxDate={new Date(2019, 12, 31,)}
                     minDate={new Date(2019, 1, 1,)}
                     tileClassName="day"
+                    calendarType="US"
                 />
                 
                 
