@@ -53,7 +53,9 @@ class Nav extends React.Component {
                let responseJson = result;
                sessionStorage.setItem("userData", JSON.stringify(responseJson));
                this.setState({redirect: true});
-               var signedIn = 1;
+               console.log(signedIn)
+               signedIn = 1;
+               console.log(signedIn)
             });
         }
     }
