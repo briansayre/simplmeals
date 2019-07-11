@@ -3,7 +3,7 @@ import './Recipes.css';
 import Popup from "reactjs-popup";
 
 let addRecipeButton = (
-    <Popup trigger={<button className="button" id = "add-recipe"> + </button>} modal>
+    <Popup trigger={<button className="button" id = "add-button"> + </button>} modal>
         {close => (
 
             <div className="modal">
@@ -12,7 +12,7 @@ let addRecipeButton = (
                     <input type="text" name="recipeName" /><br />
                     <h3 className="modal-labels">Instuctions:</h3>
                     <input type="text" name="instructions"  /><br />
-                    <h3 className="modal-labels">Ingredients:</h3><br />
+                    <h3 className="modal-labels">Ingredients:</h3>
                     <div id="ingredient">
                             <input type="text" name="ingredientName" />
                             <input type="text" name="amount" />
@@ -22,6 +22,7 @@ let addRecipeButton = (
 
                 <button
                     className="button"
+                    id="modal-button"
                     onClick={() => {
                     console.log("modal closed ");
                     close();
@@ -32,6 +33,7 @@ let addRecipeButton = (
 
                 <button
                     className="button"
+                    id="modal-button"
                     onClick={() => {
                     console.log("modal closed ");
                     close();
@@ -42,6 +44,7 @@ let addRecipeButton = (
 
                 <button
                     className="button"
+                    id="modal-button"
                     onClick={() => {
                     console.log("modal closed ");
                     close();

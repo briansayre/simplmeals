@@ -29,6 +29,17 @@
     margin: -10px;
     padding: 0;
     height: 30px;
-    width: 300px;
+}
+
+.sign-out {
+    margin-top: 10px;
+    color: white;
+    border: 0;
+    border-radius: 25px;
+    padding: 0;
+    height: 35px;
+    width: 100px;
+    background-color: #048E00;
+     cursor: pointer;
 }
 

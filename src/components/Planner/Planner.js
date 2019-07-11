@@ -3,14 +3,6 @@ import './Planner.css';
 import Calendar from 'react-calendar';
 import 'react-day-picker/lib/style.css';
 
-let cycleLeft = (
-    <button className="arrow" id = "cycle-left"> &lt; </button>
-);
-
-let cycleRight = (
-    <button className="arrow" id = "cycle-right"> &gt; </button>
-);
-
 
 class Planner extends React.Component {
 
@@ -20,12 +12,26 @@ class Planner extends React.Component {
             date: new Date(),
             selectedDay: undefined,
         }
-
+        
+        this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
+        this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
     }
 
     handleDayClick(day) {
         this.setState({ selectedDay: day });
+    }
+
+    handleLeftArrowClick() {
+        console.log("Left")
+        this.state.date.setDate(this.state.date.getDate() - 1)
+        console.log(this.state.date.toDateString())
+    }
+
+    handleRightArrowClick() {
+        console.log("Right")
+        this.state.date.setDate(this.state.date.getDate() + 1)
+        console.log(this.state.date.toDateString())
     }
 
     onChange = date => this.setState({ date })
@@ -39,21 +45,26 @@ class Planner extends React.Component {
             </div>
 
             <div className="module-content">
+
                 <Calendar 
                     className={["calendar"]}
                     onChange={this.onChange}
                     value={this.state.date}
-                    maxDate={new Date(2019, 12, 31,)}
-                    minDate={new Date(2019, 1, 1,)}
+                    maxDate={new Date(2019, 12)}
+                    minDate={new Date(2019, 6)}
                     tileClassName="day"
                     calendarType="US"
+                    showNeighboringMonth={false}
                 />
-                
                 
             </div>
 
             <div className="module-title-secondary">
-                {cycleLeft} {this.state.date.toDateString()} {cycleRight}
+                
+                <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+                {this.state.date.toDateString()} 
+                <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+                
             </div>
             
         </div>
@@ -63,8 +74,3 @@ class Planner extends React.Component {
 
 
 export default Planner;
-
-/*
-react-calendar__tile--active react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds 
-
-*/

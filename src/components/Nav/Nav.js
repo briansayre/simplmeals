@@ -51,7 +51,7 @@ class Nav extends React.Component {
                         <span className="name"><b>simpl</b>meals</span>
                         {this.state.loggedIn ? 
                         (
-                        <button onClick={() => firebase.auth().signOut()}>Sign out</button>
+                        <button className="sign-out" onClick={() => firebase.auth().signOut()}>Sign out</button>
                         ) : ( 
                             <StyledFirebaseAuth
                             className="login"
@@ -79,7 +79,11 @@ class Nav extends React.Component {
                     <Landing /> 
 
                 )}
-
+                <footer>
+                    <div className="footer-content">
+                        &copy; Brian Sayre 2019
+                    </div>
+                </footer>
             </div>
 
         );

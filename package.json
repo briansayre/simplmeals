@@ -7,10 +7,8 @@
     "firebase": "^6.2.4",
     "react": "^16.8.6",
     "react-calendar": "^2.19.0",
-    "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
     "react-firebaseui": "^3.1.2",
-    "react-google-login": "^5.0.4",
     "react-scripts": "3.0.1",
     "reactjs-popup": "^1.4.1"
   },
