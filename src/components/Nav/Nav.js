@@ -77,14 +77,14 @@ class Nav extends React.Component {
                         {signedIn ? 
                         ( <GoogleLogout 
                             className="login"
-                            clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
+                            clientId="32448678336-dkkqbf1rfahp6qa8jok1lj67hdckq3c9.apps.googleusercontent.com"
                             buttonText="Logout"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}/> ) : 
                         ( <GoogleLogin
                             className="login"
-                            clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
+                            clientId="32448678336-dkkqbf1rfahp6qa8jok1lj67hdckq3c9.apps.googleusercontent.com"
                             buttonText="Login"
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
