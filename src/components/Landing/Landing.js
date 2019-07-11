@@ -28,22 +28,22 @@ class Landing extends React.Component {
                     <div className="images">
 
                         <div>
-                            <img src={create} />
+                            <img src={create} alt=""/>
                             <h1 className="image-captions">Create.</h1>
                         </div>
 
                         <div>
-                            <img src={plan} />
+                            <img src={plan} alt="" />
                             <h1 className="image-captions">Plan.</h1>
                         </div>
 
                         <div>
-                            <img src={shop} />
+                            <img src={shop} alt="" />
                             <h1 className="image-captions">Shop.</h1>
                         </div>
 
                         <div>
-                            <img src={enjoy} />
+                            <img src={enjoy} alt="" />
                             <h1 className="image-captions">Enjoy.</h1>
                         </div>
                         

@@ -35,5 +35,26 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyARbJURIqskPfndvo57b3Ac8xuHdbS8kGo",
+        authDomain: "simplmeals-1561736691951.firebaseapp.com",
+        databaseURL: "https://simplmeals-1561736691951.firebaseio.com",
+        projectId: "simplmeals-1561736691951",
+        storageBucket: "simplmeals-1561736691951.appspot.com",
+        messagingSenderId: "32448678336",
+        appId: "1:32448678336:web:2d304ccc82e8b6ed"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>

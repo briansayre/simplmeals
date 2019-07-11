@@ -109,3 +109,11 @@
 .arrow:focus {
   color: #048E00;
 }
+
+.modal {
+  color: black;
+}
+
+input {
+  background: #F2F2F2;
+}

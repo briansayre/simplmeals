@@ -3,13 +3,30 @@ import './Nav.css';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import {PostData} from '../../services/PostData';
 
+import Planner from '../Planner/Planner';
+import List from '../List/List';
+import Recipes from '../Recipes/Recipes';
+import Landing from '../Landing/Landing';
+
+
+var dashboard = (
+    <div className="module-container">
+  
+      <Planner/>
+      <List/>
+      <Recipes />
+      
+    </div>
+  );
+
+  var signedIn = 0;
+
 class Nav extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             loginError: false,
-            redirect: false
         }
         this.signUp = this.signUp.bind(this);
     }
@@ -46,26 +63,43 @@ class Nav extends React.Component {
 
         const responseGoogle = (response) => {
             //console.log(response);
+            signedIn = 1;
             this.signUp(response, 'google')
         }
 
         return (
-        <div className="nav">
+            <div>
+                <div className="nav">
 
-            <div className="nav-container">
+                    <div className="nav-container">
 
-                <span className="name"><b>simpl</b>meals</span>
-                <GoogleLogin
-                    className="login"
-                    clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
+                        <span className="name"><b>simpl</b>meals</span>
+                        {signedIn ? 
+                        ( <GoogleLogout 
+                            className="login"
+                            clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
+                            buttonText="Logout"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}/> ) : 
+                        ( <GoogleLogin
+                            className="login"
+                            clientId="32448678336-3p0c6aaorlp18h4q478t3kfnf3uecuh3.apps.googleusercontent.com"
+                            buttonText="Login"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />)}
+
+                        
+                    </div>
+
+                </div>
+            
+                {signedIn ? ( dashboard ) : ( <Landing /> )}
+
             </div>
 
-        </div>
         );
     }
 }
