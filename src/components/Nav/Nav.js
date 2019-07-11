@@ -1,75 +1,46 @@
 import React from 'react';
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import './Nav.css';
-import GoogleLogin, { GoogleLogout } from 'react-google-login';
-import {PostData} from '../../services/PostData';
-
 import Planner from '../Planner/Planner';
 import List from '../List/List';
 import Recipes from '../Recipes/Recipes';
 import Landing from '../Landing/Landing';
 
 
-var dashboard = (
-    <div className="module-container">
-  
-      <Planner/>
-      <List/>
-      <Recipes />
-      
-    </div>
-  );
-
-  var signedIn = 0;
+firebase.initializeApp({
+    apiKey: "AIzaSyARbJURIqskPfndvo57b3Ac8xuHdbS8kGo",
+    authDomain: "simplmeals-1561736691951.firebaseapp.com"
+})
 
 class Nav extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            loggedIn: false,
             loginError: false,
-            redirect: false,
         }
-        this.signUp = this.signUp.bind(this);
     }
 
-    signUp(res, type) {
-
-        let postData;
-
-        if (type === 'google' && res.w3.U3) {
-            postData = {
-                name: res.w3.ig,
-                provider: type,
-                email: res.w3.U3,
-                provider_id: res.El,
-                token: res.Zi.access_token,
-                provider_pic: res.w3.Paa
-            };
-            console.log(postData.provider_pic);
+    uiConfig = {
+        signInFlow: "popup",
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+        callbacks: {
+            signInSuccessWithAuthResult : () => false
         }
+    }
 
-        if (postData) {
-            PostData('signup', postData).then((result) => {
-               let responseJson = result;
-               sessionStorage.setItem("userData", JSON.stringify(responseJson));
-               this.setState({redirect: true});
-               console.log(signedIn)
-               signedIn = 1;
-               console.log(signedIn)
-            });
-        }
+    componentDidMount = () => {
+        firebase.auth().onAuthStateChanged(user => {
+          this.setState({ loggedIn: !!user })
+          console.log("user", user)
+        })
     }
 
     render() {
-
-        if (this.state.redirect || sessionStorage.getItem('userData')) {
-        }
-
-        const responseGoogle = (response) => {
-            //console.log(response);
-            signedIn = 1;
-            this.signUp(response, 'google')
-        }
 
         return (
             <div>
@@ -78,29 +49,36 @@ class Nav extends React.Component {
                     <div className="nav-container">
 
                         <span className="name"><b>simpl</b>meals</span>
-                        {signedIn ? 
-                        ( <GoogleLogout 
+                        {this.state.loggedIn ? 
+                        (
+                        <button onClick={() => firebase.auth().signOut()}>Sign out</button>
+                        ) : ( 
+                            <StyledFirebaseAuth
                             className="login"
-                            clientId="32448678336-dkkqbf1rfahp6qa8jok1lj67hdckq3c9.apps.googleusercontent.com"
-                            buttonText="Logout"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}/> ) : 
-                        ( <GoogleLogin
-                            className="login"
-                            clientId="32448678336-dkkqbf1rfahp6qa8jok1lj67hdckq3c9.apps.googleusercontent.com"
-                            buttonText="Login"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />)}
-
+                            uiConfig={this.uiConfig}
+                            firebaseAuth={firebase.auth()}
+                        />
+                        )}
                         
                     </div>
 
                 </div>
             
-                {signedIn ? ( dashboard ) : ( <Landing /> )}
+                {this.state.loggedIn ? ( 
+
+                    <div className="module-container">
+                    
+                        <Planner/>
+                        <List/>
+                        <Recipes />
+
+                    </div> 
+
+                    ) : ( 
+
+                    <Landing /> 
+
+                )}
 
             </div>
 

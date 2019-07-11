@@ -1,6 +1,5 @@
 import React from 'react';
 import './Landing.css';
-import food from '../../images/food.png';
 import create from '../../images/create.png';
 import plan from '../../images/plan.png';
 import shop from '../../images/shop.png';

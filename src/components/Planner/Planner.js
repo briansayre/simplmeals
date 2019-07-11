@@ -1,7 +1,6 @@
 import React from 'react';
 import './Planner.css';
 import Calendar from 'react-calendar';
-import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 let cycleLeft = (
