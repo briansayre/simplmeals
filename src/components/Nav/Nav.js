@@ -39,7 +39,7 @@ class Nav extends React.Component {
             postData = {
                 name: res.w3.ig,
                 provider: type,
-                email: res.w3.U3,
+                //email: res.w3.U3,
                 provider_id: res.El,
                 token: res.Zi.access_token,
                 provider_pic: res.w3.Paa
@@ -62,7 +62,7 @@ class Nav extends React.Component {
         }
 
         const responseGoogle = (response) => {
-            //console.log(response);
+            console.log(response);
             signedIn = 1;
             this.signUp(response, 'google')
         }
