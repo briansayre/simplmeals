@@ -21,13 +21,7 @@ const config = {
 firebase.initializeApp(config);
 console.log(firebase)
 
-var database = firebase.database()
-var ref = database.ref('user')
-var userData = {
-    name: 'Brian',
-    email: 'briansayre01@gmail.com'
-}
-ref.push(userData)
+
 
 class Nav extends React.Component {
 
@@ -57,6 +51,18 @@ class Nav extends React.Component {
         })
     }
 
+    addUser() {
+        var database = firebase.database();
+        var ref = database.ref('users');
+        var userData = {
+            uid: firebase.auth().currentUser.uid,
+            name: firebase.auth().currentUser.displayName,
+            email: firebase.auth().currentUser.email,
+            photoUrl: firebase.auth().currentUser.photoURL
+        }
+        ref.push(userData);
+    }
+
     render() {
 
         return (
@@ -82,12 +88,14 @@ class Nav extends React.Component {
                 </div>
             
                 {this.state.loggedIn ? ( 
+                    
 
                     <div className="module-container">
-                    
+                        
                         <Planner/>
                         <List/>
                         <Recipes />
+                        <button onClick={this.addUser}> Add me </button>
 
                     </div> 
 
