@@ -26,31 +26,31 @@ class Landing extends React.Component {
 
                     <div className="images">
 
-                        <div>
+                        <div className="individual-images">
                             <img src={create} alt=""/>
                             <h1 className="image-captions">Create.</h1>
                         </div>
 
-                        <div>
+                        <div className="individual-images">
                             <img src={plan} alt="" />
                             <h1 className="image-captions">Plan.</h1>
                         </div>
 
-                        <div>
+                        <div className="individual-images">
                             <img src={shop} alt="" />
                             <h1 className="image-captions">Shop.</h1>
                         </div>
 
-                        <div>
+                        <div className="individual-images">
                             <img src={enjoy} alt="" />
                             <h1 className="image-captions">Enjoy.</h1>
-                        </div>
+                        </div >
                         
                     </div>
 
                     <div>
                         <p className="explain">
-                            Simplmeals allows you to simple add your own recipes<br /> and plan every meal simply and quickly.
+                            Simplmeals allows you to create your own recipes<br /> and plan every meal quickly and simply.
                         </p>
                     </div>
 

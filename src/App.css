@@ -19,14 +19,68 @@
 }
 
 @media only screen and (max-width: 1055px) {
+
   .module-container {
     width: 350px;
   }
+
+  .images {
+    display: inline-block;
+    width: 250px;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .individual-images img {
+    display: none;
+  }
+  .individual-images {
+    width: 250px;
+    height: 50px;
+  }
+
 }
 
 .App {
   margin: 0;
   text-align: center;
+}
+
+.landing {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-image {
+  height: 350px;
+  background-image: url("./images/food.png");
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover;
+  margin-bottom: 50px;
+}
+
+.images {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-captions { 
+  font-family: 'Bitter', serif;
+  text-align: center;
+  color: #048E00;
+}
+
+.explain {
+  margin: 60px;
+  text-align: center;
+  font-size: 25px;
+  color: #048E00;
 }
 
 .module-container {
@@ -154,6 +208,12 @@ input {
   border-width: 1px;
   border-color: #c7c7c7;
   height: 20px;
+}
+
+.calendar {
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
 }
 
 footer {
