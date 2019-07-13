@@ -14,8 +14,8 @@ let addRecipeButton = (
                     <input type="text" name="instructions"  /><br />
                     <h3 className="modal-labels">Ingredients:</h3>
                     <div id="ingredient">
-                            <input type="text" name="ingredientName" />
-                            <input type="text" name="amount" />
+                        <input type="text" name="ingredientName" placeholder=" Ingredient Name"/>
+                        <input type="text" name="amount" placeholder=" Amount"/>
                     </div>
                     <br />
                 </form>

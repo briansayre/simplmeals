@@ -8,6 +8,7 @@ import Recipes from '../Recipes/Recipes';
 import Landing from '../Landing/Landing';
 
 
+
 firebase.initializeApp({
     apiKey: "AIzaSyARbJURIqskPfndvo57b3Ac8xuHdbS8kGo",
     authDomain: "simplmeals-1561736691951.firebaseapp.com"
