@@ -28,6 +28,7 @@
     display: inline-block;
     width: 250px;
     max-width: 250px;
+    margin-top: -30px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -35,6 +36,7 @@
   .individual-images img {
     display: none;
   }
+
   .individual-images {
     width: 250px;
     height: 50px;
