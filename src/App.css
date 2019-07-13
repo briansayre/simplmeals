@@ -44,6 +44,15 @@
 
 }
 
+@media only screen and (max-width: 650px) {
+
+  .login {
+    position: relative;
+    top: 150px;
+  }
+
+}
+
 .App {
   margin: 0;
   text-align: center;
