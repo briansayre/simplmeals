@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from "firebase";
+import * as firebase from 'firebase';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import './Nav.css';
 import Planner from '../Planner/Planner';
@@ -8,11 +8,26 @@ import Recipes from '../Recipes/Recipes';
 import Landing from '../Landing/Landing';
 
 
-
-firebase.initializeApp({
+const config = {
     apiKey: "AIzaSyARbJURIqskPfndvo57b3Ac8xuHdbS8kGo",
-    authDomain: "simplmeals-1561736691951.firebaseapp.com"
-})
+    authDomain: "simplmeals-1561736691951.firebaseapp.com",
+    databaseURL: "https://simplmeals-1561736691951.firebaseio.com",
+    projectId: "simplmeals-1561736691951",
+    storageBucket: "simplmeals-1561736691951.appspot.com",
+    messagingSenderId: "32448678336",
+    appId: "1:32448678336:web:2d304ccc82e8b6ed"
+}
+
+firebase.initializeApp(config);
+console.log(firebase)
+
+var database = firebase.database()
+var ref = database.ref('user')
+var userData = {
+    name: 'Brian',
+    email: 'briansayre01@gmail.com'
+}
+ref.push(userData)
 
 class Nav extends React.Component {
 
@@ -24,6 +39,7 @@ class Nav extends React.Component {
         }
     }
 
+    
     uiConfig = {
         signInFlow: "popup",
         signInOptions: [

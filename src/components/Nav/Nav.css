@@ -1,3 +1,9 @@
+@media only screen and (max-width: 1055px) {
+    .sign-out {
+      display: none;
+    }
+}
+
 .nav {
     background-color: #06C100;
     color: white;
