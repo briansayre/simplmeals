@@ -42,15 +42,6 @@ let addRecipeButton = (
     </Popup>
 );
 
-let cycleLeft = (
-    <button className="arrow" id = "cycle-left"> &lt; </button>
-);
-
-let cycleRight = (
-    <button className="arrow" id = "cycle-right"> &gt; </button>
-);
-
-
 
 class List extends React.Component {
 
@@ -70,7 +61,10 @@ class List extends React.Component {
             </div>
 
             <div className="module-title-secondary">
-                {cycleLeft} June 1 - June 7 {cycleRight} {addRecipeButton}
+                <button className="arrow" id = "cycle-left"> &lt; </button>
+                June 1 - June 7 
+                <button className="arrow" id = "cycle-right"> &gt; </button>
+                {addRecipeButton}
             </div>
 
             <div className="module-content">

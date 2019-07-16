@@ -1,7 +1,6 @@
 @media only screen and (max-width: 1835px) {
   .module-container {
     width: 100%;
-    
     max-width: 1833px;
   }
   .module {
@@ -18,7 +17,7 @@
   }
 }
 
-@media only screen and (max-width: 1055px) {
+@media only screen and (max-width: 1072px) {
 
   .module-container {
     width: 350px;
@@ -141,6 +140,16 @@
   
 }
 
+.module-title-secondary-dark {
+  margin: 0;
+  padding-top: 12px;
+  height: 28px;
+  color: white;
+  background-color: #048E00;
+  width: 100%;
+  
+}
+
 .module-content {
   padding: 10px;
 }
@@ -177,8 +186,21 @@
   padding: 0;
   font-size: 35px;
   position: absolute;
-  right: 5px;
+  right: 10px;
   top: 40px;
+}
+
+#add-food-button {
+  background-color: #048E00;
+  padding: 0;
+  float: right;
+  font-size: 35px;
+  margin-top: -12px;
+  margin-right: 10px;
+}
+
+#add-food-button:hover {
+  color: #06C100;
 }
 
 .arrow {
@@ -213,6 +235,7 @@
 
 input {
   background: #F2F2F2;
+  border-radius: 25px;
   margin-left: 20px;
   margin-right: 20px;
   border-style: solid;

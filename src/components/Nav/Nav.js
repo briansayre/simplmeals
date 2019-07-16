@@ -6,10 +6,13 @@ import Planner from '../Planner/Planner';
 import List from '../List/List';
 import Recipes from '../Recipes/Recipes';
 import Landing from '../Landing/Landing';
+require('dotenv').config();
+
+console.log(process.env);
 
 
 const config = {
-    apiKey: "AIzaSyARbJURIqskPfndvo57b3Ac8xuHdbS8kGo",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "simplmeals-1561736691951.firebaseapp.com",
     databaseURL: "https://simplmeals-1561736691951.firebaseio.com",
     projectId: "simplmeals-1561736691951",

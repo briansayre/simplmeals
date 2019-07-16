@@ -1,7 +1,42 @@
 import React from 'react';
 import './Planner.css';
 import Calendar from 'react-calendar';
-import 'react-day-picker/lib/style.css';
+import Popup from "reactjs-popup";
+
+let addFoodButton = (
+    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+        {close => (
+
+            <div className="modal">
+
+                <button
+                    className="button"
+                    id="modal-button"
+                    onClick={() => {
+                    console.log("modal closed ");
+                    close();
+                    }}
+                >
+                    Close
+                </button>
+
+                <button
+                    className="button"
+                    id="modal-button"
+                    onClick={() => {
+                    console.log("modal closed ");
+                    close();
+                    }}
+                >
+                    Submit
+                </button>
+
+            </div>
+
+        )}
+    </Popup>
+);
+
 
 
 class Planner extends React.Component {
@@ -65,6 +100,27 @@ class Planner extends React.Component {
                 {this.state.date.toDateString()} 
                 <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
+            </div>
+
+            <div className="meal-plan" id="breakfast" >
+                <div className="module-title-secondary-dark">
+                    Breakfast
+                    {addFoodButton}
+                </div>
+            </div>
+
+            <div className="meal-plan" id="lunch" >
+                <div className="module-title-secondary-dark">
+                    Lunch
+                    {addFoodButton}
+                </div>
+            </div>
+
+            <div className="meal-plan" id="dinner" >
+                <div className="module-title-secondary-dark">
+                    Dinner
+                    {addFoodButton}
+                </div>
             </div>
             
         </div>
