@@ -1,24 +1,15 @@
 import React from 'react';
 import './Recipes.css';
 import Popup from "reactjs-popup";
+import RecipeForm from '../RecipeForm/RecipeForm';
 
 let addRecipeButton = (
     <Popup trigger={<button className="button" id = "add-button"> + </button>} modal>
         {close => (
 
             <div className="modal">
-                <form>
-                    <h3 className="modal-labels">Name of Recipe:</h3>
-                    <input type="text" name="recipeName" /><br />
-                    <h3 className="modal-labels">Instuctions:</h3>
-                    <input type="text" name="instructions"  /><br />
-                    <h3 className="modal-labels">Ingredients:</h3>
-                    <div id="ingredient">
-                        <input type="text" name="ingredientName" placeholder="   Ingredient Name"/>
-                        <input type="text" name="amount" placeholder="   Amount"/>
-                    </div>
-                    <br />
-                </form>
+                
+                <RecipeForm />
 
                 <button
                     className="button"

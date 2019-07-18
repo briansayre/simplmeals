@@ -96,9 +96,9 @@ class Planner extends React.Component {
 
             <div className="module-title-secondary">
                 
-                <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+     <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
                 {this.state.date.toDateString()} 
-                <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+        <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
             </div>
 
