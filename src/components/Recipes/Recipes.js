@@ -3,69 +3,39 @@ import './Recipes.css';
 import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
 
-let addRecipeButton = (
-    <Popup trigger={<button className="button" id = "add-button"> + </button>} modal>
-        {close => (
-
-            <div className="modal">
-                
-                <RecipeForm />
-
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                    console.log("modal closed ");
-                    close();
-                    }}
-                >
-                    Close
-                </button>
-
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                    console.log("modal closed ");
-                    close();
-                    }}
-                >
-                    Add Ingredient
-                </button>
-
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                    console.log("modal closed ");
-                    close();
-                    }}
-                >
-                    Submit
-                </button>
-
-            </div>
-
-        )}
-    </Popup>
-);
-
-let cycleLeft = (
-    <button className="arrow" id = "cycle-left"> &lt; </button>
-);
-
-let cycleRight = (
-    <button className="arrow" id = "cycle-right"> &gt; </button>
-);
-
 
 class Recipes extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-           
+           categories: ['Main', 'Side', 'Dessert', 'Other'],
+           categoryIndex: 0,
+           category: 'Main',
         }
+        
+        this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
+        this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
+    }
+
+    handleLeftArrowClick() {
+        var newIndex = (this.state.categoryIndex - 1);
+        if (newIndex === -1) 
+            newIndex = 3;
+        this.setState({categoryIndex: newIndex});
+        this.setState({category: (this.state.categories[newIndex]).toLowerCase()});
+        console.log(this.state.categoryIndex);
+        console.log(this.state.category);
+    }
+
+    handleRightArrowClick() {
+        var newIndex = (this.state.categoryIndex + 1);
+        if (newIndex === 4) 
+            newIndex = 0;
+        this.setState({categoryIndex: newIndex});
+        this.setState({category: (this.state.categories[newIndex]).toLowerCase()});
+        console.log(this.state.categoryIndex)
+        console.log(this.state.category);
     }
 
     render() {
@@ -77,7 +47,35 @@ class Recipes extends React.Component {
             </div>
 
             <div className="module-title-secondary">
-                {cycleLeft} Main Courses {cycleRight} {addRecipeButton}
+                <button className="arrow" id = "cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+                {this.state.categories[this.state.categoryIndex]}s 
+                <button className="arrow" id = "cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+                
+                <Popup trigger={<button className="button" id = "add-button"> + </button>} modal>
+                    {close => (
+
+                        <div className="modal">
+                            
+                            <RecipeForm category={this.state.category}/>
+
+                            <button
+                                className="button"
+                                id="modal-button"
+                                onClick={() => {
+                                console.log("modal closed ");
+                                close();
+                                }}
+                            >
+                                Close
+                            </button>
+
+                        </div>
+
+                    )}
+                </Popup>
+
+
+                {console.log(this.state.categoryIndex)}
             </div>
 
             <div className="module-content">

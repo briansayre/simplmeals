@@ -18,17 +18,7 @@ let addFoodButton = (
                     }}
                 >
                     Close
-                </button>
-
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                    console.log("modal closed ");
-                    close();
-                    }}
-                >
-                    Submit
+                    
                 </button>
 
             </div>

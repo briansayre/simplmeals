@@ -10,13 +10,15 @@ class RecipeForm extends React.Component {
             instructions: '',
             ingredients: [],
             dates: [],
-            category: '',
+            category: 'main',
             uid: '',
         };
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleInstructionsChange = this.handleInstructionsChange.bind(this);
         this.handleIngredientChange = this.handleIngredientChange.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
     
     handleNameChange(event) {
@@ -33,10 +35,14 @@ class RecipeForm extends React.Component {
 
     }
 
+    handleCategoryChange(event) {
+        this.setState({category: event.target.value});
+    }
+
     handleSubmit(event) {
         if (this.state.value !== '') {
             this.setState({value: event.target.value});
-            alert('A name was submitted: ' + this.state.value + ' Instructions: ' + this.state.instructions);
+            alert('\nA name was submitted: ' + this.state.value + '\nInstructions: ' + this.state.instructions + '\nCategory: ' + this.state.category + '\nCategory: ' + this.props.category);
             
         } else {
             alert('Please enter a name');
@@ -72,7 +78,20 @@ class RecipeForm extends React.Component {
                 </label>
                 
                 <br /><br />
-                <input type="submit" value="Submit" />
+                <label>
+                    Category:
+                    <br />
+                    <select  onChange={this.handleCategoryChange}>
+                        <option selected value="main">Main</option>
+                        <option value="side">Side</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+
+                <br /><br />
+
+                <input className="button" id="modal-button" type="submit" value="Submit" />
 
             </form>
         );

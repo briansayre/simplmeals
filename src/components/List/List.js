@@ -7,13 +7,7 @@ let addRecipeButton = (
         {close => (
 
             <div className="modal">
-                <form>
-                    <h3 className="modal-labels">Item:</h3>
-                    <input type="text" name="itemAdded" /><br />
-                    
-                    <br />
-                </form>
-
+                 
                 <button
                     className="button"
                     id="modal-button"
@@ -23,17 +17,6 @@ let addRecipeButton = (
                     }}
                 >
                     Close
-                </button>
-                
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                    console.log("modal closed ");
-                    close();
-                    }}
-                >
-                    Submit
                 </button>
 
             </div>
