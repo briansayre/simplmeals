@@ -109,7 +109,7 @@ class Planner extends React.Component {
             <div className="meal-plan" id="dinner" >
                 <div className="module-title-secondary-dark">
                     Dinner
-                    {addFoodButton}
+                    {addFoodButton} 
                 </div>
             </div>
             

@@ -3,7 +3,7 @@ import './List.css';
 import Popup from "reactjs-popup";
 
 let addRecipeButton = (
-    <Popup trigger={<button className="button" id = "add-button"> + </button>} modal>
+    <Popup className="popup" trigger={<button className="button" id = "add-button"> + </button>} modal>
         {close => (
 
             <div className="modal">
@@ -13,7 +13,7 @@ let addRecipeButton = (
                     id="modal-button"
                     onClick={() => {
                     console.log("modal closed ");
-                    close();
+                        close();
                     }}
                 >
                     Close
@@ -27,7 +27,7 @@ let addRecipeButton = (
 
 
 class List extends React.Component {
-
+    
     constructor(props) {
         super(props);
         this.state = {

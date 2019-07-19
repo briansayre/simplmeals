@@ -11,7 +11,6 @@ class Recipes extends React.Component {
         this.state = {
            categories: ['Main', 'Side', 'Dessert', 'Other'],
            categoryIndex: 0,
-           category: 'Main',
         }
         
         this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
@@ -25,7 +24,6 @@ class Recipes extends React.Component {
         this.setState({categoryIndex: newIndex});
         this.setState({category: (this.state.categories[newIndex]).toLowerCase()});
         console.log(this.state.categoryIndex);
-        console.log(this.state.category);
     }
 
     handleRightArrowClick() {
@@ -33,9 +31,7 @@ class Recipes extends React.Component {
         if (newIndex === 4) 
             newIndex = 0;
         this.setState({categoryIndex: newIndex});
-        this.setState({category: (this.state.categories[newIndex]).toLowerCase()});
         console.log(this.state.categoryIndex)
-        console.log(this.state.category);
     }
 
     render() {
@@ -51,12 +47,12 @@ class Recipes extends React.Component {
                 {this.state.categories[this.state.categoryIndex]}s 
                 <button className="arrow" id = "cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
-                <Popup trigger={<button className="button" id = "add-button"> + </button>} modal>
+                <Popup className="popup" trigger={<button className="button" id = "add-button"> + </button>} modal>
                     {close => (
 
                         <div className="modal">
                             
-                            <RecipeForm category={this.state.category}/>
+                            <RecipeForm />
 
                             <button
                                 className="button"

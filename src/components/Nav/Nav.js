@@ -36,7 +36,6 @@ class Nav extends React.Component {
         }
     }
 
-    
     uiConfig = {
         signInFlow: "popup",
         signInOptions: [
