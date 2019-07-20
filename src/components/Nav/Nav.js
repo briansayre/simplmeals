@@ -8,8 +8,6 @@ import Recipes from '../Recipes/Recipes';
 import Landing from '../Landing/Landing';
 require('dotenv').config();
 
-console.log(process.env);
-
 
 const config = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -97,7 +95,7 @@ class Nav extends React.Component {
                         <Planner/>
                         <List/>
                         <Recipes />
-                        <button onClick={this.addUser}> Add me </button>
+                        
 
                     </div> 
 
@@ -108,7 +106,7 @@ class Nav extends React.Component {
                 )}
                 <footer>
                     <div className="footer-content">
-                        &copy; Brian Sayre 2019
+                        simplmeals created by Brian Sayre
                     </div>
                 </footer>
             </div>

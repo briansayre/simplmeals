@@ -1,5 +1,6 @@
 import React from 'react';
 import './RecipeForm.css';
+import * as firebase from 'firebase';
 
 class RecipeForm extends React.Component {
 
@@ -24,6 +25,12 @@ class RecipeForm extends React.Component {
     }
     
     handleNameChange(event) {
+        var database = firebase.database();
+        var ref = database.ref('recipes');
+        var userData = {
+            uid: firebase.auth().currentUser.uid,
+        }
+        ref.push(userData);
         this.setState({value: event.target.value});
        
     }
@@ -117,7 +124,11 @@ class RecipeForm extends React.Component {
                     
                         { 
                             this.state.ingredientInputList.map(input => {
-                                return input
+                                return (
+                                    <div key={input.id} >
+                                        {input}
+                                    </div>
+                                )
                             })
                         }
                         

@@ -13,7 +13,6 @@ let addFoodButton = (
                     className="button"
                     id="modal-button"
                     onClick={() => {
-                    console.log("modal closed ");
                     close();
                     }}
                 >

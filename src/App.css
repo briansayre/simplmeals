@@ -152,6 +152,8 @@
 
 .module-content {
   padding: 10px;
+  overflow-y: auto;
+  max-height: 647px;
 }
 
 .button {
@@ -233,6 +235,8 @@
 .modal {
   color: black;
   padding: 30px;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .popup {
@@ -258,15 +262,20 @@ input {
   background: white;
 }
 
+#form {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
 footer {
-  background-color: #06C100;
-  color: white;
+  color: #048E00;
   width: 100%;
-  margin-top: 15px;
   margin-bottom: 0;
+  margin-top: 30px;
 }
 
 .footer-content {
+  border-top: 1px solid #048E00;
   width: 60%;
   margin-left: auto;
   margin-right: auto;

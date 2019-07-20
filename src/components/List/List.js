@@ -12,7 +12,6 @@ let addRecipeButton = (
                     className="button"
                     id="modal-button"
                     onClick={() => {
-                    console.log("modal closed ");
                         close();
                     }}
                 >
@@ -51,7 +50,20 @@ class List extends React.Component {
             </div>
 
             <div className="module-content">
-                
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
+                <p>Hello.</p>< br />
             </div>
 
 

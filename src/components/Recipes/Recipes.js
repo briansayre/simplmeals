@@ -23,7 +23,6 @@ class Recipes extends React.Component {
             newIndex = 3;
         this.setState({categoryIndex: newIndex});
         this.setState({category: (this.state.categories[newIndex]).toLowerCase()});
-        console.log(this.state.categoryIndex);
     }
 
     handleRightArrowClick() {
@@ -31,7 +30,6 @@ class Recipes extends React.Component {
         if (newIndex === 4) 
             newIndex = 0;
         this.setState({categoryIndex: newIndex});
-        console.log(this.state.categoryIndex)
     }
 
     render() {
@@ -52,13 +50,12 @@ class Recipes extends React.Component {
 
                         <div className="modal">
                             
-                            <RecipeForm />
+                            <RecipeForm className="form" />
 
                             <button
                                 className="button"
                                 id="modal-button"
                                 onClick={() => {
-                                console.log("modal closed ");
                                 close();
                                 }}
                             >
@@ -70,12 +67,10 @@ class Recipes extends React.Component {
                     )}
                 </Popup>
 
-
-                {console.log(this.state.categoryIndex)}
             </div>
 
             <div className="module-content">
-            
+                
             </div>
             
             
