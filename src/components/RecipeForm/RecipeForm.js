@@ -1,8 +1,6 @@
 import React from 'react';
 import './RecipeForm.css';
-import Popup from "reactjs-popup";
 import * as firebase from 'firebase';
-import { delay } from 'q';
 
 
 
@@ -41,38 +39,27 @@ class RecipeForm extends React.Component {
        
     }
 
-    handleIngredientChange(event) {
-        var ingredient = event.target.value;
-        console.log(ingredient);
-    }
-
     handleCategoryChange(event) {
         this.setState({category: event.target.value});
     }
 
-    addIngredient() {
-        var arr = this.state.ingredientInputList;
-        console.log(arr.length);
-        arr.push(
-            <div key={arr.length}>
-                <input type="text" placeholder="Ingredient" onChange={this.handleIngredientNameChange} />
-                <input type="text" placeholder="Amount" onChange={this.handleIngredientAmountChange} />
-                <br />
-            </div>
-        );
+    
 
-        this.setState({
-            ingredientInputList: arr
-        });
+    handleIngredientChange(event, index) {
+        this.state.ingredients[index] = event.target.value;
+
+        this.setState({ingredients: this.state.ingredients})
+    }
+
+    addIngredient() {
+        this.setState({ingredients: [...this.state.ingredients, ""]}) 
 
     }
 
-    removeIngredient() {
-        var arr = this.state.ingredientInputList;
-        arr.pop();
-        this.setState({
-            ingredientInputList: arr
-        });
+    removeIngredient(index) {
+        this.state.ingredients.splice(index, 1);
+        console.log(this.state.ingredients, "$$$$");
+        this.setState({ingredients: this.state.ingredients});
 
     }
 
@@ -90,6 +77,7 @@ class RecipeForm extends React.Component {
                 instructions: this.state.instructions,
                 dates: this.state.dates,
             }
+            console.log(this.state);
             ref.push(recipeData);
             
         } else {
@@ -136,10 +124,12 @@ class RecipeForm extends React.Component {
                     Ingredients:
                     
                         { 
-                            this.state.ingredientInputList.map(input => {
+                            this.state.ingredients.map((input, index) => {
                                 return (
-                                    <div key={input.id} >
-                                        {input}
+                                    <div key={index} >
+                                        <input type="text" placeholder="Ingredient" value={input} onChange={(event)=>this.handleIngredientChange(event, index)}/>
+                                        <button type="button" className="button" id="modal-button" onClick={(event)=>this.removeIngredient(index)}>Remove Ingredient</button> <br />
+                                        <br />
                                     </div>
                                 )
                             })
@@ -150,8 +140,10 @@ class RecipeForm extends React.Component {
 
                 <br /><br />
 
-                <button type="button" className="button" id="modal-button" onClick={this.addIngredient.bind(this)}>Add Ingredient</button> <br />
-                <button type="button" className="button" id="modal-button" onClick={this.removeIngredient.bind(this)}>Remove Ingredient</button> <br />
+                <button type="button" className="button" id="modal-button" onClick={(event)=>this.addIngredient(event)}>Add Ingredient</button> <br />
+
+                
+
                 <input className="button" id="modal-button" type="submit" value="Submit" />
 
             </form>

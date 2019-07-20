@@ -236,7 +236,7 @@
   color: black;
   padding: 30px;
   max-height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .popup {
