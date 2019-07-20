@@ -1,6 +1,8 @@
 import React from 'react';
 import './RecipeForm.css';
+import Popup from "reactjs-popup";
 import * as firebase from 'firebase';
+import { delay } from 'q';
 
 
 
@@ -77,7 +79,7 @@ class RecipeForm extends React.Component {
     handleSubmit(event) {
         if (this.state.value !== '') {
             this.setState({value: event.target.value});
-            alert('\nA name was submitted: ' + this.state.value + '\nInstructions: ' + this.state.instructions + '\nCategory: ' + this.state.category);
+            //alert('\nA name was submitted: ' + this.state.value + '\nInstructions: ' + this.state.instructions + '\nCategory: ' + this.state.category);
             var database = firebase.database();
             var ref = database.ref('recipes');
             var recipeData = {
@@ -89,6 +91,7 @@ class RecipeForm extends React.Component {
                 dates: this.state.dates,
             }
             ref.push(recipeData);
+            
         } else {
             alert('Please enter a name');
         }
