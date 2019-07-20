@@ -2,8 +2,11 @@ import React from 'react';
 import './RecipeForm.css';
 import * as firebase from 'firebase';
 
-class RecipeForm extends React.Component {
 
+
+
+class RecipeForm extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -22,15 +25,11 @@ class RecipeForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.addIngredient();
         this.removeIngredient();
+
+        
     }
     
     handleNameChange(event) {
-        var database = firebase.database();
-        var ref = database.ref('recipes');
-        var userData = {
-            uid: firebase.auth().currentUser.uid,
-        }
-        ref.push(userData);
         this.setState({value: event.target.value});
        
     }
@@ -51,8 +50,9 @@ class RecipeForm extends React.Component {
 
     addIngredient() {
         var arr = this.state.ingredientInputList;
+        console.log(arr.length);
         arr.push(
-            <div>
+            <div key={arr.length}>
                 <input type="text" placeholder="Ingredient" onChange={this.handleIngredientNameChange} />
                 <input type="text" placeholder="Amount" onChange={this.handleIngredientAmountChange} />
                 <br />
@@ -78,7 +78,17 @@ class RecipeForm extends React.Component {
         if (this.state.value !== '') {
             this.setState({value: event.target.value});
             alert('\nA name was submitted: ' + this.state.value + '\nInstructions: ' + this.state.instructions + '\nCategory: ' + this.state.category);
-            
+            var database = firebase.database();
+            var ref = database.ref('recipes');
+            var recipeData = {
+                name: this.state.value,
+                category: this.state.category,
+                uid: firebase.auth().currentUser.uid,
+                ingredients: this.state.ingredients,
+                instructions: this.state.instructions,
+                dates: this.state.dates,
+            }
+            ref.push(recipeData);
         } else {
             alert('Please enter a name');
         }
