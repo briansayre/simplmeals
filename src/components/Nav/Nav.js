@@ -53,7 +53,6 @@ class Nav extends React.Component {
             name: firebase.auth().currentUser.displayName,
             email: firebase.auth().currentUser.email,
             photoUrl: firebase.auth().currentUser.photoURL,
-            recipes: '',
           }, function(error) {
             if (error) {
               // The write failed...

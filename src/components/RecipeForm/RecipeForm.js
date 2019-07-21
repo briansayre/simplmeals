@@ -1,6 +1,7 @@
 import React from 'react';
 import './RecipeForm.css';
 import * as firebase from 'firebase';
+import Popup from 'reactjs-popup';
 
 
 
@@ -65,14 +66,13 @@ class RecipeForm extends React.Component {
 
     removeIngredient(index) {
         this.state.ingredients.splice(index, 1);
-        console.log(this.state.ingredients, "$$$$");
         this.setState({ingredients: this.state.ingredients});
-
     }
 
     handleSubmit(event) {
         if (this.state.value !== '') {
-            this.setState({value: event.target.value});
+            //this.setState({value: event.target.value});
+            alert(this.state.value + ' was added to your recipes. Now you can close the window.')
             var database = firebase.database();
             var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
             var recipeData = {
@@ -82,14 +82,13 @@ class RecipeForm extends React.Component {
                 ingredients: this.state.ingredients,
                 amounts: this.state.amounts,
                 instructions: this.state.instructions,
-                dates: this.state.dates,
             }
             console.log(this.state);
             ref.push(recipeData);
-            
         } else {
             alert('Please enter a name');
         }
+
         event.preventDefault();
     }
 
