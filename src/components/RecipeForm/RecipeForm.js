@@ -13,14 +13,15 @@ class RecipeForm extends React.Component {
             value: '',
             instructions: '',
             ingredients: [],
+            amounts: [],
             dates: [],
             category: 'main',
             uid: '',
-            ingredientInputList: [],
         };
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleInstructionsChange = this.handleInstructionsChange.bind(this);
         this.handleIngredientChange = this.handleIngredientChange.bind(this);
+        this.handleAmountChange = this.handleAmountChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.addIngredient();
@@ -46,14 +47,20 @@ class RecipeForm extends React.Component {
     
 
     handleIngredientChange(event, index) {
+        
         this.state.ingredients[index] = event.target.value;
 
         this.setState({ingredients: this.state.ingredients})
     }
 
+    handleAmountChange(event, index) {
+        this.state.amounts[index] = event.target.value;
+
+        this.setState({amounts: this.state.amounts})
+    }
+
     addIngredient() {
         this.setState({ingredients: [...this.state.ingredients, ""]}) 
-
     }
 
     removeIngredient(index) {
@@ -66,14 +73,14 @@ class RecipeForm extends React.Component {
     handleSubmit(event) {
         if (this.state.value !== '') {
             this.setState({value: event.target.value});
-            //alert('\nA name was submitted: ' + this.state.value + '\nInstructions: ' + this.state.instructions + '\nCategory: ' + this.state.category);
             var database = firebase.database();
-            var ref = database.ref('recipes');
+            var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
             var recipeData = {
                 name: this.state.value,
                 category: this.state.category,
                 uid: firebase.auth().currentUser.uid,
                 ingredients: this.state.ingredients,
+                amounts: this.state.amounts,
                 instructions: this.state.instructions,
                 dates: this.state.dates,
             }
@@ -125,9 +132,11 @@ class RecipeForm extends React.Component {
                     
                         { 
                             this.state.ingredients.map((input, index) => {
+                                input = [];
                                 return (
                                     <div key={index} >
-                                        <input type="text" placeholder="Ingredient" value={input} onChange={(event)=>this.handleIngredientChange(event, index)}/>
+                                        <input type="text" placeholder="Ingredient" value={input[0]} onChange={(event)=>this.handleIngredientChange(event, index)}/>
+                                        <input type="text" placeholder="Amount" value={input[1]} onChange={(event)=>this.handleAmountChange(event, index)}/>
                                         <button type="button" className="button" id="modal-button" onClick={(event)=>this.removeIngredient(index)}>Remove Ingredient</button> <br />
                                         <br />
                                     </div>

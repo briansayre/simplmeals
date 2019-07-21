@@ -50,20 +50,7 @@ class List extends React.Component {
             </div>
 
             <div className="module-content">
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
-                <p>Hello.</p>< br />
+                
             </div>
 
 

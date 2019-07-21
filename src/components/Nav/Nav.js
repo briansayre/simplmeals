@@ -48,6 +48,23 @@ class Nav extends React.Component {
         firebase.auth().onAuthStateChanged(user => {
           this.setState({ loggedIn: !!user })
           console.log("user", user)
+          firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+            uid: firebase.auth().currentUser.uid,
+            name: firebase.auth().currentUser.displayName,
+            email: firebase.auth().currentUser.email,
+            photoUrl: firebase.auth().currentUser.photoURL,
+            recipes: '',
+          }, function(error) {
+            if (error) {
+              // The write failed...
+              console.log('failed');
+            } else {
+              // Data saved successfully!
+              console.log('saved');
+            }
+          });
+        
+        
         })
     }
 

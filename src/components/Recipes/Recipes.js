@@ -2,6 +2,10 @@ import React from 'react';
 import './Recipes.css';
 import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
+import Recipe from '../Recipe/Recipe';
+
+import * as firebase from 'firebase';
+
 
 
 class Recipes extends React.Component {
@@ -15,6 +19,8 @@ class Recipes extends React.Component {
         
         this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
         this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
+        this.gotData = this.gotData.bind(this);
+        this.errData = this.errData.bind(this);
     }
 
     handleLeftArrowClick() {
@@ -30,6 +36,25 @@ class Recipes extends React.Component {
         if (newIndex === 4) 
             newIndex = 0;
         this.setState({categoryIndex: newIndex});
+    }
+
+    getRecipes() {
+        var database = firebase.database();
+        var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
+        ref.on('value', (snapshot) => {
+            let recipes = snapshot.val();
+            console.log(recipes);
+        });
+
+    }
+
+    gotData(data) {
+        console.log(data.val());
+    }
+
+    errData(err) {
+        console.log('Error:');
+        console.log(err);
     }
 
     render() {
@@ -70,7 +95,8 @@ class Recipes extends React.Component {
             </div>
 
             <div className="module-content">
-                
+            <button onClick={this.getRecipes}> Recipes </button>
+                < Recipe />
             </div>
             
             
