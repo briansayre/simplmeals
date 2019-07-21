@@ -2,7 +2,7 @@ import React from 'react';
 import './Recipes.css';
 import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
-import Recipe from '../Recipe/Recipe';
+//import Recipe from '../Recipe/Recipe';
 
 import * as firebase from 'firebase';
 
@@ -15,46 +15,136 @@ class Recipes extends React.Component {
         this.state = {
            categories: ['Main', 'Side', 'Dessert', 'Other'],
            categoryIndex: 0,
+           category: 'main',
+           mainRecipes: [],
+           sideRecipes: [],
+           dessertRecipes: [],
+           otherRecipes: [],
         }
         
         this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
         this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
-        this.gotData = this.gotData.bind(this);
-        this.errData = this.errData.bind(this);
+        this.getRecipes = this.getRecipes.bind(this);
     }
 
     handleLeftArrowClick() {
         var newIndex = (this.state.categoryIndex - 1);
         if (newIndex === -1) 
             newIndex = 3;
+        var newCategory = this.state.categories[newIndex].toLowerCase();
         this.setState({categoryIndex: newIndex});
-        this.setState({category: (this.state.categories[newIndex]).toLowerCase()});
+        this.setState({category: newCategory});
+        
     }
 
     handleRightArrowClick() {
         var newIndex = (this.state.categoryIndex + 1);
         if (newIndex === 4) 
             newIndex = 0;
-        this.setState({categoryIndex: newIndex});
+        var newCategory = this.state.categories[newIndex].toLowerCase();
+        this.setState({
+            categoryIndex: newIndex,
+            category: newCategory,
+        });
     }
 
     getRecipes() {
         var database = firebase.database();
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
         ref.on('value', (snapshot) => {
-            let recipes = snapshot.val();
-            console.log(recipes);
+            var objects = snapshot.val();
+            if (objects !== null) {
+                var keys = Object.keys(objects);
+                //console.log(keys);
+                for (var i = 0; i < keys.length; i++) {
+                    var k = keys[i];
+                    var name = objects[k].name;
+                    var category = objects[k].category;
+
+                    if (category === 'main') {
+                        this.setState(prevState => ({
+                            mainRecipes: [...prevState.mainRecipes, name]
+                        }))
+                    } else if (category === 'side') {
+                        this.setState(prevState => ({
+                            sideRecipes: [...prevState.sideRecipes, name]
+                        }))
+                    } else if (category === 'dessert') {
+                        this.setState(prevState => ({
+                            dessertRecipes: [...prevState.dessertRecipes, name]
+                        }))
+                    } else {
+                        this.setState(prevState => ({
+                            otherRecipes: [...prevState.otherRecipes, name]
+                        }))
+                    }
+                    //console.log(name, category);
+                }
+
+            }
+        
+
         });
+        
+        console.log(this.state.dessertRecipes);
 
     }
 
-    gotData(data) {
-        console.log(data.val());
+    
+    displayRecipes() {
+        var category = this.state.category.toLowerCase();
+        console.log("YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        if (category === 'main') {
+            console.log(category);
+            return (
+                <div>
+                    {
+                        this.state.mainRecipes.map((name, index) => (
+                            <p key={index}>{name}</p>
+                        ))
+                    }
+                </div>
+            );
+        } else if (category === 'side') {
+            console.log(category);
+            return (
+                <div>
+                    {
+                        this.state.sideRecipes.map((name, index) => (
+                            <p key={index}>{name}</p>
+                        ))
+                    }
+                </div>
+            );
+        } else if (category === 'dessert') {
+            console.log(category);
+            console.log(this.state.dessertRecipes);
+            return (
+                <div>
+                    {
+                        this.state.dessertRecipes.map((name, index) => (
+                            <p key={index}>{name}</p>
+                        ))
+                    }
+                </div>
+            );
+        } else {
+            console.log(category);
+            return (
+                <div>
+                    {
+                        this.state.otherRecipes.map((name, index) => (
+                            <p key={index}>{name}</p>
+                        ))
+                    }
+                </div>
+            );
+        }
     }
 
-    errData(err) {
-        console.log('Error:');
-        console.log(err);
+
+    componentDidMount() {
+        this.getRecipes();
     }
 
     render() {
@@ -95,10 +185,14 @@ class Recipes extends React.Component {
             </div>
 
             <div className="module-content">
-            <button onClick={this.getRecipes}> Recipes </button>
-                < Recipe />
-            </div>
             
+            
+                {
+                    this.displayRecipes()
+                }
+            
+                    
+            </div>
             
         </div>
         );

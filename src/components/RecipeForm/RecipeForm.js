@@ -48,20 +48,17 @@ class RecipeForm extends React.Component {
     
 
     handleIngredientChange(event, index) {
-        
         this.state.ingredients[index] = event.target.value;
-
-        this.setState({ingredients: this.state.ingredients})
+        this.setState({ingredients: this.state.ingredients});
     }
 
     handleAmountChange(event, index) {
         this.state.amounts[index] = event.target.value;
-
-        this.setState({amounts: this.state.amounts})
+        this.setState({amounts: this.state.amounts});
     }
 
     addIngredient() {
-        this.setState({ingredients: [...this.state.ingredients, ""]}) 
+        this.setState({ingredients: [...this.state.ingredients, ""]});
     }
 
     removeIngredient(index) {
@@ -71,8 +68,6 @@ class RecipeForm extends React.Component {
 
     handleSubmit(event) {
         if (this.state.value !== '') {
-            //this.setState({value: event.target.value});
-            alert(this.state.value + ' was added to your recipes. Now you can close the window.')
             var database = firebase.database();
             var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
             var recipeData = {
@@ -85,10 +80,10 @@ class RecipeForm extends React.Component {
             }
             console.log(this.state);
             ref.push(recipeData);
+            Popup.close();
         } else {
             alert('Please enter a name');
         }
-
         event.preventDefault();
     }
 

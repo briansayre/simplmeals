@@ -20,7 +20,7 @@ const config = {
 }
 
 firebase.initializeApp(config);
-console.log(firebase)
+//console.log(firebase)
 
 
 
@@ -30,7 +30,6 @@ class Nav extends React.Component {
         super(props);
         this.state = {
             loggedIn: false,
-            loginError: false,
         }
     }
 
@@ -44,11 +43,12 @@ class Nav extends React.Component {
         }
     }
 
+
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged(user => {
           this.setState({ loggedIn: !!user })
-          console.log("user", user)
-          firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+          //console.log("user", user)
+          firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
             uid: firebase.auth().currentUser.uid,
             name: firebase.auth().currentUser.displayName,
             email: firebase.auth().currentUser.email,
@@ -56,10 +56,10 @@ class Nav extends React.Component {
           }, function(error) {
             if (error) {
               // The write failed...
-              console.log('failed');
+              //console.log('failed');
             } else {
               // Data saved successfully!
-              console.log('saved');
+              //console.log('saved');
             }
           });
         

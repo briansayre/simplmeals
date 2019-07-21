@@ -93,6 +93,13 @@
   color: #048E00;
 }
 
+p {
+  margin: 0px;
+  padding: 7px;
+  border-bottom: 1px solid #c7c7c7;
+
+}
+
 .module-container {
   margin-top: 20px;
   margin-left: auto;
