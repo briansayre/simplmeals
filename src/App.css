@@ -1,33 +1,33 @@
-@media only screen and (max-width: 1835px) {
+@media only screen and (max-width: 114.5rem) {
   .module-container {
     width: 100%;
-    max-width: 1833px;
+    max-width: 114.5rem;
   }
   .module {
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.0625rem;
     border-color: #c7c7c7;
     background-color: #F2F2F2;
-    margin-top: 25px;
+    margin-top: 1.5625rem;
     width: 30%;
-    min-width: 350px;
-    height: 750px;
+    min-width: 21.875rem;
+    height:  46.875rem;
     position: relative;
   }
 }
 
-@media only screen and (max-width: 1072px) {
+@media only screen and (max-width: 67rem) {
 
   .module-container {
-    width: 350px;
+    width: 21.875rem;
   }
 
   .images {
     display: inline-block;
-    width: 250px;
-    max-width: 250px;
-    margin-top: -30px;
+    width: 15.625rem;
+    max-width: 15.625rem;
+    margin-top: -1.875rem;
     margin-left: auto;
     margin-right: auto;
   }
@@ -37,17 +37,17 @@
   }
 
   .individual-images {
-    width: 250px;
-    height: 50px;
+    width: 15.625rem;
+    height: 3.125rem;
   }
 
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 40.625rem) {
 
   .login {
     position: relative;
-    top: 150px;
+    top: 9.375rem;
   }
 
 }
@@ -63,19 +63,19 @@
 }
 
 .header-image {
-  height: 350px;
+  height: 21.875rem;
   background-image: url("./images/food.png");
   background-position: center;
   background-repeat: no-repeat; 
   background-size: cover;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 
 .images {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 900px;
+  max-width: 56.25rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -87,49 +87,49 @@
 }
 
 .explain {
-  margin: 60px;
+  margin: 3.75rem;
   border: none;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.5625rem;
   color: #048E00;
 }
 
 p {
-  margin: 0px;
-  padding: 7px;
-  border-bottom: 1px solid #c7c7c7;
+  margin: 0;
+  padding:  0.3125rem;
+  border-bottom: 0.0625rem solid #c7c7c7;
 }
 
 .module-container {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 1100px;
+  max-width: 68.75rem;
 }
 
 .module {
-  border-radius: 5px;
+  border-radius:  0.3125rem;
   border-style: solid;
-  border-width: 1px;
+  border-width: 0.0625rem;
   border-color: #c7c7c7;
   background-color: #F2F2F2;
-  margin-top: 25px;
+  margin-top: 1.5625rem;
   width: 30%;
-  min-width: 350px;
-  height: 750px;
+  min-width: 21.875rem;
+  height:  46.875rem;
   position: relative;
 }
 
 .module-title {
   
-  border-radius: 5px 5px 0  0 ;
+  border-radius:  0.3125rem  0.3125rem 0  0 ;
   text-align: center;
   margin: 0;
-  padding-top: 12px;
-  height: 28px;
+  padding-top: 0.75rem;
+  height:  1.75rem;
   color: white;
   background-color: #048E00;
   width: 100%;
@@ -139,8 +139,8 @@ p {
 .module-title-secondary {
   text-align: center;
   margin: 0;
-  padding-top: 12px;
-  height: 28px;
+  padding-top: 0.75rem;
+  height:  1.75rem;
   color: white;
   background-color: #06C100;
   width: 100%;
@@ -149,8 +149,8 @@ p {
 
 .module-title-secondary-dark {
   margin: 0;
-  padding-top: 12px;
-  height: 28px;
+  padding-top: 0.75rem;
+  height:  1.75rem;
   color: white;
   background-color: #048E00;
   width: 100%;
@@ -158,13 +158,13 @@ p {
 }
 
 .module-content {
-  padding: 10px;
+  padding: 0.625rem;
   overflow-y: auto;
-  max-height: 647px;
+  max-height: 40.4375rem;
 }
 
 .button {
-  border-radius: 25px;
+  border-radius: 1.5625rem;
   display: inline-block;
   border: none;
   margin: 0;
@@ -172,7 +172,7 @@ p {
   background: #06C100;
   color: #ffffff;
   font-size: 1rem;
-  height: 28px;
+  height:  1.75rem;
   cursor: pointer;
   text-align: center;
   transition: background 250ms ease-in-out, 
@@ -187,29 +187,29 @@ p {
 }
 
 #modal-button {
-  font-size: 16px;
-  width: 160px;
-  height: 30px;
-  padding: 5px;
-  margin: 5px;
+  font-size: 1rem;
+  width: 10rem;
+  height: 1.875rem;
+  padding:  0.3125rem;
+  margin:  0.3125rem;
 }
 
 #add-button {
   padding: 0;
-  height: 28px;
-  font-size: 35px;
+  height:  1.75rem;
+  font-size: 2.1875rem;
   position: absolute;
-  right: 10px;
-  top: 40px;
+  right: 0.625rem;
+  top: 2.5rem;
 }
 
 #add-food-button {
   background-color: #048E00;
   padding: 0;
   float: right;
-  font-size: 35px;
-  margin-top: -12px;
-  margin-right: 10px;
+  font-size: 2.1875rem;
+  margin-top: -.75rem;
+  margin-right: 0.625rem;
 }
 
 #add-food-button:hover {
@@ -218,12 +218,12 @@ p {
 
 .arrow {
   font-weight: bold;
-  border-radius: 25px;
+  border-radius: 1.5625rem;
   display: inline-block;
   border: none;
   padding: 0;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0.625rem;
+  margin-right: 0.625rem;
   text-decoration: none;
   background: #06C100;
   color: #ffffff;
@@ -243,26 +243,26 @@ p {
 
 .modal {
   color: black;
-  padding: 30px;
-  max-height: 500px;
+  padding: 1.875rem;
+  max-height: 31.25rem;
   overflow-y: auto;
 }
 
 .popup {
-  max-width: 500px;
-  width: 600px;
+  max-width: 31.25rem;
+  width: 37.5rem;
 }
 
 
 input {
   background: #F2F2F2;
-  border-radius: 25px;
-  margin: 3px;
+  border-radius: 1.5625rem;
+  margin: 0.1875rem;
   border-style: solid;
-  border-width: 1px;
+  border-width: 0.0625rem;
   border-color: #c7c7c7;
-  padding-left: 10px;
-  height: 25px;
+  padding-left: 0.625rem;
+  height: 1.5625rem;
 }
 
 .calendar {
@@ -272,7 +272,7 @@ input {
 }
 
 #form {
-  max-height: 500px;
+  max-height: 31.25rem;
   overflow-y: scroll;
 }
 
@@ -280,15 +280,16 @@ footer {
   color: #048E00;
   width: 100%;
   margin-bottom: 0;
-  margin-top: 30px;
+  margin-top: 1.875rem;
 }
 
 .footer-content {
-  border-top: 1px solid #048E00;
+  border-top: 0.0625rem solid #048E00;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  margin-top: 15px;
-  padding: 15px;
+  margin-top: 0.9375rem;
+  padding: 0.9375rem;
+  max-width: 62.5rem;
 }

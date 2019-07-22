@@ -2,9 +2,10 @@ import React from 'react';
 import './Recipes.css';
 import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
-//import Recipe from '../Recipe/Recipe';
 
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/functions';
 
 
 
@@ -25,7 +26,7 @@ class Recipes extends React.Component {
         
         this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
         this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
-        this.getRecipes = this.getRecipes.bind(this);
+        this.sortRecipes = this.sortRecipes.bind(this);
     }
 
     handleLeftArrowClick() {
@@ -33,8 +34,13 @@ class Recipes extends React.Component {
         if (newIndex === -1) 
             newIndex = 3;
         var newCategory = this.state.categories[newIndex].toLowerCase();
-        this.setState({categoryIndex: newIndex});
-        this.setState({category: newCategory});
+        this.setState({
+            categoryIndex: newIndex,
+            category: newCategory,
+        });
+        this.sortRecipes();
+        console.log(this.state.mainRecipes);
+        
         
     }
 
@@ -47,52 +53,6 @@ class Recipes extends React.Component {
             categoryIndex: newIndex,
             category: newCategory,
         });
-    }
-
-    getRecipes() {
-        var database = firebase.database();
-        var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
-        ref.on('value', (snapshot) => {
-            var objects = snapshot.val();
-            if (objects !== null) {
-                var keys = Object.keys(objects);
-                //console.log(keys);
-                
-                for (var i = 0; i < keys.length; i++) {
-                    var k = keys[i];
-                    var name = objects[k].name;
-                    var category = objects[k].category;
-
-                    console.log(objects[k]);
-
-                    this.setState(prevState => ({
-                        allRecipes: [...prevState.allRecipes, objects[k]]
-                    }))
-
-                    if (category === 'main') {
-                        this.setState(prevState => ({
-                            mainRecipes: [...prevState.mainRecipes, name]
-                        }))
-                    } else if (category === 'side') {
-                        this.setState(prevState => ({
-                            sideRecipes: [...prevState.sideRecipes, name]
-                        }))
-                    } else if (category === 'dessert') {
-                        this.setState(prevState => ({
-                            dessertRecipes: [...prevState.dessertRecipes, name]
-                        }))
-                    } else {
-                        this.setState(prevState => ({
-                            otherRecipes: [...prevState.otherRecipes, name]
-                        }))
-                    }
-                    //console.log(name, category);
-                }
-
-            }
-
-        });
-
     }
 
     
@@ -141,10 +101,32 @@ class Recipes extends React.Component {
         }
     }
 
+    sortRecipes() {
+        console.log("sorting");
+        console.log(this.props.recipes.length);
+        for (var i = 0; i < this.props.recipes.length; i++) {
+            var category = this.props.recipes[i].category;
+            var name = this.props.recipes[i].name;
+            console.log(name);
+            if (category === 'main') {
+                this.setState({ mainRecipes: [...this.state.mainRecipes, name] });
+            } else if (category === 'side') {
+                this.setState({ sideRecipes: [...this.state.sideRecipes, name] });
+            }else if (category === 'dessert') {
+                this.setState({ dessertRecipes: [...this.state.dessertRecipes, name] });
+            } else {
+                this.setState({ otherRecipes: [...this.state.otherRecipes, name] });
+            }
+        }
+    }
+
+    componentWillMount() {
+        if (this.props.recipes.length > 0)
+            this.sortRecipes();
+    }
 
     componentDidMount() {
-        this.getRecipes();
-        console.log(this.state.allRecipes);
+        
     }
 
     render() {

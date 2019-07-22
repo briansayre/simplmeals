@@ -1,11 +1,14 @@
 import React from 'react';
-import * as firebase from 'firebase';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/functions';
+
 import './Nav.css';
-import Planner from '../Planner/Planner';
-import List from '../List/List';
-import Recipes from '../Recipes/Recipes';
 import Landing from '../Landing/Landing';
+import Dashboard from '../Dashboard/Dashboard';
 require('dotenv').config();
 
 
@@ -19,9 +22,8 @@ const config = {
     appId: "1:32448678336:web:2d304ccc82e8b6ed"
 }
 
-firebase.initializeApp(config);
-//console.log(firebase)
 
+firebase.initializeApp(config);
 
 
 class Nav extends React.Component {
@@ -47,7 +49,6 @@ class Nav extends React.Component {
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ loggedIn: !!user })
-            //console.log("user", user)
             if (this.state.loggedIn) {
                 firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
                     uid: firebase.auth().currentUser.uid,
@@ -62,12 +63,13 @@ class Nav extends React.Component {
                     // Data saved successfully!
                     //console.log('saved');
                 }
-                });
+                });    
+                //this.getRecipes();
             }
-          
-        
         })
     }
+
+   
 
     addUser() {
         var database = firebase.database();
@@ -105,19 +107,7 @@ class Nav extends React.Component {
 
                 </div>
             
-                {this.state.loggedIn ? ( 
-                    
-
-                    <div className="module-container">
-                        
-                        <Planner/>
-                        <List/>
-                        <Recipes />
-                        
-
-                    </div> 
-
-                ) : (  <Landing /> )}
+                {this.state.loggedIn ? ( <Dashboard /> ) : ( <Landing /> )}
 
                 <footer>
                     <div className="footer-content">
