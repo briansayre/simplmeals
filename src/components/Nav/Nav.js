@@ -46,23 +46,25 @@ class Nav extends React.Component {
 
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged(user => {
-          this.setState({ loggedIn: !!user })
-          //console.log("user", user)
-          firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
-            uid: firebase.auth().currentUser.uid,
-            name: firebase.auth().currentUser.displayName,
-            email: firebase.auth().currentUser.email,
-            photoUrl: firebase.auth().currentUser.photoURL,
-          }, function(error) {
-            if (error) {
-              // The write failed...
-              //console.log('failed');
-            } else {
-              // Data saved successfully!
-              //console.log('saved');
+            this.setState({ loggedIn: !!user })
+            //console.log("user", user)
+            if (this.state.loggedIn) {
+                firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
+                    uid: firebase.auth().currentUser.uid,
+                    name: firebase.auth().currentUser.displayName,
+                    email: firebase.auth().currentUser.email,
+                    photoUrl: firebase.auth().currentUser.photoURL,
+                }, function(error) {
+                if (error) {
+                    // The write failed...
+                    //console.log('failed');
+                } else {
+                    // Data saved successfully!
+                    //console.log('saved');
+                }
+                });
             }
-          });
-        
+          
         
         })
     }
@@ -115,18 +117,15 @@ class Nav extends React.Component {
 
                     </div> 
 
-                    ) : ( 
+                ) : (  <Landing /> )}
 
-                    <Landing /> 
-
-                )}
                 <footer>
                     <div className="footer-content">
                         simplmeals created by Brian Sayre
                     </div>
                 </footer>
-            </div>
 
+            </div>
         );
     }
 }

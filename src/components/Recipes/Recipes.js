@@ -16,6 +16,7 @@ class Recipes extends React.Component {
            categories: ['Main', 'Side', 'Dessert', 'Other'],
            categoryIndex: 0,
            category: 'main',
+           allRecipes: [],
            mainRecipes: [],
            sideRecipes: [],
            dessertRecipes: [],
@@ -56,10 +57,17 @@ class Recipes extends React.Component {
             if (objects !== null) {
                 var keys = Object.keys(objects);
                 //console.log(keys);
+                
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
                     var name = objects[k].name;
                     var category = objects[k].category;
+
+                    console.log(objects[k]);
+
+                    this.setState(prevState => ({
+                        allRecipes: [...prevState.allRecipes, objects[k]]
+                    }))
 
                     if (category === 'main') {
                         this.setState(prevState => ({
@@ -82,20 +90,15 @@ class Recipes extends React.Component {
                 }
 
             }
-        
 
         });
-        
-        console.log(this.state.dessertRecipes);
 
     }
 
     
     displayRecipes() {
         var category = this.state.category.toLowerCase();
-        console.log("YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
         if (category === 'main') {
-            console.log(category);
             return (
                 <div>
                     {
@@ -106,19 +109,16 @@ class Recipes extends React.Component {
                 </div>
             );
         } else if (category === 'side') {
-            console.log(category);
             return (
                 <div>
                     {
                         this.state.sideRecipes.map((name, index) => (
-                            <p key={index}>{name}</p>
+                            <p key={index}><a href="https://www.google.com" >{name}</a></p>
                         ))
                     }
                 </div>
             );
         } else if (category === 'dessert') {
-            console.log(category);
-            console.log(this.state.dessertRecipes);
             return (
                 <div>
                     {
@@ -129,7 +129,6 @@ class Recipes extends React.Component {
                 </div>
             );
         } else {
-            console.log(category);
             return (
                 <div>
                     {
@@ -145,6 +144,7 @@ class Recipes extends React.Component {
 
     componentDidMount() {
         this.getRecipes();
+        console.log(this.state.allRecipes);
     }
 
     render() {
@@ -162,9 +162,8 @@ class Recipes extends React.Component {
                 
                 <Popup className="popup" trigger={<button className="button" id = "add-button"> + </button>} modal>
                     {close => (
-
                         <div className="modal">
-                            
+
                             <RecipeForm className="form" />
 
                             <button
@@ -176,7 +175,6 @@ class Recipes extends React.Component {
                             >
                                 Close
                             </button>
-
                         </div>
 
                     )}
@@ -186,15 +184,12 @@ class Recipes extends React.Component {
 
             <div className="module-content">
             
-            
-                {
-                    this.displayRecipes()
-                }
-            
-                    
+                {this.displayRecipes()}
+
             </div>
             
         </div>
+
         );
     }
 }

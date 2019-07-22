@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Recipe extends React.Component {
+class RecipePopup extends React.Component {
 
     constructor(props) {
         super(props);
@@ -23,4 +23,4 @@ class Recipe extends React.Component {
 }
 
 
-export default Recipe;
+export default RecipePopup;

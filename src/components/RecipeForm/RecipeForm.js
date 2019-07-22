@@ -25,15 +25,12 @@ class RecipeForm extends React.Component {
         this.handleAmountChange = this.handleAmountChange.bind(this);
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.addIngredient();
-        this.removeIngredient();
-
-        
+        this.addIngredient = this.addIngredient.bind(this);
+        this.removeIngredient = this.removeIngredient.bind(this);
     }
     
     handleNameChange(event) {
         this.setState({value: event.target.value});
-       
     }
 
     handleInstructionsChange(event) {
@@ -44,8 +41,6 @@ class RecipeForm extends React.Component {
     handleCategoryChange(event) {
         this.setState({category: event.target.value});
     }
-
-    
 
     handleIngredientChange(event, index) {
         this.state.ingredients[index] = event.target.value;
@@ -78,7 +73,6 @@ class RecipeForm extends React.Component {
                 amounts: this.state.amounts,
                 instructions: this.state.instructions,
             }
-            console.log(this.state);
             ref.push(recipeData);
             Popup.close();
         } else {
@@ -92,7 +86,7 @@ class RecipeForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
 
                 <label>
-                    Name:
+                    Recipe Name:
                     <br />
                     <input type="text" value={this.state.value} onChange={this.handleNameChange} />
                 </label>
@@ -100,7 +94,7 @@ class RecipeForm extends React.Component {
                 <br /><br />
 
                 <label>
-                    Instuctions:
+                    Recipe Instuctions:
                     <br />
                     <input type="text" value={this.state.instructions} onChange={this.handleInstructionsChange} />
                 </label>
@@ -109,7 +103,6 @@ class RecipeForm extends React.Component {
 
                 <label>
                     Category:
-                    <br />
                     <br />
                     <select onChange={this.handleCategoryChange}>
                         <option defaultValue value="main">Main</option>
@@ -123,22 +116,19 @@ class RecipeForm extends React.Component {
 
                 <label>
                     Ingredients:
-                    
-                        { 
-                            this.state.ingredients.map((input, index) => {
-                                input = [];
-                                return (
-                                    <div key={index} >
-                                        <input type="text" placeholder="Ingredient" value={input[0]} onChange={(event)=>this.handleIngredientChange(event, index)}/>
-                                        <input type="text" placeholder="Amount" value={input[1]} onChange={(event)=>this.handleAmountChange(event, index)}/>
-                                        <button type="button" className="button" id="modal-button" onClick={(event)=>this.removeIngredient(index)}>Remove Ingredient</button> <br />
-                                        <br />
-                                    </div>
-                                )
-                            })
-                        }
-                        
-
+                    { 
+                        this.state.ingredients.map((input, index) => {
+                            input = [];
+                            return (
+                                <div key={index} >
+                                    <input type="text" placeholder="Ingredient" value={input[0]} onChange={(event)=>this.handleIngredientChange(event, index)}/>
+                                    <input type="text" placeholder="Amount" value={input[1]} onChange={(event)=>this.handleAmountChange(event, index)}/>
+                                    <button type="button" className="button" id="modal-button" onClick={(event)=>this.removeIngredient(index)}>Remove Ingredient</button> <br />
+                                    <br />
+                                </div>
+                            )
+                        })
+                    }
                 </label>
 
                 <br /><br />
