@@ -4,9 +4,6 @@ import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
 import RecipeListItem from '../RecipeListItem/RecipeListItem';
 
-import firebase from 'firebase/app';
-import 'firebase/database';
-import 'firebase/functions';
 
 
 

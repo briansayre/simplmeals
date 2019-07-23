@@ -1,4 +1,4 @@
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 750px) {
     button.sign-out {
         border: 0;
         height: 40px;
@@ -21,6 +21,14 @@
         margin-top: 6px;
         text-align: center;
 
+    }
+
+    div.nav-user-name {
+        display: none;
+    }
+
+    img.nav-user-img {
+        display: none;
     }
 }
 
@@ -55,6 +63,22 @@
     margin: -10px;
     padding: 0;
     height: 30px;
+}
+
+.right-side {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-user-img {
+    border-radius: 25px;
+    width: 40px;   
+    height: 40px;
+    margin: 7px;
+}
+
+.nav-user-name {
+    margin: 20px 20px 0 10px;
 }
 
 .sign-out {
