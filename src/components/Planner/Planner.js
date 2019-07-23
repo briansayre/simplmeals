@@ -2,29 +2,7 @@ import React from 'react';
 import './Planner.css';
 import Calendar from 'react-calendar';
 import Popup from "reactjs-popup";
-
-let addFoodButton = (
-    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
-        {close => (
-
-            <div className="modal">
-
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                    close();
-                    }}
-                >
-                    Close
-                    
-                </button>
-
-            </div>
-
-        )}
-    </Popup>
-);
+import PlannerPopup from '../PlannerPopup/PlannerPopup';
 
 
 
@@ -94,21 +72,90 @@ class Planner extends React.Component {
             <div className="meal-plan" id="breakfast" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Breakfast
-                    {addFoodButton}
+                    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                        {close => (
+
+                            <div className="modal">
+
+                                <PlannerPopup recipes={this.props.recipes} meal="breakfast" date={this.state.date}/>
+
+                                <center>
+                                <button
+                                    className="button"
+                                    id="modal-button"
+                                    onClick={() => {
+                                    close();
+                                    }}
+                                >
+                                    Close
+                                    
+                                </button>
+                                </center>
+
+                            </div>
+
+                        )}
+                    </Popup>
                 </div>
             </div>
 
             <div className="meal-plan" id="lunch" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Lunch
-                    {addFoodButton}
+                    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                        {close => (
+
+                            <div className="modal">
+
+                                <PlannerPopup recipes={this.props.recipes} meal="lunch" date={this.state.date}/>
+
+                                <center>
+                                <button
+                                    className="button"
+                                    id="modal-button"
+                                    onClick={() => {
+                                    close();
+                                    }}
+                                >
+                                    Close
+                                    
+                                </button>
+                                </center>
+
+                            </div>
+
+                        )}
+                    </Popup>
                 </div>
             </div>
 
             <div className="meal-plan" id="dinner" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Dinner
-                    {addFoodButton} 
+                    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                        {close => (
+
+                            <div className="modal">
+
+                                <PlannerPopup recipes={this.props.recipes} meal="dinner" date={this.state.date}/>
+
+                                <br /><br />
+                                <center>
+                                <button
+                                    className="button"
+                                    id="modal-button"
+                                    onClick={() => {
+                                    close();
+                                    }}
+                                >
+                                    Close
+                                </button>
+                                </center>
+
+                            </div>
+
+                        )}
+                    </Popup>
                 </div>
             </div>
             

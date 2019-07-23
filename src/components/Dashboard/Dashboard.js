@@ -34,28 +34,12 @@ class Dashboard extends React.Component {
             var objects = snapshot.val();
             if (objects !== null) {
                 var keys = Object.keys(objects);
-                //console.log(keys);
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
                     //var name = objects[k].name;
                     //var category = objects[k].category;
-
-                    //console.log('Food Object', objects[k]);
                     recipes.push(objects[k]);
                     //this.setState({ allRecipes: [...this.state.allRecipes, objects[k]] });
-                    
-
-                    /*
-                    if (category === 'main') {
-                        this.setState({ mainRecipes: [...this.state.mainRecipes, name] });
-                    } else if (category === 'side') {
-                        this.setState({ sideRecipes: [...this.state.sideRecipes, name] });
-                    } else if (category === 'dessert') {
-                        this.setState({ dessertRecipes: [...this.state.dessertRecipes, name] });
-                    } else {
-                        this.setState({ otherRecipes: [...this.state.otherRecipes, name] });
-                    }
-                    */
 
                 }
 
@@ -77,8 +61,8 @@ class Dashboard extends React.Component {
                     
                     <div className="module-container"> 
 
-                        <Planner/>
-                        <List/>
+                        <Planner  recipes={this.state.allRecipes} />
+                        <List />
                         <Recipes recipes={this.state.allRecipes} />
 
                     </div> 

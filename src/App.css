@@ -191,6 +191,7 @@ p {
   height: 1.875rem;
   padding:  0.3125rem;
   margin:  0.3125rem;
+
 }
 
 #add-button {
@@ -253,6 +254,7 @@ p {
 }
 
 
+
 input {
   background: #F2F2F2;
   border-radius: 1.5625rem;
@@ -299,7 +301,6 @@ input {
 }
 
 .ingredients-modal {
-  border: 0px solid red;
   overflow: hidden; 
   width: 20rem;
   margin-left: auto;
@@ -308,17 +309,43 @@ input {
 }
 
 .ingredients-list-modal {
-  
-  border: 0px solid blue;
   float: left;
   width: 10rem;
-  
 }
 
 .amounts-list-modal {
-  border: 0px solid blue;
   float: right;
   width: 10rem;
+}
+
+.planner-popup {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.planner-recipe-display {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.planner-popup-section {
+  width: 23%;
+  min-width: 5rem;
+}
+
+.planner-popup-recipe-list {
+  border: 1px solid #c7c7c7;
+  border-bottom: none;
+}
+
+.planner-popup-recipe-list button:hover {
+  border: 1px solid #c7c7c7;
+  border-bottom: none;
+  background-color: #06C100;
+  color: white;
 }
 
 footer {

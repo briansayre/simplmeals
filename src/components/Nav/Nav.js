@@ -81,7 +81,7 @@ class Nav extends React.Component {
                         {this.state.loggedIn ? 
                         (
                             <div className="right-side">
-                                <img className="nav-user-img" src={firebase.auth().currentUser.photoURL}/> 
+                                <img className="nav-user-img" alt="" src={firebase.auth().currentUser.photoURL}/> 
                                 <span className="nav-user-name"> {firebase.auth().currentUser.displayName} </span>
                                 <button className="sign-out" onClick={() => firebase.auth().signOut()}>Sign out</button>
                             </div>

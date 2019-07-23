@@ -137,8 +137,6 @@ class RecipeForm extends React.Component {
 
                 <button type="button" className="button" id="modal-button" onClick={(event)=>this.addIngredient(event)}>Add Ingredient</button> <br />
 
-                
-
                 <input className="button" id="modal-button" type="submit" value="Submit" />
 
             </form>
