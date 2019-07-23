@@ -97,7 +97,6 @@
 p {
   margin: 0;
   padding:  0.3125rem;
-  border-bottom: 0.0625rem solid #c7c7c7;
 }
 
 .module-container {
@@ -273,7 +272,53 @@ input {
 
 #form {
   max-height: 31.25rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.loading {
+  text-align: center;
+  color: #06C100;
+  height: 80vh;
+  padding-top: 40vh;
+}
+
+.recipe-item-list-button {
+  border: none;
+  border-bottom: 1px solid #c7c7c7;
+  background: none;
+  width: 100%;
+  padding: .5rem 0 .5rem .5rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+
+.recipe-modal {
+  width:100%;
+  text-align: center;
+}
+
+.ingredients-modal {
+  border: 0px solid red;
+  overflow: hidden; 
+  width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.ingredients-list-modal {
+  
+  border: 0px solid blue;
+  float: left;
+  width: 10rem;
+  
+}
+
+.amounts-list-modal {
+  border: 0px solid blue;
+  float: right;
+  width: 10rem;
 }
 
 footer {

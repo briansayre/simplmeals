@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {
             allRecipes: [],
+            loaded: false,
         };
         
         this.getRecipes = this.getRecipes.bind(this);
@@ -23,7 +24,6 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         this.getRecipes();
-        console.log(this.state.allRecipes);
     }
 
     getRecipes() {
@@ -60,21 +60,40 @@ class Dashboard extends React.Component {
                 }
 
             }
-            console.log(recipes);
-            this.setState({ allRecipes: recipes });
+            this.setState({ 
+                allRecipes: recipes,
+                loaded: true,
+             });
         }));
     }
 
-    render() {
+    render() {     
+        
         return (
 
-            <div className="module-container"> 
+            <div>
 
-                <Planner/>
-                <List/>
-                <Recipes recipes={this.state.allRecipes} />
+                {this.state.loaded ? (
+                    
+                    <div className="module-container"> 
 
-            </div> 
+                        <Planner/>
+                        <List/>
+                        <Recipes recipes={this.state.allRecipes} />
+
+                    </div> 
+
+                ) : (
+
+                    <div className="loading">
+
+                        <h1 > Loading... </h1>
+
+                    </div>
+                
+                )}
+
+            </div>
 
         )
     }

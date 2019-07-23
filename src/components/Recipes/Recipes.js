@@ -2,6 +2,7 @@ import React from 'react';
 import './Recipes.css';
 import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
+import RecipeListItem from '../RecipeListItem/RecipeListItem';
 
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -38,10 +39,6 @@ class Recipes extends React.Component {
             categoryIndex: newIndex,
             category: newCategory,
         });
-        this.sortRecipes();
-        console.log(this.state.mainRecipes);
-        
-        
     }
 
     handleRightArrowClick() {
@@ -53,6 +50,7 @@ class Recipes extends React.Component {
             categoryIndex: newIndex,
             category: newCategory,
         });
+
     }
 
     
@@ -63,7 +61,7 @@ class Recipes extends React.Component {
                 <div>
                     {
                         this.state.mainRecipes.map((name, index) => (
-                            <p key={index}>{name}</p>
+                            < RecipeListItem key={index} recipe={this.state.mainRecipes[index]} />
                         ))
                     }
                 </div>
@@ -73,7 +71,7 @@ class Recipes extends React.Component {
                 <div>
                     {
                         this.state.sideRecipes.map((name, index) => (
-                            <p key={index}><a href="https://www.google.com" >{name}</a></p>
+                            < RecipeListItem key={index} recipe={this.state.sideRecipes[index]} />
                         ))
                     }
                 </div>
@@ -83,7 +81,7 @@ class Recipes extends React.Component {
                 <div>
                     {
                         this.state.dessertRecipes.map((name, index) => (
-                            <p key={index}>{name}</p>
+                            < RecipeListItem key={index} recipe={this.state.dessertRecipes[index]} />
                         ))
                     }
                 </div>
@@ -93,7 +91,7 @@ class Recipes extends React.Component {
                 <div>
                     {
                         this.state.otherRecipes.map((name, index) => (
-                            <p key={index}>{name}</p>
+                            < RecipeListItem key={index} recipe={this.state.otherRecipes[index]} />
                         ))
                     }
                 </div>
@@ -102,31 +100,33 @@ class Recipes extends React.Component {
     }
 
     sortRecipes() {
-        console.log("sorting");
-        console.log(this.props.recipes.length);
+        var main = [];
+        var side = [];
+        var dessert = [];
+        var other = [];
         for (var i = 0; i < this.props.recipes.length; i++) {
             var category = this.props.recipes[i].category;
-            var name = this.props.recipes[i].name;
-            console.log(name);
+            var recipe = this.props.recipes[i];
             if (category === 'main') {
-                this.setState({ mainRecipes: [...this.state.mainRecipes, name] });
+                main.push(recipe);
             } else if (category === 'side') {
-                this.setState({ sideRecipes: [...this.state.sideRecipes, name] });
+                side.push(recipe);
             }else if (category === 'dessert') {
-                this.setState({ dessertRecipes: [...this.state.dessertRecipes, name] });
+                dessert.push(recipe);
             } else {
-                this.setState({ otherRecipes: [...this.state.otherRecipes, name] });
+                other.push(recipe);
             }
         }
+        this.setState({ 
+            mainRecipes: main,
+            sideRecipes: side,
+            dessertRecipes: dessert,
+            otherRecipes: other,
+         });
     }
 
     componentWillMount() {
-        if (this.props.recipes.length > 0)
-            this.sortRecipes();
-    }
-
-    componentDidMount() {
-        
+        this.sortRecipes();
     }
 
     render() {
