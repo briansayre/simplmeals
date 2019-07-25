@@ -57,19 +57,6 @@ class PlannerPopup extends React.Component {
                     var databaseInstructions = objects[k].instructions;
                     var databaseDates = objects[k].dates;
                     var databaseMeals = objects[k].meals;
-
-                    var newDates = [];
-                    if (typeof(databaseDates) !== 'undefined') {
-                        newDates = databaseDates.slice(0);
-                    } 
-                    newDates.push(this.state.date);
-
-                    var newMeals = [];
-                    if (typeof(databaseMeals) !== 'undefined') {
-                        newMeals = databaseMeals.slice(0);
-                    } 
-                    newMeals.push(this.props.meal);
-                    
                     if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
                         console.log(k);
                         console.log(name);
@@ -80,7 +67,25 @@ class PlannerPopup extends React.Component {
                 }
                 
                 //add the date to the recipe in database
-                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
+                var newDates = [];
+                var newMeals = [];
+                if ((typeof(databaseDates) === 'undefined') || (typeof(databaseMeals) === 'undefined')) {
+    
+                    console.log(k);
+                    console.log(name);
+                    console.log('found it');
+                    newDates.push(this.state.date);
+                    newMeals.push(this.props.meal);
+                    database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/').push({ dates: 'hello',  meals: 'newMeals' });
+                } else {
+                    newDates = databaseDates.slice(0);
+                    newDates.push(this.state.date);
+                    newMeals = databaseMeals.slice(0);
+                    newMeals.push(this.props.meal);
+                    database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
+                }
+
+                
             }
         }));
 

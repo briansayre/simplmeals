@@ -74,6 +74,8 @@ class RecipeForm extends React.Component {
                 ingredients: this.state.ingredients,
                 amounts: this.state.amounts,
                 instructions: this.state.instructions,
+                dates: [],
+                meals: [],
             }
             ref.push(recipeData);
             Popup.close();
