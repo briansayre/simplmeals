@@ -249,11 +249,10 @@ p {
 }
 
 .popup {
-  max-width: 31.25rem;
+  display:block;
+  min-width: 31.25rem;
   width: 37.5rem;
 }
-
-
 
 input {
   background: #F2F2F2;

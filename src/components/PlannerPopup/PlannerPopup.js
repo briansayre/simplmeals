@@ -1,7 +1,9 @@
 import React from 'react';
 import './PlannerPopup.css';
 import firebase from 'firebase/app';
-
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/functions';
 
 class PlannerPopup extends React.Component {
 
@@ -16,13 +18,73 @@ class PlannerPopup extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.sortRecipes = this.sortRecipes.bind(this);
         this.addSelectedRecipe = this.addSelectedRecipe.bind(this);
+        this.displayMainRecipes = this.displayMainRecipes.bind(this);
+        
         
     }
 
     addSelectedRecipe(event) {
         var recipe = event.target.value;
 
-        console.log(recipe);
+        // get name and instructions
+        var name = '';
+        var instructions = '';
+        var stillName = true;
+        for (var i = 0; i < recipe.length; i++) {
+            if (recipe[i] === ',') {
+                stillName = false;
+                i++;
+            }
+            if (stillName) {
+                name += recipe[i];
+            } else {
+                instructions += recipe[i];
+            }
+        }
+        //console.log(name);
+        //console.log(instructions);
+
+        // find that recipe in database
+        var database = firebase.database();
+        var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
+        ref.on('value', ((snapshot) => {
+            var objects = snapshot.val();
+            if (objects !== null) {
+                var keys = Object.keys(objects);
+                for (var i = 0; i < keys.length; i++) {
+                    var k = keys[i];
+                    var databaseName = objects[k].name;
+                    var databaseInstructions = objects[k].instructions;
+                    var databaseDates = objects[k].dates;
+                    var databaseMeals = objects[k].meals;
+
+                    var newDates = [];
+                    if (typeof(databaseDates) !== 'undefined') {
+                        newDates = databaseDates.slice(0);
+                    } 
+                    newDates.push(this.state.date);
+
+                    var newMeals = [];
+                    if (typeof(databaseMeals) !== 'undefined') {
+                        newMeals = databaseMeals.slice(0);
+                    } 
+                    newMeals.push(this.props.meal);
+                    
+                    if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
+                        console.log(k);
+                        console.log(name);
+                        console.log('found it');
+                        break;
+                    }
+                    //this.setState({ allRecipes: [...this.state.allRecipes, objects[k]] });
+                }
+                
+                //add the date to the recipe in database
+                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
+            }
+        }));
+
+        
         
     }
 
@@ -32,7 +94,12 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.mainRecipes.map((name, index) => (
-                            <button className="recipe-item-list-button" stuff="yeet" onClick={(event)=>this.addSelectedRecipe(event)} key={index} value={this.state.mainRecipes[index]}> {this.state.mainRecipes[index].name} </button>
+                            <button className="recipe-item-list-button" 
+                                onClick={(event)=>this.addSelectedRecipe(event)} 
+                                key={index} 
+                                value={[(this.state.mainRecipes[index].name), (this.state.mainRecipes[index].instructions)]}> 
+                                {this.state.mainRecipes[index].name} 
+                            </button>
                         ))
                     }
                 </div>
@@ -111,6 +178,7 @@ class PlannerPopup extends React.Component {
 
     componentWillMount() {
         this.sortRecipes();
+        console.log(this.props.recipes);
     }
 
 

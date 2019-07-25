@@ -25,15 +25,15 @@ class Planner extends React.Component {
     }
 
     handleLeftArrowClick() {
-        console.log("Left")
-        this.state.date.setDate(this.state.date.getDate() - 1)
-        console.log(this.state.date.toDateString())
+        var d = new Date(this.state.date);
+        d.setDate(this.state.date.getDate() - 1);
+        this.setState({ date: d });
     }
 
     handleRightArrowClick() {
-        console.log("Right")
-        this.state.date.setDate(this.state.date.getDate() + 1)
-        console.log(this.state.date.toDateString())
+        var d = new Date(this.state.date);
+        d.setDate(this.state.date.getDate() + 1);
+        this.setState({ date: d });
     }
 
     onChange = date => this.setState({ date })
@@ -63,7 +63,7 @@ class Planner extends React.Component {
 
             <div className="module-title-secondary">
                 
-     <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+        <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
                 {this.state.date.toDateString()} 
         <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
