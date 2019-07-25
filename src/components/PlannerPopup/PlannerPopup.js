@@ -76,12 +76,12 @@ class PlannerPopup extends React.Component {
                     console.log('found it');
                     newDates.push(this.state.date);
                     newMeals.push(this.props.meal);
-                    database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/').push({ dates: 'hello',  meals: 'newMeals' });
+                    database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/').update({ dates: 'hello',  meals: 'newMeals' });
                 } else {
                     newDates = databaseDates.slice(0);
-                    newDates.push(this.state.date);
+                    //newDates.push(this.state.date);
                     newMeals = databaseMeals.slice(0);
-                    newMeals.push(this.props.meal);
+                    //newMeals.push(this.props.meal);
                     database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
                 }
 
