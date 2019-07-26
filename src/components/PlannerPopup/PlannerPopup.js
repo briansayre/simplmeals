@@ -19,8 +19,6 @@ class PlannerPopup extends React.Component {
         this.sortRecipes = this.sortRecipes.bind(this);
         this.addSelectedRecipe = this.addSelectedRecipe.bind(this);
         this.displayMainRecipes = this.displayMainRecipes.bind(this);
-        
-        
     }
 
     addSelectedRecipe(event) {
@@ -45,6 +43,7 @@ class PlannerPopup extends React.Component {
         // find that recipe in database
         var database = firebase.database();
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
+        var key = '';
         ref.on('value', ((snapshot) => {
             var objects = snapshot.val();
             if (objects !== null) {
@@ -57,6 +56,7 @@ class PlannerPopup extends React.Component {
                     console.log(databaseDates);
                     var databaseMeals = objects[k].meals;
                     if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
+                        key = k;
                         console.log(k);
                         console.log(name);
                         console.log('found it');
