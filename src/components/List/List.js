@@ -2,11 +2,16 @@ import React from 'react';
 import './List.css';
 import Popup from "reactjs-popup";
 
+const contentStyle = {
+    background: "white",
+    width: "100%",
+};
+
 let addRecipeButton = (
-    <Popup className="popup" trigger={<button className="button" id = "add-button"> + </button>} modal>
+    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-button"> + </button>} modal>
         {close => (
 
-            <div className="modal">
+            <div className="modal-content">
                  
                 <button
                     className="button"

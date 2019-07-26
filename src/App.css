@@ -238,15 +238,12 @@ p {
   color: #048E00;
 }
 
-.modal {
-  
-}
-
 .modal-content {
   display: block;
   color: black;
   padding: 1.875rem;
   max-height: 31.25rem;
+  max-width: 49rem;
   overflow-y: auto;
 }
 

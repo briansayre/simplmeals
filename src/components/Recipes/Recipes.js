@@ -8,8 +8,7 @@ import RecipeListItem from '../RecipeListItem/RecipeListItem';
 const contentStyle = {
     background: "white",
     width: "100%",
-    border: "none"
-  };
+};
 
 class Recipes extends React.Component {
 

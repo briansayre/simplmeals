@@ -5,6 +5,10 @@ import Popup from "reactjs-popup";
 import PlannerPopup from '../PlannerPopup/PlannerPopup';
 
 
+const contentStyle = {
+    background: "white",
+    width: "100%",
+};
 
 class Planner extends React.Component {
 
@@ -72,7 +76,7 @@ class Planner extends React.Component {
             <div className="meal-plan" id="breakfast" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Breakfast
-                    <Popup className="modal" trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
                         {close => (
 
                             <div className="modal-content">
@@ -102,7 +106,7 @@ class Planner extends React.Component {
             <div className="meal-plan" id="lunch" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Lunch
-                    <Popup className="modal" trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
                         {close => (
 
                             <div className="modal-content">
@@ -132,7 +136,7 @@ class Planner extends React.Component {
             <div className="meal-plan" id="dinner" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Dinner
-                    <Popup className="modal" trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
                         {close => (
 
                             <div className="modal-content">
