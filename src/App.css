@@ -143,7 +143,6 @@ p {
   color: white;
   background-color: #06C100;
   width: 100%;
-  
 }
 
 .module-title-secondary-dark {
@@ -153,7 +152,6 @@ p {
   color: white;
   background-color: #048E00;
   width: 100%;
-  
 }
 
 .module-content {
@@ -191,7 +189,6 @@ p {
   height: 1.875rem;
   padding:  0.3125rem;
   margin:  0.3125rem;
-
 }
 
 #add-button {
@@ -213,7 +210,7 @@ p {
 }
 
 #add-food-button:hover {
-  color: #06C100;
+  color: #06F100;
 }
 
 .arrow {
@@ -242,16 +239,15 @@ p {
 }
 
 .modal {
+  
+}
+
+.modal-content {
+  display: block;
   color: black;
   padding: 1.875rem;
   max-height: 31.25rem;
   overflow-y: auto;
-}
-
-.popup {
-  display:block;
-  min-width: 31.25rem;
-  width: 37.5rem;
 }
 
 input {

@@ -72,10 +72,10 @@ class Planner extends React.Component {
             <div className="meal-plan" id="breakfast" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Breakfast
-                    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                    <Popup className="modal" trigger={<button className="button" id = "add-food-button"> + </button>} modal>
                         {close => (
 
-                            <div className="modal">
+                            <div className="modal-content">
 
                                 <PlannerPopup recipes={this.props.recipes} meal="breakfast" date={this.state.date}/>
 
@@ -102,10 +102,10 @@ class Planner extends React.Component {
             <div className="meal-plan" id="lunch" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Lunch
-                    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                    <Popup className="modal" trigger={<button className="button" id = "add-food-button"> + </button>} modal>
                         {close => (
 
-                            <div className="modal">
+                            <div className="modal-content">
 
                                 <PlannerPopup recipes={this.props.recipes} meal="lunch" date={this.state.date}/>
 
@@ -132,10 +132,10 @@ class Planner extends React.Component {
             <div className="meal-plan" id="dinner" >
                 <div className="module-title-secondary-dark">
                     &nbsp; Dinner
-                    <Popup trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                    <Popup className="modal" trigger={<button className="button" id = "add-food-button"> + </button>} modal>
                         {close => (
 
-                            <div className="modal">
+                            <div className="modal-content">
 
                                 <PlannerPopup recipes={this.props.recipes} meal="dinner" date={this.state.date}/>
 

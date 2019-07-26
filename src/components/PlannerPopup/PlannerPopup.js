@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/functions';
+import Popup from 'reactjs-popup';
 
 class PlannerPopup extends React.Component {
 
@@ -15,7 +16,6 @@ class PlannerPopup extends React.Component {
             dessertRecipes: [],
             otherRecipes: [],
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.sortRecipes = this.sortRecipes.bind(this);
         this.addSelectedRecipe = this.addSelectedRecipe.bind(this);
         this.displayMainRecipes = this.displayMainRecipes.bind(this);
@@ -41,8 +41,6 @@ class PlannerPopup extends React.Component {
                 instructions += recipe[i];
             }
         }
-        //console.log(name);
-        //console.log(instructions);
 
         // find that recipe in database
         var database = firebase.database();
@@ -56,6 +54,7 @@ class PlannerPopup extends React.Component {
                     var databaseName = objects[k].name;
                     var databaseInstructions = objects[k].instructions;
                     var databaseDates = objects[k].dates;
+                    console.log(databaseDates);
                     var databaseMeals = objects[k].meals;
                     if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
                         console.log(k);
@@ -63,30 +62,22 @@ class PlannerPopup extends React.Component {
                         console.log('found it');
                         break;
                     }
-                    //this.setState({ allRecipes: [...this.state.allRecipes, objects[k]] });
                 }
-                
-                //add the date to the recipe in database
-                var newDates = [];
-                var newMeals = [];
-                if ((typeof(databaseDates) === 'undefined') || (typeof(databaseMeals) === 'undefined')) {
-    
-                    console.log(k);
-                    console.log(name);
-                    console.log('found it');
-                    newDates.push(this.state.date);
-                    newMeals.push(this.props.meal);
-                    database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/').update({ dates: 'hello',  meals: 'newMeals' });
-                } else {
-                    newDates = databaseDates.slice(0);
-                    //newDates.push(this.state.date);
-                    newMeals = databaseMeals.slice(0);
-                    //newMeals.push(this.props.meal);
-                    database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
-                }
-
-                
             }
+            //add the date to the recipe in database
+            var currentDate = [this.props.date];
+            var currentMeal = [this.props.meal];
+            if (databaseDates) {
+                console.log('has dates');
+                var newDates = databaseDates.concat(currentDate);
+                var newMeals = databaseMeals.concat(currentMeal);
+                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
+            } else {
+                console.log('no dates');
+                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/').update({ dates: currentDate,  meals: currentMeal });
+            }
+
+            Popup.close();
         }));
 
         
@@ -184,20 +175,6 @@ class PlannerPopup extends React.Component {
     componentWillMount() {
         this.sortRecipes();
         console.log(this.props.recipes);
-    }
-
-
-    handleSubmit(event) {
-        if (this.state.value !== '') {
-            var database = firebase.database();
-            var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
-            var recipeData = {
-            }
-            ref.push(recipeData);
-        } else {
-            alert('Please enter a name');
-        }
-        event.preventDefault();
     }
 
     render() {

@@ -75,10 +75,10 @@ class RecipeListItem extends React.Component {
                 {this.state.loaded ? (
                         
                     <div>
-                        <Popup trigger={<button className="recipe-item-list-button" > {this.props.recipe.name} </button>} modal>
+                        <Popup className="modal" trigger={<button className="recipe-item-list-button" > {this.props.recipe.name} </button>} modal>
                             {close => (
         
-                                <div className="modal">
+                                <div className="modal-content">
                                     <div className="recipe-modal">
                                         <h1> {this.props.recipe.name} </h1>
                                         <h3>Instuctions:</h3>
