@@ -2,6 +2,11 @@ import React from 'react';
 import Popup from "reactjs-popup";
 
 
+const contentStyle = {
+    background: "white",
+    width: "100%",
+};
+
 class RecipeListItem extends React.Component {
 
     constructor(props) {
@@ -75,7 +80,7 @@ class RecipeListItem extends React.Component {
                 {this.state.loaded ? (
                         
                     <div>
-                        <Popup className="modal" trigger={<button className="recipe-item-list-button" > {this.props.recipe.name} </button>} modal>
+                        <Popup className="modal" contentStyle={contentStyle} trigger={<button className="recipe-item-list-button" > {this.props.recipe.name} </button>} modal>
                             {close => (
         
                                 <div className="modal-content">
