@@ -253,6 +253,8 @@ p {
 .modal {
   background: white;
   width: 100%;
+  overflow-y: auto;
+  max-height: 31.25rem;
 }
 
 .modal-content {

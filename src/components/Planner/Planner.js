@@ -8,6 +8,8 @@ import PlannerPopup from '../PlannerPopup/PlannerPopup';
 const contentStyle = {
     background: "white",
     width: "100%",
+    maxHeight: "31.25rem",
+    overflow: "none",
 };
 
 class Planner extends React.Component {
@@ -16,6 +18,7 @@ class Planner extends React.Component {
         super(props);
         this.state = {
             date: new Date(),
+            todaysDate: new Date(),
             selectedDay: undefined,
         }
         
@@ -32,6 +35,7 @@ class Planner extends React.Component {
         var d = new Date(this.state.date);
         d.setDate(this.state.date.getDate() - 1);
         this.setState({ date: d });
+        console.log(this.props.recipes);
     }
 
     handleRightArrowClick() {
@@ -41,6 +45,10 @@ class Planner extends React.Component {
     }
 
     onChange = date => this.setState({ date })
+
+    componentDidMount() {
+        
+    }
 
     render() {
         return (
@@ -56,8 +64,8 @@ class Planner extends React.Component {
                     className={["calendar"]}
                     onChange={this.onChange}
                     value={this.state.date}
-                    maxDate={new Date(2019, 12)}
-                    minDate={new Date(2019, 6)}
+                    maxDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth() + 3)}
+                    minDate={this.state.todaysDate}
                     tileClassName="day"
                     calendarType="US"
                     showNeighboringMonth={false}
@@ -67,9 +75,9 @@ class Planner extends React.Component {
 
             <div className="module-title-secondary">
                 
-        <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+            <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
                 {this.state.date.toDateString()} 
-        <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+            <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
             </div>
 

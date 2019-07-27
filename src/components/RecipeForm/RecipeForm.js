@@ -78,6 +78,7 @@ class RecipeForm extends React.Component {
                 meals: [],
             }
             ref.push(recipeData);
+            ref.off();
             Popup.close();
         } else {
             alert('Please enter a name');

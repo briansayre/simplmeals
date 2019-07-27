@@ -62,9 +62,9 @@ class PlannerPopup extends React.Component {
                     databaseMeals = objects[k].meals;
                     if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
                         key = k;
-                        console.log(k);
-                        console.log(name);
-                        console.log('found it');
+                        //console.log(k);
+                        //console.log(name);
+                        //console.log('found it');
                         break;
                     }
                 }
@@ -86,6 +86,7 @@ class PlannerPopup extends React.Component {
     }
 
     displayMainRecipes() {
+        //console.log(this.state.mainRecipes);
         if (typeof(this.state.mainRecipes) !== 'undefined') {
             return (
                 <div>
@@ -148,6 +149,7 @@ class PlannerPopup extends React.Component {
     }
 
     sortRecipes() {
+        console.log("SORTING");
         var main = [];
         var side = [];
         var dessert = [];
@@ -171,11 +173,11 @@ class PlannerPopup extends React.Component {
             dessertRecipes: dessert,
             otherRecipes: other,
          });
+         
     }
 
     componentWillMount() {
         this.sortRecipes();
-        console.log(this.props.recipes);
     }
 
     render() {
