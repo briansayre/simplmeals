@@ -4,7 +4,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/functions';
-import Popup from 'reactjs-popup';
 
 class PlannerPopup extends React.Component {
 
@@ -22,6 +21,7 @@ class PlannerPopup extends React.Component {
     }
 
     addSelectedRecipe(event) {
+        console.log("Adding");
         var recipe = event.target.value;
 
         // get name and instructions
@@ -43,18 +43,23 @@ class PlannerPopup extends React.Component {
         // find that recipe in database
         var database = firebase.database();
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
+
         var key = '';
+        var databaseName = '';
+        var databaseInstructions = '';
+        var databaseDates = [];
+        var databaseMeals = [];
+
         ref.on('value', ((snapshot) => {
             var objects = snapshot.val();
             if (objects !== null) {
                 var keys = Object.keys(objects);
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
-                    var databaseName = objects[k].name;
-                    var databaseInstructions = objects[k].instructions;
-                    var databaseDates = objects[k].dates;
-                    console.log(databaseDates);
-                    var databaseMeals = objects[k].meals;
+                    databaseName = objects[k].name;
+                    databaseInstructions = objects[k].instructions;
+                    databaseDates = objects[k].dates;
+                    databaseMeals = objects[k].meals;
                     if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
                         key = k;
                         console.log(k);
@@ -64,23 +69,19 @@ class PlannerPopup extends React.Component {
                     }
                 }
             }
-            //add the date to the recipe in database
-            var currentDate = [this.props.date];
-            var currentMeal = [this.props.meal];
-            if (databaseDates) {
-                console.log('has dates');
-                var newDates = databaseDates.concat(currentDate);
-                var newMeals = databaseMeals.concat(currentMeal);
-                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k).update({ dates: newDates,  meals: newMeals });
-            } else {
-                console.log('no dates');
-                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/').update({ dates: currentDate,  meals: currentMeal });
-            }
-
-            Popup.close();
+            
         }));
 
-        
+        //add the date to the recipe in database
+        var currentDate = [this.props.date];
+        var currentMeal = [this.props.meal];
+        if (databaseDates) {
+            var newDates = databaseDates.concat(currentDate);
+            var newMeals = databaseMeals.concat(currentMeal);
+            database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: newDates,  meals: newMeals });
+        } else {
+            database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: currentDate,  meals: currentMeal });
+        }
         
     }
 
