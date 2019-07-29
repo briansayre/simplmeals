@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
             var objects = snapshot.val();
             if (objects !== null) {
                 var keys = Object.keys(objects);
-                console.log(keys.length);
+                //console.log(keys.length);
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
                     //var name = objects[k].name;
@@ -51,12 +51,11 @@ class Dashboard extends React.Component {
                 allRecipes: recipes,
                 loaded: true,
             });
-            console.log(recipes);
+            //console.log(recipes);
         }));
     }
 
     render() {     
-        
         return (
 
             <div>

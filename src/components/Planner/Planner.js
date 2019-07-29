@@ -3,6 +3,7 @@ import './Planner.css';
 import Calendar from 'react-calendar';
 import Popup from "reactjs-popup";
 import PlannerPopup from '../PlannerPopup/PlannerPopup';
+import PlannerListItem from '../PlannerListItem/PlannerListItem';
 
 
 const contentStyle = {
@@ -20,6 +21,10 @@ class Planner extends React.Component {
             date: new Date(),
             todaysDate: new Date(),
             selectedDay: undefined,
+            breakfast: [],
+            lunch: [],
+            dinner: [],
+            loaded: false,
         }
         
         this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
@@ -35,19 +40,86 @@ class Planner extends React.Component {
         var d = new Date(this.state.date);
         d.setDate(this.state.date.getDate() - 1);
         this.setState({ date: d });
-        console.log(this.props.recipes);
+        this.fillArrays();
     }
 
     handleRightArrowClick() {
         var d = new Date(this.state.date);
         d.setDate(this.state.date.getDate() + 1);
         this.setState({ date: d });
+        this.fillArrays();
     }
 
     onChange = date => this.setState({ date })
 
+    fillArrays() {
+        var tempBreakfast = [];
+        var tempLunch = [];
+        var tempDinner = [];
+        console.log(this.state.date);
+
+        for (var i = 0; i < this.props.recipes.length; i++) {
+            var dates = this.props.recipes[i].dates;
+            if (dates) {
+                var recipe = this.props.recipes[i];
+                for (var j = 0; j < dates.length; j++) {
+                    if (this.state.date.getFullYear() === parseInt(dates[j].slice(0, 4)) &&
+                        this.state.date.getMonth()+1 === parseInt(dates[j].slice(5, 7)) &&
+                        this.state.date.getDate() === parseInt(dates[j].slice(8, 10))) {
+                        var meal = this.props.recipes[i].meals[j];
+                        if (meal === 'breakfast') {
+                            tempBreakfast.push(recipe.name);
+                        } else if (meal === 'lunch') {
+                            tempLunch.push(recipe.name);
+                        } else if (meal === 'dinner') {
+                            tempDinner.push(recipe.name);
+                        }
+                    } 
+                }
+            }
+            
+        }
+
+        this.setState({ 
+            breakfast: tempBreakfast,
+            lunch: tempLunch,
+            dinner: tempDinner,
+            loaded: true,
+        });
+
+    }
+
+    displayBreakfast() {
+        return (
+            this.state.breakfast.map((name, index) => (
+                < PlannerListItem key={index} name={name} />
+            ))
+        );
+    }
+
+    displayLunch() {
+        return (
+            this.state.lunch.map((name, index) => (
+                < PlannerListItem key={index} name={name} />
+            ))
+        );
+    }
+
+    displayDinner() {
+        return (
+            this.state.dinner.map((name, index) => (
+                < PlannerListItem key={index} name={name} />
+            ))
+        );
+    }
+
+    componentWillMount() {
+        this.setState({date: new Date()})
+        this.fillArrays();
+    }
+
     componentDidMount() {
-        
+        this.fillArrays();
     }
 
     render() {
@@ -65,7 +137,7 @@ class Planner extends React.Component {
                     onChange={this.onChange}
                     value={this.state.date}
                     maxDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth() + 3)}
-                    minDate={this.state.todaysDate}
+                    minDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth(), this.state.todaysDate.getDate() -7)}
                     tileClassName="day"
                     calendarType="US"
                     showNeighboringMonth={false}
@@ -75,11 +147,13 @@ class Planner extends React.Component {
 
             <div className="module-title-secondary">
                 
-            <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
-                {this.state.date.toDateString()} 
-            <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+                <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+                    {this.state.date.toDateString()} 
+                <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
             </div>
+
+            <div className="planned-section">
 
             <div className="meal-plan" id="breakfast" >
                 <div className="module-title-secondary-dark">
@@ -109,6 +183,9 @@ class Planner extends React.Component {
                         )}
                     </Popup>
                 </div>
+
+                {this.displayBreakfast()}
+
             </div>
 
             <div className="meal-plan" id="lunch" >
@@ -139,6 +216,10 @@ class Planner extends React.Component {
                         )}
                     </Popup>
                 </div>
+
+                
+                {this.displayLunch()}
+
             </div>
 
             <div className="meal-plan" id="dinner" >
@@ -169,9 +250,16 @@ class Planner extends React.Component {
                         )}
                     </Popup>
                 </div>
+
+                
+                {this.displayDinner()}
+
+
             </div>
-            
-        </div>
+
+            </div>
+
+            </div>
         );
     }
 }

@@ -142,7 +142,7 @@ class Recipes extends React.Component {
                 {this.state.categories[this.state.categoryIndex]}s 
                 <button className="arrow" id = "cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
-                <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-button"> + </button>} modal>
+                <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id="add-button"> + </button>} modal>
                     {close => (
                         <div className="modal-content">
 

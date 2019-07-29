@@ -55,7 +55,7 @@ class List extends React.Component {
             </div>
 
             <div className="module-content">
-                <center>Coming soon...</center>
+                
             </div>
 
 

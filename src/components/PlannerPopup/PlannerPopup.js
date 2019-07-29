@@ -16,11 +16,11 @@ class PlannerPopup extends React.Component {
             otherRecipes: [],
         }
         this.sortRecipes = this.sortRecipes.bind(this);
-        this.addSelectedRecipe = this.addSelectedRecipe.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.displayMainRecipes = this.displayMainRecipes.bind(this);
     }
 
-    addSelectedRecipe(event) {
+    handleSubmit(event) {
         console.log("Adding");
         var recipe = event.target.value;
 
@@ -83,6 +83,7 @@ class PlannerPopup extends React.Component {
             database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: currentDate,  meals: currentMeal });
         }
         
+        
     }
 
     displayMainRecipes() {
@@ -92,12 +93,14 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.mainRecipes.map((name, index) => (
+                            
                             <button className="recipe-item-list-button" 
                                 onClick={(event)=>this.addSelectedRecipe(event)} 
                                 key={index} 
                                 value={[(this.state.mainRecipes[index].name), (this.state.mainRecipes[index].instructions)]}> 
                                 {this.state.mainRecipes[index].name} 
                             </button>
+                            
                         ))
                     }
                 </div>
@@ -111,7 +114,10 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.sideRecipes.map((name, index) => (
-                            <button className="recipe-item-list-button" onClick={(event)=>this.addSelectedRecipe(event)} key={index}> {this.state.sideRecipes[index].name} </button>
+                            <div>
+                            <button className="recipe-item-list-button" onClick={(event)=>this.handleSubmit(event)} key={index}> {this.state.sideRecipes[index].name} </button>
+                            <input className="button" id="modal-button" type="submit" value={this.state.sideRecipes[index].name} />
+                            </div>
                         ))
                     }
                 </div>

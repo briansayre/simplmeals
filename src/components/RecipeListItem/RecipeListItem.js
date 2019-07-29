@@ -125,7 +125,7 @@ class RecipeListItem extends React.Component {
 
                 ) : (
 
-                    <h1 > </h1>
+                    <h1 > Loading... </h1>
 
                 
                 )}
