@@ -1,33 +1,7 @@
 import React from 'react';
 import './List.css';
 import Popup from "reactjs-popup";
-
-const contentStyle = {
-    background: "white",
-    width: "100%",
-};
-
-let addRecipeButton = (
-    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-button"> + </button>} modal>
-        {close => (
-
-            <div className="modal-content">
-                 
-                <button
-                    className="button"
-                    id="modal-button"
-                    onClick={() => {
-                        close();
-                    }}
-                >
-                    Close
-                </button>
-
-            </div>
-
-        )}
-    </Popup>
-);
+import {modalStyle} from '../Dashboard/Dashboard';
 
 
 class List extends React.Component {
@@ -51,7 +25,25 @@ class List extends React.Component {
                 <button className="arrow" id = "cycle-left"> &lt; </button>
                 June 1 - June 7 
                 <button className="arrow" id = "cycle-right"> &gt; </button>
-                {addRecipeButton}
+                <Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id = "add-button"> + </button>} modal>
+                    {close => (
+
+                        <div className="modal-content">
+                            
+                            <button
+                                className="button"
+                                id="modal-button"
+                                onClick={() => {
+                                    close();
+                                }}
+                            >
+                                Close
+                            </button>
+
+                        </div>
+
+                    )}
+                </Popup>
             </div>
 
             <div className="module-content">

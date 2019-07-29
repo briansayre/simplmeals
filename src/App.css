@@ -41,15 +41,6 @@
     height: 3.125rem;
   }
 
-  #add-food-button {
-    font-size: 1rem;
-    background: red;
-  }
-
-  #add-button {
-    font-size: 1rem;
-  }
-
 }
 
 @media only screen and (max-width: 40.625rem) {
@@ -60,20 +51,24 @@
   }
 
   .planner-recipe-display {
-    display: block;
-    width: 80px;
     margin-left: auto;
     margin-right: auto;
+    width: 250px;
+    min-width: 200px;
   }
 
   .planner-popup-section {
-    width: 100%;
+    min-width: 200px;
   }
 
-  
 
+  .planner-popup-recipe-list {
+    min-width: 200px;
+  }
 
 }
+
+
 
 .App {
   margin: 0;
@@ -133,10 +128,8 @@ p {
 }
 
 .module {
-  border-radius:  0.3125rem;
-  border-style: solid;
-  border-width: 0.0625rem;
-  border-color: #c7c7c7;
+  border-radius:  0.37rem;
+  border: 0.0625rem solid #c7c7c7;
   background-color: #F2F2F2;
   margin-top: 1.5625rem;
   width: 30%;
@@ -218,12 +211,11 @@ p {
   position: absolute;
   right: 0;
   top: 2.9rem;
-  float:right;
+  float: right;
   width: 30px;
   padding: 0;
   font-size: 1.55rem;
   vertical-align: middle;
-  
 }
 
 #add-food-button {
@@ -267,17 +259,12 @@ p {
 }
 
 .modal {
-  background: white;
-  width: 100%;
-  overflow-y: auto;
-  max-height: 31.25rem;
 }
 
 .modal-content {
   display: block;
   color: black;
   padding: 1.875rem;
-  max-height: 31.25rem;
   max-width: 49rem;
   overflow-y: auto;
 }
@@ -360,12 +347,13 @@ input {
 }
 
 .planner-popup-section {
-  width: 23%;
-  min-width: 5rem;
+  width: 24%;
+  min-width: 150px;
 }
 
 .planner-popup-recipe-list {
   border: 1px solid #c7c7c7;
+  background-color: #F2F2F2;
   border-bottom: none;
 }
 

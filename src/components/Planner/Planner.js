@@ -4,14 +4,8 @@ import Calendar from 'react-calendar';
 import Popup from "reactjs-popup";
 import PlannerPopup from '../PlannerPopup/PlannerPopup';
 import PlannerListItem from '../PlannerListItem/PlannerListItem';
+import {modalStyle} from '../Dashboard/Dashboard';
 
-
-const contentStyle = {
-    background: "white",
-    width: "100%",
-    maxHeight: "31.25rem",
-    overflow: "none",
-};
 
 class Planner extends React.Component {
 
@@ -123,141 +117,140 @@ class Planner extends React.Component {
     }
 
     render() {
+        console.log(this.state.date);
         return (
-        <div className="module" id="planner">
+            <div className="module" id="planner">
 
-            <div className="module-title">
-                Meal Planner
-            </div>
-
-            <div className="module-content">
-
-                <Calendar 
-                    className={["calendar"]}
-                    onChange={this.onChange}
-                    value={this.state.date}
-                    maxDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth() + 3)}
-                    minDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth(), this.state.todaysDate.getDate() -7)}
-                    tileClassName="day"
-                    calendarType="US"
-                    showNeighboringMonth={false}
-                />
-                
-            </div>
-
-            <div className="module-title-secondary">
-                
-                <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
-                    {this.state.date.toDateString()} 
-                <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
-                
-            </div>
-
-            <div className="planned-section">
-
-            <div className="meal-plan" id="breakfast" >
-                <div className="module-title-secondary-dark">
-                    &nbsp; Breakfast
-                    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
-                        {close => (
-
-                            <div className="modal-content">
-
-                                <PlannerPopup recipes={this.props.recipes} meal="breakfast" date={this.state.date}/>
-
-                                <center>
-                                <button
-                                    className="button"
-                                    id="modal-button"
-                                    onClick={() => {
-                                    close();
-                                    }}
-                                >
-                                    Close
-                                    
-                                </button>
-                                </center>
-
-                            </div>
-
-                        )}
-                    </Popup>
+                <div className="module-title">
+                    Meal Planner
                 </div>
 
-                {this.displayBreakfast()}
+                <div className="module-content">
 
-            </div>
-
-            <div className="meal-plan" id="lunch" >
-                <div className="module-title-secondary-dark">
-                    &nbsp; Lunch
-                    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
-                        {close => (
-
-                            <div className="modal-content">
-
-                                <PlannerPopup recipes={this.props.recipes} meal="lunch" date={this.state.date}/>
-
-                                <center>
-                                <button
-                                    className="button"
-                                    id="modal-button"
-                                    onClick={() => {
-                                    close();
-                                    }}
-                                >
-                                    Close
-                                    
-                                </button>
-                                </center>
-
-                            </div>
-
-                        )}
-                    </Popup>
+                    <Calendar 
+                        className={["calendar"]}
+                        onChange={this.onChange}
+                        value={this.state.date}
+                        maxDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth() + 3)}
+                        minDate={new Date(this.state.todaysDate.getFullYear(), this.state.todaysDate.getMonth(), this.state.todaysDate.getDate() -7)}
+                        tileClassName="day"
+                        calendarType="US"
+                        showNeighboringMonth={false}
+                    />
+                    
                 </div>
 
-                
-                {this.displayLunch()}
-
-            </div>
-
-            <div className="meal-plan" id="dinner" >
-                <div className="module-title-secondary-dark">
-                    &nbsp; Dinner
-                    <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
-                        {close => (
-
-                            <div className="modal-content">
-
-                                <PlannerPopup recipes={this.props.recipes} meal="dinner" date={this.state.date}/>
-
-                                <br /><br />
-                                <center>
-                                <button
-                                    className="button"
-                                    id="modal-button"
-                                    onClick={() => {
-                                    close();
-                                    }}
-                                >
-                                    Close
-                                </button>
-                                </center>
-
-                            </div>
-
-                        )}
-                    </Popup>
+                <div className="module-title-secondary">
+                    
+                    <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+                        {this.state.date.toDateString()}
+                    <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+                    
                 </div>
 
-                
-                {this.displayDinner()}
+                <div className="planned-section">
 
+                <div className="meal-plan" id="breakfast" >
+                    <div className="module-title-secondary-dark">
+                        &nbsp; Breakfast
+                        <Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                            {close => (
 
-            </div>
+                                <div className="modal-content">
 
-            </div>
+                                    <PlannerPopup recipes={this.props.recipes} meal="breakfast" date={this.state.date}/>
+
+                                    <center>
+                                    <button
+                                        className="button"
+                                        id="modal-button"
+                                        onClick={() => {
+                                        close();
+                                        }}
+                                    >
+                                        Close
+                                        
+                                    </button>
+                                    </center>
+
+                                </div>
+
+                            )}
+                        </Popup>
+                    </div>
+
+                    {this.displayBreakfast()}
+
+                </div>
+
+                <div className="meal-plan" id="lunch" >
+                    <div className="module-title-secondary-dark">
+                        &nbsp; Lunch
+                        <Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                            {close => (
+
+                                <div className="modal-content">
+
+                                    <PlannerPopup recipes={this.props.recipes} meal="lunch" date={this.state.date}/>
+
+                                    <center>
+                                    <button
+                                        className="button"
+                                        id="modal-button"
+                                        onClick={() => {
+                                        close();
+                                        }}
+                                    >
+                                        Close
+                                        
+                                    </button>
+                                    </center>
+
+                                </div>
+
+                            )}
+                        </Popup>
+                    </div>
+
+                    
+                    {this.displayLunch()}
+
+                </div>
+
+                <div className="meal-plan" id="dinner" >
+                    <div className="module-title-secondary-dark">
+                        &nbsp; Dinner
+                        <Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id = "add-food-button"> + </button>} modal>
+                            {close => (
+
+                                <div className="modal-content">
+
+                                    <PlannerPopup recipes={this.props.recipes} meal="dinner" date={this.state.date}/>
+
+                                    <br /><br />
+                                    <center>
+                                    <button
+                                        className="button"
+                                        id="modal-button"
+                                        onClick={() => {
+                                        close();
+                                        }}
+                                    >
+                                        Close
+                                    </button>
+                                    </center>
+
+                                </div>
+
+                            )}
+                        </Popup>
+                    </div>
+
+                    {this.displayDinner()}
+
+                </div>
+
+                </div>
 
             </div>
         );

@@ -3,12 +3,9 @@ import './Recipes.css';
 import Popup from "reactjs-popup";
 import RecipeForm from '../RecipeForm/RecipeForm';
 import RecipeListItem from '../RecipeListItem/RecipeListItem';
+import {modalStyle} from '../Dashboard/Dashboard';
 
 
-const contentStyle = {
-    background: "white",
-    width: "100%",
-};
 
 class Recipes extends React.Component {
 
@@ -142,7 +139,7 @@ class Recipes extends React.Component {
                 {this.state.categories[this.state.categoryIndex]}s 
                 <button className="arrow" id = "cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                 
-                <Popup className="modal" contentStyle={contentStyle} trigger={<button className="button" id="add-button"> + </button>} modal>
+                <Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id="add-button"> + </button>} modal>
                     {close => (
                         <div className="modal-content">
 

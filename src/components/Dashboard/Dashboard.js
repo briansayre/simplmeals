@@ -10,6 +10,12 @@ import Planner from '../Planner/Planner';
 import List from '../List/List';
 import Recipes from '../Recipes/Recipes';
 
+export const modalStyle = {
+    background: "white",
+    width: "100%",
+    maxHeight: "80vh",
+};
+
 class Dashboard extends React.Component {
 
     constructor(props) {
