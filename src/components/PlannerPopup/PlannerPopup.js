@@ -23,7 +23,8 @@ class PlannerPopup extends React.Component {
     handleSubmit(event) {
         console.log("Adding");
         var recipe = event.target.value;
-
+        
+        console.log(this.props.date);
         // get name and instructions
         var name = '';
         var instructions = '';
@@ -73,13 +74,16 @@ class PlannerPopup extends React.Component {
         }));
 
         //add the date to the recipe in database
-        var currentDate = [this.props.date];
+        var d = new Date(this.props.date);
+        d.setDate(this.props.date.getDate() - 1);
+        var currentDate = [d];
         var currentMeal = [this.props.meal];
         if (databaseDates) {
             var newDates = databaseDates.concat(currentDate);
             var newMeals = databaseMeals.concat(currentMeal);
             database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: newDates,  meals: newMeals });
         } else {
+            
             database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: currentDate,  meals: currentMeal });
         }
         
@@ -95,7 +99,7 @@ class PlannerPopup extends React.Component {
                         this.state.mainRecipes.map((name, index) => (
                             
                             <button className="recipe-item-list-button" 
-                                onClick={(event)=>this.addSelectedRecipe(event)} 
+                                onClick={(event)=>this.handleSubmit(event)} 
                                 key={index} 
                                 value={[(this.state.mainRecipes[index].name), (this.state.mainRecipes[index].instructions)]}> 
                                 {this.state.mainRecipes[index].name} 
@@ -131,7 +135,7 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.dessertRecipes.map((name, index) => (
-                            <button className="recipe-item-list-button" onClick={(event)=>this.addSelectedRecipe(event)} key={index}> {this.state.dessertRecipes[index].name} </button>
+                            <button className="recipe-item-list-button" onClick={(event)=>this.handleSubmit(event)} key={index}> {this.state.dessertRecipes[index].name} </button>
                         ))
                     }
                 </div>
@@ -146,7 +150,7 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.otherRecipes.map((name, index) => (
-                            <button className="recipe-item-list-button" onClick={(event)=>this.addSelectedRecipe(event)} key={index}>  {this.state.otherRecipes[index].name} </button>
+                            <button className="recipe-item-list-button" onClick={(event)=>this.handleSubmit(event)} key={index}>  {this.state.otherRecipes[index].name} </button>
                         ))
                     }
                 </div>

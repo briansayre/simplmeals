@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
                     <div className="module-container"> 
 
                         <Planner  recipes={this.state.allRecipes} />
-                        <List />
+                        <List recipes={this.state.allRecipes} />
                         <Recipes recipes={this.state.allRecipes} />
 
                     </div> 
