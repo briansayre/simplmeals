@@ -376,6 +376,12 @@ input {
   margin: 0 5px 0 5px;
 }
 
+.list-item-amount {
+  float: right;
+  margin-top: -16px;
+  margin-right: 5px;
+}
+
 footer {
   color: #048E00;
   width: 100%;

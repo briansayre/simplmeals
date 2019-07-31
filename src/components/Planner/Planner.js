@@ -40,7 +40,6 @@ class Planner extends React.Component {
         var d = new Date(this.state.date);
         d.setDate(this.state.date.getDate() - 1);
         date.setDate(this.state.date.getDate() - 1);
-        console.log(date.toDateString());
         this.setState({ date: d });
         this.fillArrays();
     }
@@ -49,7 +48,6 @@ class Planner extends React.Component {
         var d = new Date(this.state.date);
         d.setDate(this.state.date.getDate() + 1);
         date.setDate(this.state.date.getDate() + 1);
-        console.log(date.toDateString());
         this.setState({ date: d });
         this.fillArrays();
     }
@@ -57,12 +55,9 @@ class Planner extends React.Component {
     onChange = date => this.setState({ date })
 
     fillArrays() {
-        console.log('filling');
         var tempBreakfast = [];
         var tempLunch = [];
         var tempDinner = [];
-        console.log(date);
-
         for (var i = 0; i < this.props.recipes.length; i++) {
             var dates = this.props.recipes[i].dates;
             if (dates) {
@@ -102,7 +97,6 @@ class Planner extends React.Component {
     }
 
     render() {
-        console.log(date);
         return (
             <div>
                 { this.state.loaded ? (
@@ -112,7 +106,7 @@ class Planner extends React.Component {
                             Meal Planner
                         </div>
 
-                        <div className="module-content">
+                        {/*<div className="module-content">
                             <Calendar 
                                 className={["calendar"]}
                                 onChange={this.onChange}
@@ -123,7 +117,7 @@ class Planner extends React.Component {
                                 calendarType="US"
                                 showNeighboringMonth={false}
                             />
-                        </div>
+                </div>*/}
 
                         <div className="module-title-secondary">
                             <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
