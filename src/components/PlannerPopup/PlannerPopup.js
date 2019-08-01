@@ -21,10 +21,8 @@ class PlannerPopup extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log("Adding");
         var recipe = event.target.value;
-        
-        console.log(this.props.date);
+
         // get name and instructions
         var name = '';
         var instructions = '';
@@ -63,14 +61,10 @@ class PlannerPopup extends React.Component {
                     databaseMeals = objects[k].meals;
                     if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
                         key = k;
-                        //console.log(k);
-                        //console.log(name);
-                        //console.log('found it');
                         break;
                     }
                 }
             }
-            
         }));
 
         //add the date to the recipe in database
@@ -91,7 +85,6 @@ class PlannerPopup extends React.Component {
     }
 
     displayMainRecipes() {
-        //console.log(this.state.mainRecipes);
         if (typeof(this.state.mainRecipes) !== 'undefined') {
             return (
                 <div>
@@ -101,7 +94,7 @@ class PlannerPopup extends React.Component {
                             <button className="recipe-item-list-button" 
                                 onClick={(event)=>this.handleSubmit(event)} 
                                 key={index} 
-                                form="form1" 
+                                type="submit"
                                 value={[(this.state.mainRecipes[index].name), (this.state.mainRecipes[index].instructions)]}> 
                                 {this.state.mainRecipes[index].name} 
                             </button>
@@ -119,10 +112,15 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.sideRecipes.map((name, index) => (
-                            <div>
-                            <button className="recipe-item-list-button" onClick={(event)=>this.handleSubmit(event)} key={index}> {this.state.sideRecipes[index].name} </button>
-                            <input className="button" id="modal-button" type="submit" value={this.state.sideRecipes[index].name} />
-                            </div>
+                        
+                            <button className="recipe-item-list-button" 
+                                onClick={(event)=>this.handleSubmit(event)} 
+                                key={index} 
+                                type="submit"
+                                value={[(this.state.sideRecipes[index].name), (this.state.sideRecipes[index].instructions)]}> 
+                                {this.state.sideRecipes[index].name} 
+                            </button>
+                        
                         ))
                     }
                 </div>
@@ -136,7 +134,15 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.dessertRecipes.map((name, index) => (
-                            <button className="recipe-item-list-button" onClick={(event)=>this.handleSubmit(event)} key={index}> {this.state.dessertRecipes[index].name} </button>
+                        
+                            <button className="recipe-item-list-button" 
+                                onClick={(event)=>this.handleSubmit(event)} 
+                                key={index} 
+                                type="submit"
+                                value={[(this.state.dessertRecipes[index].name), (this.state.dessertRecipes[index].instructions)]}> 
+                                {this.state.dessertRecipes[index].name} 
+                            </button>
+                        
                         ))
                     }
                 </div>
@@ -151,7 +157,15 @@ class PlannerPopup extends React.Component {
                 <div>
                     {
                         this.state.otherRecipes.map((name, index) => (
-                            <button className="recipe-item-list-button" onClick={(event)=>this.handleSubmit(event)} key={index}>  {this.state.otherRecipes[index].name} </button>
+                        
+                            <button className="recipe-item-list-button" 
+                                onClick={(event)=>this.handleSubmit(event)} 
+                                key={index} 
+                                type="submit"
+                                value={[(this.state.otherRecipes[index].name), (this.state.otherRecipes[index].instructions)]}> 
+                                {this.state.otherRecipes[index].name} 
+                            </button>
+                        
                         ))
                     }
                 </div>
@@ -160,7 +174,6 @@ class PlannerPopup extends React.Component {
     }
 
     sortRecipes() {
-        console.log("SORTING");
         var main = [];
         var side = [];
         var dessert = [];

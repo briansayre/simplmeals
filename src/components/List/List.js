@@ -97,7 +97,6 @@ class List extends React.Component {
         for (var j = 0; j < recipes.length; j++) {
             // j = recipes index
             if (recipes[j].dates) {
-                //console.log('yes')
                 for (var k = 0; k < recipes[j].dates.length; k++) {
                     // k = dates index
                     for (var l = 0; l < 7; l++) {

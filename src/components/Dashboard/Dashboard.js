@@ -40,24 +40,18 @@ class Dashboard extends React.Component {
             var objects = snapshot.val();
             if (objects !== null) {
                 var keys = Object.keys(objects);
-                //console.log(keys.length);
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
                     //var name = objects[k].name;
                     //var category = objects[k].category;
-                    //console.log(objects[k].name);
                     recipes.push(objects[k]);
-                    //this.setState({ allRecipes: [...this.state.allRecipes, objects[k]] });
                 }
                 recipes = recipes.slice(0, keys.length);
             }
-            
-
             this.setState({ 
                 allRecipes: recipes,
                 loaded: true,
             });
-            //console.log(recipes);
         }));
     }
 
