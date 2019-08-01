@@ -1,12 +1,13 @@
 import React from 'react';
 import './Planner.css';
-import Calendar from 'react-calendar';
+//import Calendar from 'react-calendar';
 import Popup from "reactjs-popup";
 import PlannerPopup from '../PlannerPopup/PlannerPopup';
 import PlannerListItem from '../PlannerListItem/PlannerListItem';
 import {modalStyle} from '../Dashboard/Dashboard';
 
 var date = new Date();
+var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 class Planner extends React.Component {
 
@@ -105,8 +106,8 @@ class Planner extends React.Component {
                         <div className="module-title">
                             Meal Planner
                         </div>
-
-                        {/*<div className="module-content">
+{/*
+                        <div className="module-content">
                             <Calendar 
                                 className={["calendar"]}
                                 onChange={this.onChange}
@@ -117,11 +118,11 @@ class Planner extends React.Component {
                                 calendarType="US"
                                 showNeighboringMonth={false}
                             />
-                </div>*/}
-
+                        </div>
+*/}
                         <div className="module-title-secondary">
                             <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
-                                {this.state.date.toDateString()}
+                                {this.state.date.toLocaleDateString("en-US", options)}
                             <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
                         </div>
 

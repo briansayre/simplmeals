@@ -45,13 +45,15 @@ class RecipeForm extends React.Component {
     }
 
     handleIngredientChange(event, index) {
-        this.state.ingredients[index] = event.target.value;
-        this.setState({ingredients: this.state.ingredients});
+        var arr = this.state.ingredients;
+        arr[index] = event.target.value;
+        this.setState({ingredients: arr});
     }
 
     handleAmountChange(event, index) {
-        this.state.amounts[index] = event.target.value;
-        this.setState({amounts: this.state.amounts});
+        var arr = this.state.amounts;
+        arr[index] = event.target.value;
+        this.setState({amounts: arr});
     }
 
     addIngredient() {

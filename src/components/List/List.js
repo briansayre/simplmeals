@@ -137,9 +137,7 @@ class List extends React.Component {
             return el != null;
         });
 
-        var uniqueThisWeekIngredients = thisWeekIngredients.filter(function(item, index){
-            return thisWeekIngredients.indexOf(item) >= index;
-        });
+        //var uniqueThisWeekIngredients = thisWeekIngredients.filter(function(item, index){ return thisWeekIngredients.indexOf(item) >= index; });
 
         this.setState({
             thisWeekIngredients: filteredThisWeekIngredients,
