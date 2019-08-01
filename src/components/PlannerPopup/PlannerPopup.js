@@ -75,7 +75,7 @@ class PlannerPopup extends React.Component {
 
         //add the date to the recipe in database
         var d = new Date(this.props.date);
-        d.setDate(this.props.date.getDate() );
+        d.setDate(this.props.date.getDate() - 1);
         var currentDate = [d];
         var currentMeal = [this.props.meal];
         if (databaseDates) {
@@ -101,6 +101,7 @@ class PlannerPopup extends React.Component {
                             <button className="recipe-item-list-button" 
                                 onClick={(event)=>this.handleSubmit(event)} 
                                 key={index} 
+                                form="form1" 
                                 value={[(this.state.mainRecipes[index].name), (this.state.mainRecipes[index].instructions)]}> 
                                 {this.state.mainRecipes[index].name} 
                             </button>
@@ -196,38 +197,39 @@ class PlannerPopup extends React.Component {
             <div className="planner-popup">
                 
                 <h3> Select a recipe for {this.props.meal} on {this.props.date.toDateString()}:</h3>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="planner-recipe-display">
 
-                <div className="planner-recipe-display">
 
-
-                    <div className="planner-popup-section">
-                        <h4> Mains </h4>
-                        <div className="planner-popup-recipe-list">
-                            {this.displayMainRecipes()}
+                        <div className="planner-popup-section">
+                            <h4> Mains </h4>
+                            <div className="planner-popup-recipe-list">
+                                {this.displayMainRecipes()}
+                            </div>
+                        </div>
+                        
+                        <div className="planner-popup-section"> 
+                            <h4> Sides </h4>
+                            <div className="planner-popup-recipe-list">
+                                {this.displaySideRecipes()}
+                            </div>
+                        </div>
+                        
+                        <div className="planner-popup-section"> 
+                            <h4> Desserts </h4>
+                            <div className="planner-popup-recipe-list">
+                                {this.displayDessertRecipes()}
+                            </div>
+                        </div>
+                        
+                        <div className="planner-popup-section"> 
+                            <h4> Others </h4>
+                            <div className="planner-popup-recipe-list">
+                                {this.displayOtherRecipes()}
+                            </div>
                         </div>
                     </div>
-                    
-                    <div className="planner-popup-section"> 
-                        <h4> Sides </h4>
-                        <div className="planner-popup-recipe-list">
-                            {this.displaySideRecipes()}
-                        </div>
-                    </div>
-                    
-                    <div className="planner-popup-section"> 
-                        <h4> Desserts </h4>
-                        <div className="planner-popup-recipe-list">
-                            {this.displayDessertRecipes()}
-                        </div>
-                    </div>
-                    
-                    <div className="planner-popup-section"> 
-                        <h4> Others </h4>
-                        <div className="planner-popup-recipe-list">
-                            {this.displayOtherRecipes()}
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
 
             

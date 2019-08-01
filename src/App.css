@@ -366,7 +366,7 @@ input {
 
 .planned-section {
   overflow-y: auto;
-  max-height: 375px;
+  max-height: 665px;
 }
 
 .planner-list-item {
@@ -376,10 +376,29 @@ input {
   margin: 0 5px 0 5px;
 }
 
+.x {
+  float: right;
+  position: relative;
+  color: #F2F2F2;
+  right: 10px;
+}
+
+.x:hover {
+  color: black;
+  cursor: pointer;
+}
+
+
 .list-item-amount {
   float: right;
   margin-top: -16px;
   margin-right: 5px;
+}
+
+.checkbox {
+  float: left;
+  margin-top: -3px;
+  margin-right: 10px;
 }
 
 footer {

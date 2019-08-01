@@ -14,9 +14,35 @@ class List extends React.Component {
             thisWeekAmounts: [],
             nextWeekIngredients: [],
             nextWeekAmounts: [],
-            thisWeek: false,
+            addIngredientName: '',
+            addAmoutName: '',
+            thisWeek: true,
         }
         this.changeDisplay = this.changeDisplay.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleIngredientChange(event) {
+        this.setState({addIngredientName: event.target.value});
+    }
+
+    handleAmountChange(event) {
+        this.setState({addAmoutName: event.target.value});
+    }
+
+    handleSubmit(event) {
+        if (this.state.addIngredientName !== '') {
+            if (this.state.thisWeek) {
+                this.setState({thisWeekIngredients: [...this.state.thisWeekIngredients, this.state.addIngredientName]});
+                this.setState({thisWeekAmounts: [...this.state.thisWeekAmounts, this.state.addAmoutName]});
+            } else {
+                this.setState({nextWeekIngredients: [...this.state.nextWeekIngredients, this.state.addIngredientName]});
+                this.setState({nextWeekAmounts: [...this.state.nextWeekIngredients, this.state.addAmoutName]});
+            }
+        } else {
+            alert('Please enter a name');
+        }
+        event.preventDefault();
     }
 
     changeDisplay() {
@@ -62,10 +88,7 @@ class List extends React.Component {
             }
             date.setDate(date.getDate() + 1);
         }
-        //console.log(thisWeekDates);
-        //console.log(nextWeekDates);
-        // Go through all dates and see if date is in this week
-        // use array of dates for the week
+
         var thisWeekIngredients = [];
         var thisWeekAmounts = [];
         var nextWeekIngredients = [];
@@ -102,10 +125,6 @@ class List extends React.Component {
                 }
             }
         }
-        //console.log(thisWeekIngredients);
-        //console.log(thisWeekAmounts);
-        //console.log(nextWeekIngredients);
-        //console.log(nextWeekAmounts);
         var filteredThisWeekIngredients = thisWeekIngredients.filter(function (el) {
             return el != null;
         });
@@ -123,16 +142,12 @@ class List extends React.Component {
             return thisWeekIngredients.indexOf(item) >= index;
         });
 
-
-
         this.setState({
             thisWeekIngredients: filteredThisWeekIngredients,
             thisWeekAmounts: filteredThisWeekAmounts,
             nextWeekIngredients: filteredNextWeekIngredients,
             nextWeekAmounts: filteredNextWeekAmounts,
         })
-
-
 
     }
 
@@ -189,6 +204,21 @@ class List extends React.Component {
 
                         <div className="modal-content">
                             
+                            <form onSubmit={this.handleSubmit}>
+
+                                <label>
+                                    Add item to list:
+                                    <br /><br />
+                                    <input type="text" placeholder="Ingredient" value={this.state.addIngredientName} onChange={(event)=>this.handleIngredientChange(event)}/>
+                                    <input type="text" placeholder="Amount" value={this.state.addAmountName} onChange={(event)=>this.handleAmountChange(event)}/>
+                                </label>
+
+                                <br /><br />
+
+                                <input className="button" id="modal-button" type="submit" value="Submit" />
+
+                            </form>
+
                             <button
                                 className="button"
                                 id="modal-button"

@@ -9,7 +9,8 @@ class PlannerListItem extends React.Component {
             <div className="planner-list-item">
    
                 {this.props.name}
-               
+                
+                <div className="x">X</div>
             </div>
 
             
