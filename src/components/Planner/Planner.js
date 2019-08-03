@@ -151,7 +151,7 @@ class Planner extends React.Component {
                                     </Popup>
                                 </div>
                                 {this.state.breakfast.map((name, index) => (
-                                    < PlannerListItem key={index} meal="breakfast" name={name} />
+                                    < PlannerListItem key={index} meal="breakfast" date={date} name={name} />
                                 ))}
                             </div>
 
@@ -167,7 +167,7 @@ class Planner extends React.Component {
                                                     className="button"
                                                     id="modal-button"
                                                     onClick={() => {
-                                                        this.update();
+                                                        this.fillArrays();
                                                         close();
                                                     }}
                                                 >
@@ -179,7 +179,7 @@ class Planner extends React.Component {
                                     </Popup>
                                 </div>
                                 {this.state.lunch.map((name, index) => (
-                                    < PlannerListItem key={index} meal="lunch" name={name} />
+                                    < PlannerListItem key={index} meal="lunch" date={date} name={name} />
                                 ))}
                             </div>
 
@@ -196,7 +196,8 @@ class Planner extends React.Component {
                                                     className="button"
                                                     id="modal-button"
                                                     onClick={() => {
-                                                    close();
+                                                        this.fillArrays();
+                                                        close();
                                                     }}
                                                 >
                                                     Close
@@ -207,7 +208,7 @@ class Planner extends React.Component {
                                     </Popup>
                                 </div>
                                 {this.state.dinner.map((name, index) => (
-                                    < PlannerListItem key={index} meal="dinner" name={name} />
+                                    < PlannerListItem key={index} meal="dinner" date={date} name={name} />
                                 ))}
                             </div>
                         </div>

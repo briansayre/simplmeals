@@ -32,6 +32,9 @@ class List extends React.Component {
 
     handleSubmit(event) {
         if (this.state.addIngredientName !== '') {
+            if (this.state.addAmoutName === '' || !this.state.addAmoutName) {
+                this.setState({addAmoutName: 'No amount'});
+            }
             if (this.state.thisWeek) {
                 this.setState({thisWeekIngredients: [...this.state.thisWeekIngredients, this.state.addIngredientName]});
                 this.setState({thisWeekAmounts: [...this.state.thisWeekAmounts, this.state.addAmoutName]});
@@ -205,8 +208,7 @@ class List extends React.Component {
                             <form onSubmit={this.handleSubmit}>
 
                                 <label>
-                                    Add item to list:
-                                    <br /><br />
+                                    <h3>Add item to list:</h3>
                                     <input type="text" placeholder="Ingredient" value={this.state.addIngredientName} onChange={(event)=>this.handleIngredientChange(event)}/>
                                     <input type="text" placeholder="Amount" value={this.state.addAmountName} onChange={(event)=>this.handleAmountChange(event)}/>
                                 </label>

@@ -1,8 +1,20 @@
+/*
+
+  COLORS:
+  green - #06C100
+  dark green - #048E00
+  light grey - #C7C7C7
+  dark grey - #F2F2F2
+
+*/
+
 @media only screen and (max-width: 114.5rem) {
+
   .module-container {
     width: 100%;
     max-width: 114.5rem;
   }
+
   .module {
     border-radius: 0.3125rem;
     border-style: solid;
@@ -15,6 +27,7 @@
     height:  46.875rem;
     position: relative;
   }
+  
 }
 
 @media only screen and (max-width: 67rem) {
@@ -187,7 +200,7 @@ p {
   margin: 0;
   text-decoration: none;
   background: #06C100;
-  color: #ffffff;
+  color: white;
   font-size: 1rem;
   height:  1.75rem;
   cursor: pointer;
@@ -234,7 +247,7 @@ p {
 }
 
 #add-food-button:hover {
-  color: #06F100;
+  color: #06C100;
 }
 
 .arrow {
@@ -247,7 +260,7 @@ p {
   margin-right: 0.625rem;
   text-decoration: none;
   background: #06C100;
-  color: #ffffff;
+  color: white;
   font-size: 1rem;
   cursor: pointer;
   text-align: center;
@@ -261,7 +274,6 @@ p {
 .arrow:focus {
   color: #048E00;
 }
-
 .modal-content {
   display: block;
   color: black;
@@ -284,7 +296,7 @@ input {
 .calendar {
   margin-left: auto;
   margin-right: auto;
-  background: white;
+  background: #06C100;
 }
 
 #form {
