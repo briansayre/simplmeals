@@ -48,12 +48,16 @@ class RecipeForm extends React.Component {
         var arr = this.state.ingredients;
         arr[index] = event.target.value;
         this.setState({ingredients: arr});
+        console.log(this.state.ingredients);
+        console.log(this.state.amounts);
     }
 
     handleAmountChange(event, index) {
         var arr = this.state.amounts;
         arr[index] = event.target.value;
         this.setState({amounts: arr});
+        console.log(this.state.ingredients);
+        console.log(this.state.amounts);
     }
 
     addIngredient() {
@@ -63,9 +67,24 @@ class RecipeForm extends React.Component {
     removeIngredient(index) {
         this.state.ingredients.splice(index, 1);
         this.setState({ingredients: this.state.ingredients});
+        this.state.amounts.splice(index, 1);
+        this.setState({amounts: this.state.amounts});
     }
 
     handleSubmit(event) {
+        console.log(this.state.ingredients);
+        console.log(this.state.amounts);
+        for (var i = 0; i < this.state.ingredients.length; i++) {
+            if(!this.state.amounts[i] || this.state.amounts[i] === '' ) {
+                var arr = this.state.amounts;
+                arr[i] = "No amount";
+            }
+        }
+        if (this.state.amounts.length < this.state.ingredients.length ) {
+            var arr2 = this.state.amounts;
+            arr2.push('No amount');
+            this.setState({amounts: arr2});
+        }
         if (this.state.value !== '') {
             var database = firebase.database();
             var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
@@ -138,7 +157,9 @@ class RecipeForm extends React.Component {
                     }
                 </label>
 
-                <br /><br />
+                <br />
+                <br />
+        
 
                 <button type="button" className="button" id="modal-button" onClick={(event)=>this.addIngredient(event)}>Add Ingredient</button> <br />
 

@@ -69,7 +69,7 @@ class PlannerPopup extends React.Component {
 
         //add the date to the recipe in database
         var d = new Date(this.props.date);
-        d.setDate(this.props.date.getDate());
+        d.setDate(this.props.date.getDate() -1 );
         var currentDate = [d];
         var currentMeal = [this.props.meal];
         if (databaseDates) {
@@ -243,7 +243,11 @@ class PlannerPopup extends React.Component {
                         </div>
                     </div>
                 </form>
+            <br />
+            <br />
             </div>
+            
+
 
             
             

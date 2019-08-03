@@ -140,7 +140,6 @@ class Planner extends React.Component {
                                                     id="modal-button"
                                                     onClick={() => {
                                                         this.fillArrays();
-                                                        console.log("filled")
                                                         close();
                                                     }}
                                                 >
@@ -152,7 +151,7 @@ class Planner extends React.Component {
                                     </Popup>
                                 </div>
                                 {this.state.breakfast.map((name, index) => (
-                                    < PlannerListItem key={index} name={name} />
+                                    < PlannerListItem key={index} meal="breakfast" name={name} />
                                 ))}
                             </div>
 
@@ -180,7 +179,7 @@ class Planner extends React.Component {
                                     </Popup>
                                 </div>
                                 {this.state.lunch.map((name, index) => (
-                                    < PlannerListItem key={index} name={name} />
+                                    < PlannerListItem key={index} meal="lunch" name={name} />
                                 ))}
                             </div>
 
@@ -208,7 +207,7 @@ class Planner extends React.Component {
                                     </Popup>
                                 </div>
                                 {this.state.dinner.map((name, index) => (
-                                    < PlannerListItem key={index} name={name} />
+                                    < PlannerListItem key={index} meal="dinner" name={name} />
                                 ))}
                             </div>
                         </div>

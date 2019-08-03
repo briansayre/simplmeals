@@ -61,9 +61,12 @@
     min-width: 200px;
   }
 
-
   .planner-popup-recipe-list {
     min-width: 200px;
+  }
+
+  .module {
+    width: 100vw;
   }
 
 }
@@ -135,7 +138,7 @@ p {
   margin-top: 1.5625rem;
   width: 30%;
   min-width: 21.875rem;
-  height:  46.875rem;
+  height:  80vh;
   position: relative;
 }
 
@@ -259,9 +262,6 @@ p {
   color: #048E00;
 }
 
-.modal {
-}
-
 .modal-content {
   display: block;
   color: black;
@@ -380,8 +380,13 @@ input {
 .x {
   float: right;
   position: relative;
+  font-size: 1.5rem;
   color: #F2F2F2;
-  right: 10px;
+  bottom: 4px;
+  right: -3px;
+  border: none;
+  background: #F2F2F2;
+
 }
 
 .x:hover {

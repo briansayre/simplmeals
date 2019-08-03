@@ -99,8 +99,19 @@ class RecipeListItem extends React.Component {
                                                 </ol>
                                             </div>
                                         </div>
+                                        <br />
+                                        <br />
         
-        
+                                        <button
+                                            className="button"
+                                            id="modal-button"
+                                            onClick={() => {
+                                                console.log('remove recipe');
+                                            }}
+                                        >
+                                            Remove Recipe
+                                        </button>
+                                        <br />
                                         <button
                                             className="button"
                                             id="modal-button"
@@ -109,7 +120,6 @@ class RecipeListItem extends React.Component {
                                             }}
                                         >
                                             Close
-                                            
                                         </button>
                                 
                                     </div>

@@ -124,17 +124,18 @@ class List extends React.Component {
                 }
             }
         }
+
         var filteredThisWeekIngredients = thisWeekIngredients.filter(function (el) {
-            return el != null;
+            return el !== undefined;
         });
         var filteredThisWeekAmounts = thisWeekAmounts.filter(function (el) {
-            return el != null;
+            return el !== undefined;
         });
         var filteredNextWeekIngredients = nextWeekIngredients.filter(function (el) {
-            return el != null;
+            return el !== undefined;
         });
         var filteredNextWeekAmounts = nextWeekAmounts.filter(function (el) {
-            return el != null;
+            return el !== undefined;
         });
 
         //var uniqueThisWeekIngredients = thisWeekIngredients.filter(function(item, index){ return thisWeekIngredients.indexOf(item) >= index; });
