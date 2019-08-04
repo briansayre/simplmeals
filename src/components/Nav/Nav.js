@@ -14,7 +14,7 @@ require('dotenv').config();
 
 const config = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "simplmeals-1561736691951.firebaseapp.com",
+    authDomain: "simplmeals.com",
     databaseURL: "https://simplmeals-1561736691951.firebaseio.com",
     projectId: "simplmeals-1561736691951",
     storageBucket: "simplmeals-1561736691951.appspot.com",
@@ -45,8 +45,11 @@ class Nav extends React.Component {
         }
     }
 
-
-    componentDidMount = () => {
+    /**
+     * 
+     */
+    componentWillMount = () => {
+        console.log('here');
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ loggedIn: !!user })
             if (this.state.loggedIn) {
@@ -67,10 +70,15 @@ class Nav extends React.Component {
                 //this.getRecipes();
             }
         })
+        
+    }
+
+    signOut() {
+        firebase.auth().signOut();
     }
 
     render() {
-
+        console.log(this.state.loggedIn)
         return (
             <div>
                 <div className="nav">
@@ -83,7 +91,7 @@ class Nav extends React.Component {
                             <div className="right-side">
                                 <img className="nav-user-img" alt="" src={firebase.auth().currentUser.photoURL}/> 
                                 <span className="nav-user-name"> {firebase.auth().currentUser.displayName} </span>
-                                <button className="sign-out" onClick={() => firebase.auth().signOut()}>Sign out</button>
+                                <button className="sign-out" onClick={this.signOut}>Sign out</button>
                             </div>
 
                         ) : ( 
@@ -106,6 +114,7 @@ class Nav extends React.Component {
                 </footer>
 
             </div>
+
         );
     }
 }
