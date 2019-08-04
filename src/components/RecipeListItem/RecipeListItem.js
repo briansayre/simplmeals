@@ -2,6 +2,11 @@ import React from 'react';
 import Popup from "reactjs-popup";
 import {modalStyle} from '../Dashboard/Dashboard';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/functions';
+
 
 
 class RecipeListItem extends React.Component {
@@ -66,6 +71,27 @@ class RecipeListItem extends React.Component {
         });
     }
 
+    removeRecipe() {
+        var database = firebase.database();
+        var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
+        ref.on('value', ((snapshot) => {
+            var objects = snapshot.val();
+            if (objects !== null) {
+                var keys = Object.keys(objects);
+                // loops through recipes
+                for (var i = 0; i < keys.length; i++) {
+                    var k = keys[i];
+                    var name = objects[k].name;
+                    var instructions = objects[k].instructions;
+                    if (name === this.props.recipe.name && (instructions === this.props.recipe.instructions || !this.props.recipe.instructions)) {
+                        ref.child(k).remove();
+                    }
+                }
+            }
+        }));
+        
+    }
+
     componentWillMount() {
         this.fillArrays();
     }
@@ -81,48 +107,52 @@ class RecipeListItem extends React.Component {
                             {close => (
         
                                 <div className="modal-content">
-                                    <div className="recipe-modal">
-                                        <h1> {this.props.recipe.name} </h1>
-                                        <h3>Instuctions:</h3>
-                                        <p> {this.props.recipe.instructions} </p>
-                                        <div className="ingredients-modal">
-                                            <div className="ingredients-list-modal"> 
-                                                <h4>Ingredients</h4>
-                                                <ol>  
-                                                    {this.displayIngredients()}
-                                                </ol>
+                                    <form>
+                                        <div className="recipe-modal">
+                                            <h1> {this.props.recipe.name} </h1>
+                                            <h3>Instuctions:</h3>
+                                            <p> {this.props.recipe.instructions} </p>
+                                            <div className="ingredients-modal">
+                                                <div className="ingredients-list-modal"> 
+                                                    <h4>Ingredients</h4>
+                                                    <ol>  
+                                                        {this.displayIngredients()}
+                                                    </ol>
+                                                </div>
+                                                <div className="amounts-list-modal">
+                                                    <h4>Amounts</h4>
+                                                    <ol> 
+                                                        {this.displayAmounts()}
+                                                    </ol>
+                                                </div>
                                             </div>
-                                            <div className="amounts-list-modal">
-                                                <h4>Amounts</h4>
-                                                <ol> 
-                                                    {this.displayAmounts()}
-                                                </ol>
-                                            </div>
+                                            <br />
+                                            <br />
+            
+                                            <button
+                                                className="button"
+                                                id="modal-button"
+                                                type="submit"
+                                                value="Submit"
+                                                onClick={() => {
+                                                    this.removeRecipe();
+                                                }}
+                                            >
+                                                Remove Recipe
+                                            </button>
+                                            <br />
+                                            <button
+                                                className="button"
+                                                id="modal-button"
+                                                onClick={() => {
+                                                    close();
+                                                }}
+                                            >
+                                                Close
+                                            </button>
+                                    
                                         </div>
-                                        <br />
-                                        <br />
-        
-                                        <button
-                                            className="button"
-                                            id="modal-button"
-                                            onClick={() => {
-                                                console.log('remove recipe');
-                                            }}
-                                        >
-                                            Remove Recipe
-                                        </button>
-                                        <br />
-                                        <button
-                                            className="button"
-                                            id="modal-button"
-                                            onClick={() => {
-                                            close();
-                                            }}
-                                        >
-                                            Close
-                                        </button>
-                                
-                                    </div>
+                                    </form>
         
                                 </div>
         
