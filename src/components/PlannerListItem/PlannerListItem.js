@@ -11,14 +11,10 @@ class PlannerListItem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleClick() {
-        console.log('remove recipe');
-        console.log(this.props.meal);
-        console.log(this.props.name);
-
+    handleSubmit() {
         var database = firebase.database();
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
         var recipes = [];
@@ -28,7 +24,7 @@ class PlannerListItem extends React.Component {
             var objects = snapshot.val();
             if (objects !== null) {
                 var keys = Object.keys(objects);
-                // loops trhough recipes
+                // loops through recipes
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
                     var name = objects[k].name;
@@ -44,17 +40,11 @@ class PlannerListItem extends React.Component {
                             meals[j] === this.props.meal &&
                             deleted === 0
                             ) {
-                                //console.log(meals[j]);
-                                //console.log(this.props.meal);
-                                console.log('match');
-                                //console.log(k);
-                                dates.splice(0);
-                                meals.splice(0);
-                                console.log(dates)
+                                deleted = 1;
+                                dates.splice(j, 1);
+                                meals.splice(j, 1);
                                 var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + k + '/');
                                 ref.update({ dates: dates,  meals: meals });
-                                deleted = 1;
-                
                             }
                         }
                     }
@@ -62,7 +52,7 @@ class PlannerListItem extends React.Component {
             }
         }));
         
-
+        Popup.close();
 
     }
 
@@ -74,27 +64,28 @@ class PlannerListItem extends React.Component {
                 <Popup className="modal" contentStyle={modalStyle} trigger={<button className="x" >&times;</button>} modal>
                                         {close => (
                                             <div className="modal-content">
-                                                <center>
-                                                <h3> Are you sure you want to remove this recipe? </h3>
-                                                <button
-                                                    className="button"
-                                                    id="modal-button"
-                                                    onClick={() => {
-                                                        this.handleClick();
-                                                        close();
-                                                    }}>
-                                                    Remove
-                                                </button>
-                                                <br />
-                                                <button
-                                                    className="button"
-                                                    id="modal-button"
-                                                    onClick={() => {
-                                                        close();
-                                                    }}>
-                                                    Close
-                                                </button>
-                                                </center>
+                                                <form  onSubmit={this.handleSubmit}>
+                                                    <center>
+                                                        <h3> Are you sure you want to remove this recipe? </h3>
+                                                        <button
+                                                            type="submit"
+                                                            value="Submit"
+                                                            className="button"
+                                                            id="modal-button">
+                                                            Remove
+                                                        </button>
+                                                        <br />
+                                                        <button
+                                                            type="submit"
+                                                            className="button"
+                                                            id="modal-button"
+                                                            onClick={() => {
+                                                                close();
+                                                            }}>
+                                                            Close
+                                                        </button>
+                                                    </center>
+                                                </form>
                                             </div>
                                         )}
                                     </Popup>
