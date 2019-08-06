@@ -49,7 +49,6 @@ class Nav extends React.Component {
      * 
      */
     componentWillMount = () => {
-        console.log('here');
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ loggedIn: !!user })
             if (this.state.loggedIn) {
@@ -78,7 +77,6 @@ class Nav extends React.Component {
     }
 
     render() {
-        console.log(this.state.loggedIn)
         return (
             <div>
                 <div className="nav">

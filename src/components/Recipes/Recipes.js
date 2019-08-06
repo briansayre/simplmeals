@@ -83,7 +83,7 @@ class Recipes extends React.Component {
                     }
                 </div>
             );
-        } else {
+        } else if (category === 'other') {
             return (
                 <div>
                     {

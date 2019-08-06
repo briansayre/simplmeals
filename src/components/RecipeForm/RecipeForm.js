@@ -48,16 +48,12 @@ class RecipeForm extends React.Component {
         var arr = this.state.ingredients;
         arr[index] = event.target.value;
         this.setState({ingredients: arr});
-        console.log(this.state.ingredients);
-        console.log(this.state.amounts);
     }
 
     handleAmountChange(event, index) {
         var arr = this.state.amounts;
         arr[index] = event.target.value;
         this.setState({amounts: arr});
-        console.log(this.state.ingredients);
-        console.log(this.state.amounts);
     }
 
     addIngredient() {
@@ -80,11 +76,26 @@ class RecipeForm extends React.Component {
                 arr[i] = "No amount";
             }
         }
+        var tempIngredients = [];
+        var tempAmounts = [];
+        for (var j = 0; j < this.state.ingredients.length; j++) {
+            if (this.state.ingredients[j] !== '') {
+                console.log('DOOOOODDDEEEEE')
+                tempIngredients.push(this.state.ingredients[j]);
+                tempAmounts.push(this.state.amounts[j]);
+            }
+        }
+        this.setState({
+            ingredients: tempIngredients,
+            amounts: tempAmounts,
+        });
+
         if (this.state.amounts.length < this.state.ingredients.length ) {
             var arr2 = this.state.amounts;
             arr2.push('No amount');
             this.setState({amounts: arr2});
         }
+
         if (this.state.value !== '') {
             var database = firebase.database();
             var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');

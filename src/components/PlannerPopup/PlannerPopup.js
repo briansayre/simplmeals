@@ -42,13 +42,11 @@ class PlannerPopup extends React.Component {
         // find that recipe in database
         var database = firebase.database();
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
-
         var key = '';
         var databaseName = '';
         var databaseInstructions = '';
         var databaseDates = [];
         var databaseMeals = [];
-
         ref.on('value', ((snapshot) => {
             var objects = snapshot.val();
             if (objects !== null) {
@@ -70,18 +68,21 @@ class PlannerPopup extends React.Component {
         //add the date to the recipe in database
         var d = new Date(this.props.date);
         d.setDate(this.props.date.getDate());
-        var currentDate = [d];
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+        var year = d.getFullYear();
+        var formattedDate = year;
+        formattedDate += '-' + ("0" + month).slice(-2);
+        formattedDate += '-' + ("0" + day).slice(-2);
+        var currentDate = [formattedDate];
         var currentMeal = [this.props.meal];
         if (databaseDates) {
             var newDates = databaseDates.concat(currentDate);
             var newMeals = databaseMeals.concat(currentMeal);
             database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: newDates,  meals: newMeals });
         } else {
-            
             database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: currentDate,  meals: currentMeal });
         }
-        
-        
     }
 
     displayMainRecipes() {
