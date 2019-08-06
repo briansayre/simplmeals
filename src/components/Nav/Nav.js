@@ -2,9 +2,6 @@ import React from 'react';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
-import 'firebase/functions';
 
 import './Nav.css';
 import Landing from '../Landing/Landing';
@@ -45,9 +42,6 @@ class Nav extends React.Component {
         }
     }
 
-    /**
-     * 
-     */
     componentWillMount = () => {
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ loggedIn: !!user })

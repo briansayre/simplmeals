@@ -1,8 +1,6 @@
 import React from 'react';
 import './RecipeForm.css';
 import firebase from 'firebase/app';
-import 'firebase/database';
-import 'firebase/functions';
 import Popup from 'reactjs-popup';
 
 
