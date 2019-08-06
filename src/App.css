@@ -57,29 +57,42 @@
 
 @media only screen and (max-width: 40.625rem) {
 
-  .login {
+  div.login {
     position: relative;
     top: 9.375rem;
   }
 
-  .planner-recipe-display {
+  div.planner-recipe-display {
     margin-left: auto;
     margin-right: auto;
     width: 15.625rem;
     min-width: 12.5rem;
   }
 
-  .planner-popup-section {
+  div.planner-popup-section {
     min-width: 12.5rem;
   }
 
-  .planner-popup-recipe-list {
+  div.planner-popup-recipe-list {
     min-width: 12.5rem;
   }
 
-  .module {
-    width: 100vw;
-    min-width: 0;
+  
+  div.module-title {
+    padding-bottom: 1.25rem;
+    
+  }
+  
+  div.module-title-secondary {
+    padding-bottom: 1.25rem;
+  }
+  
+  div.module-title-secondary-dark {
+
+  }
+
+  button#add-button {
+    top: 3.4rem;
   }
 
 }
@@ -161,7 +174,8 @@ p {
   text-align: center;
   margin: 0;
   padding-top: 0.75rem;
-  height:  1.75rem;
+  padding-bottom: 0.75rem;
+  height:  1rem;
   color: white;
   background-color: #048E00;
   width: 100%;
@@ -172,7 +186,8 @@ p {
   text-align: center;
   margin: 0;
   padding-top: 0.75rem;
-  height:  1.75rem;
+  padding-bottom: 0.75rem;
+  height:  1rem;
   color: white;
   background-color: #06C100;
   width: 100%;
