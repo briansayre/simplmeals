@@ -56,7 +56,6 @@ class Planner extends React.Component {
     onChange = date => this.setState({ date })
 
     fillArrays() {
-        console.log(date);
         var tempBreakfast = [];
         var tempLunch = [];
         var tempDinner = [];

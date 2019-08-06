@@ -14,6 +14,7 @@ class PlannerListItem extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // Removes the planned meal
     handleSubmit() {
         var database = firebase.database();
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
@@ -51,9 +52,7 @@ class PlannerListItem extends React.Component {
                 }
             }
         }));
-        
         Popup.close();
-
     }
 
     render() {
@@ -62,33 +61,33 @@ class PlannerListItem extends React.Component {
    
                 {this.props.name}
                 <Popup className="modal" contentStyle={modalStyle} trigger={<button className="x" >&times;</button>} modal>
-                                        {close => (
-                                            <div className="modal-content">
-                                                <form  onSubmit={this.handleSubmit}>
-                                                    <center>
-                                                        <h3> Are you sure you want to remove this recipe? </h3>
-                                                        <button
-                                                            type="submit"
-                                                            value="Submit"
-                                                            className="button"
-                                                            id="modal-button">
-                                                            Remove
-                                                        </button>
-                                                        <br />
-                                                        <button
-                                                            type="submit"
-                                                            className="button"
-                                                            id="modal-button"
-                                                            onClick={() => {
-                                                                close();
-                                                            }}>
-                                                            Close
-                                                        </button>
-                                                    </center>
-                                                </form>
-                                            </div>
-                                        )}
-                                    </Popup>
+                    {close => (
+                        <div className="modal-content">
+                            <form  onSubmit={this.handleSubmit}>
+                                <center>
+                                    <h3> Are you sure you want to remove this recipe? </h3>
+                                    <button
+                                        type="submit"
+                                        value="Submit"
+                                        className="button"
+                                        id="modal-button">
+                                        Remove
+                                    </button>
+                                    <br />
+                                    <button
+                                        type="submit"
+                                        className="button"
+                                        id="modal-button"
+                                        onClick={() => {
+                                            close();
+                                        }}>
+                                        Close
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    )}
+                </Popup>
             </div>
 
             

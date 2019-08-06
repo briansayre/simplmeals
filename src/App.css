@@ -22,8 +22,7 @@
     border-color: #c7c7c7;
     background-color: #F2F2F2;
     margin-top: 1.5625rem;
-    width: 30%;
-    min-width: 21.875rem;
+    width: 21.875rem;
     height:  46.875rem;
     position: relative;
   }
@@ -80,6 +79,7 @@
 
   .module {
     width: 100vw;
+    min-width: 0;
   }
 
 }
@@ -151,12 +151,11 @@ p {
   margin-top: 1.5625rem;
   width: 30%;
   min-width: 21.875rem;
-  height:  80vh;
+  height:  47rem;
   position: relative;
 }
 
 .module-title {
-  
   border-radius:  0.3125rem  0.3125rem 0  0 ;
   font-weight: bold;
   text-align: center;

@@ -68,32 +68,22 @@ class RecipeForm extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state.ingredients);
-        console.log(this.state.amounts);
-        for (var i = 0; i < this.state.ingredients.length; i++) {
-            if(!this.state.amounts[i] || this.state.amounts[i] === '' ) {
-                var arr = this.state.amounts;
-                arr[i] = "No amount";
-            }
-        }
+
+        // Remove ingredients with blank names
         var tempIngredients = [];
         var tempAmounts = [];
         for (var j = 0; j < this.state.ingredients.length; j++) {
             if (this.state.ingredients[j] !== '') {
-                console.log('DOOOOODDDEEEEE')
                 tempIngredients.push(this.state.ingredients[j]);
                 tempAmounts.push(this.state.amounts[j]);
             }
         }
-        this.setState({
-            ingredients: tempIngredients,
-            amounts: tempAmounts,
-        });
 
-        if (this.state.amounts.length < this.state.ingredients.length ) {
-            var arr2 = this.state.amounts;
-            arr2.push('No amount');
-            this.setState({amounts: arr2});
+        // Fills in blank amounts
+        for (var i = 0; i < tempIngredients.length; i++) {
+            if (tempAmounts[i] === '' || typeof(tempAmounts[i]) === 'undefined') {
+                tempAmounts[i] = "No amount";
+            }
         }
 
         if (this.state.value !== '') {
@@ -103,8 +93,8 @@ class RecipeForm extends React.Component {
                 name: this.state.value,
                 category: this.state.category,
                 uid: firebase.auth().currentUser.uid,
-                ingredients: this.state.ingredients,
-                amounts: this.state.amounts,
+                ingredients: tempIngredients,
+                amounts: tempAmounts,
                 instructions: this.state.instructions,
                 dates: [],
                 meals: [],
