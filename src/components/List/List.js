@@ -1,7 +1,7 @@
 import React from 'react';
 import './List.css';
-import Popup from "reactjs-popup";
-import {modalStyle} from '../Dashboard/Dashboard';
+//import Popup from "reactjs-popup";
+//import {modalStyle} from '../Dashboard/Dashboard';
 import ListItem from '../ListItem/ListItem';
 
 
@@ -197,10 +197,10 @@ class List extends React.Component {
             </div>
 
             <div className="module-title-secondary">
-                <button className="arrow" id = "cycle-left" onClick={this.changeDisplay}> &lt; </button>
+                <button className="arrow" id = "cycle-left" onClick={this.changeDisplay}> &#x276E; </button>
                 {this.state.thisWeek ? "This Week" : "Next Week" }
-                <button className="arrow" id = "cycle-right" onClick={this.changeDisplay} > &gt; </button>
-                <Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id = "add-button"> + </button>} modal>
+                <button className="arrow" id = "cycle-right" onClick={this.changeDisplay} > &#x276F; </button>
+                {/*<Popup className="modal" contentStyle={modalStyle} trigger={<button className="button" id = "add-button"> + </button>} modal>
                     {close => (
 
                         <div className="modal-content">
@@ -232,7 +232,7 @@ class List extends React.Component {
                         </div>
 
                     )}
-                </Popup>
+                            </Popup>*/}
             </div>
 
             <div className="module-content">

@@ -26,12 +26,7 @@ class Planner extends React.Component {
         this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
         this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
-        this.update = this.update.bind(this);
-    }  
-
-    update() {
-        console.log(this.state.lunch.length);
-    }
+    } 
 
     handleDayClick(day) {
         this.setState({ date: day });
@@ -121,9 +116,9 @@ class Planner extends React.Component {
                         </div>
 */}
                         <div className="module-title-secondary">
-                            <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &lt; </button>
+                            <button className="arrow" id="cycle-left" onClick={this.handleLeftArrowClick}> &#x276E; </button>
                                 {this.state.date.toLocaleDateString("en-US", options)}
-                            <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &gt; </button>
+                            <button className="arrow" id="cycle-right" onClick={this.handleRightArrowClick}> &#x276F; </button>
                         </div>
 
                         <div className="planned-section">
@@ -139,7 +134,6 @@ class Planner extends React.Component {
                                                     className="button"
                                                     id="modal-button"
                                                     onClick={() => {
-                                                        this.fillArrays();
                                                         close();
                                                     }}
                                                 >

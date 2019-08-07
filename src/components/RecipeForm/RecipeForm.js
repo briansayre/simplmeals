@@ -121,7 +121,7 @@ class RecipeForm extends React.Component {
                 <label>
                     Recipe Instuctions:
                     <br />
-                    <input type="text" value={this.state.instructions} onChange={this.handleInstructionsChange} />
+                    <textarea rows="40" cols="40" id="TITLE" value={this.state.instructions} onChange={this.handleInstructionsChange} />
                 </label>
 
                 <br /><br />

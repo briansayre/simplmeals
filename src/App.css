@@ -8,31 +8,27 @@
 
 */
 
-@media only screen and (max-width: 114.5rem) {
-
-  .module-container {
-    width: 100%;
-    max-width: 114.5rem;
-  }
-
-  .module {
-    border-radius: 0.3125rem;
-    border-style: solid;
-    border-width: 0.0625rem;
-    border-color: #c7c7c7;
-    background-color: #F2F2F2;
-    margin-top: 1.5625rem;
-    width: 21.875rem;
-    height:  46.875rem;
-    position: relative;
-  }
-  
-}
-
+/* Stacks all modules on top of eachother and gets rid of landing images */
 @media only screen and (max-width: 67rem) {
 
-  .module-container {
+  div.module-container {
     width: 21.875rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+  }
+
+  div.right-side {
+    height: 0;
+  }
+
+
+  div.module {
+    margin-top: -20px;
+    border-radius: 0;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  
+  div.module-title {
+    border-radius: 0;
   }
 
   .images {
@@ -48,13 +44,14 @@
     display: none;
   }
 
-  .individual-images {
+  div.individual-images {
     width: 15.625rem;
     height: 3.125rem;
   }
 
 }
 
+/* Fixes planner popup layout and module title heights*/
 @media only screen and (max-width: 40.625rem) {
 
   div.login {
@@ -79,29 +76,27 @@
 
   
   div.module-title {
-    padding-bottom: 1.25rem;
+    padding-bottom: 1rem;
     
   }
   
   div.module-title-secondary {
-    padding-bottom: 1.25rem;
+    padding-bottom: 1rem;
   }
   
-  div.module-title-secondary-dark {
-
-  }
-
   button#add-button {
     top: 3.4rem;
   }
 
 }
 
+body {
+  background-color: #FaFaFA;
+}
 
 
 .App {
   margin: 0;
-  text-align: center;
 }
 
 .landing {
@@ -114,6 +109,7 @@
   background-image: url("./images/food.png");
   background-position: center;
   background-repeat: no-repeat; 
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .5);
   background-size: cover;
   margin-bottom: 3.125rem;
 }
@@ -158,9 +154,9 @@ p {
 }
 
 .module {
-  border-radius:  0.37rem;
-  border: 0.0625rem solid #c7c7c7;
-  background-color: #F2F2F2;
+  border-radius:  0.25rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+  background-color: white;
   margin-top: 1.5625rem;
   width: 30%;
   min-width: 21.875rem;
@@ -169,7 +165,7 @@ p {
 }
 
 .module-title {
-  border-radius:  0.3125rem  0.3125rem 0  0 ;
+  border-radius:  0.25rem  0.25rem 0  0 ;
   font-weight: bold;
   text-align: center;
   margin: 0;
@@ -213,7 +209,7 @@ button {
 }
 
 .button {
-  border-radius: 1.5625rem;
+  border-radius: .25rem;
   display: inline-block;
   border: none;
   margin: 0;
@@ -236,9 +232,10 @@ button {
 }
 
 #modal-button {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .25);
   font-size: 1rem;
   width: 10rem;
-  height: 1.875rem;
+  height: 2rem;
   padding:  0.3125rem;
   margin:  0.3125rem;
 }
@@ -270,8 +267,6 @@ button {
 }
 
 .arrow {
-  font-weight: bold;
-  border-radius: 1.5625rem;
   display: inline-block;
   border: none;
   padding: 0;
@@ -280,7 +275,7 @@ button {
   text-decoration: none;
   background: #06C100;
   color: white;
-  font-size: 1rem;
+  font-size: .8rem;
   cursor: pointer;
   text-align: center;
   transition: background 250ms ease-in-out, 
@@ -289,8 +284,7 @@ button {
   -moz-appearance: none;
 }
 
-.arrow:hover,
-.arrow:focus {
+.arrow:hover {
   color: #048E00;
 }
 .modal-content {
@@ -302,15 +296,26 @@ button {
 }
 
 input {
-  background: #F2F2F2;
-  border-radius: 1.5625rem;
+  background: white;
+  border-radius: 0.25rem;
   margin: 0.1875rem;
-  border-style: solid;
-  border-width: 0.0625rem;
-  border-color: #c7c7c7;
+  border: solid 0.0625rem #c7c7c7;
   padding-left: 0.625rem;
   height: 1.5625rem;
+  outline:none;
 }
+
+textarea {
+  background: white;
+  outline:none;
+  border-radius: 0.25rem;
+  margin: 0.1875rem;
+  border: solid 0.0625rem #c7c7c7;
+  padding: 0.625rem;
+  height: 3.5625rem;
+}
+
+
 
 .calendar {
   margin-left: auto;
@@ -385,7 +390,7 @@ input {
 
 .planner-popup-recipe-list {
   border: 0.0625rem solid #c7c7c7;
-  background-color: #F2F2F2;
+  background-color: white;
   border-bottom: none;
 }
 
@@ -412,11 +417,11 @@ input {
   float: right;
   position: relative;
   font-size: 1.5rem;
-  color: #F2F2F2;
+  color: white;
   bottom: 0.25rem;
   right: -0.1875rem;
   border: none;
-  background: #F2F2F2;
+  background: white;
 
 }
 

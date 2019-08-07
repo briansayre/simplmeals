@@ -1,3 +1,14 @@
+/*
+
+  COLORS:
+  green - #06C100
+  dark green - #048E00
+  light grey - #C7C7C7
+  dark grey - #F2F2F2
+
+*/
+
+/* Gets rid of user name and picture */
 @media only screen and (max-width: 46.875rem) {
     button.sign-out {
         border: 0;
@@ -38,6 +49,7 @@
 
 .nav {
     background-color: #06C100;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
     color: white;
     width: 100%;
     height: 3.4375rem;
@@ -78,7 +90,8 @@
     border-radius: 3.125rem;
     width: 2.5rem;   
     height: 2.5rem;
-    margin: 0.4375rem;
+    margin: 0.4rem 0;
+    border: 0.0625rem solid white;
 }
 
 .nav-user-name {
@@ -87,14 +100,29 @@
 
 .sign-out {
     margin-top: 0.625rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .25);
     color: white;
     border: 0;
-    border-radius: 1.5625rem;
+    border-radius: 0.25rem;
     padding: 0;
     height: 2.1875rem;
     width: 6.25rem;
     background-color: #048E00;
     cursor: pointer;
+}
+
+video {
+    outline: 4px solid #fff;
+    outline-offset: -4px;
+}
+
+.footer-button {
+    cursor: pointer;
+}
+
+.footer-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 

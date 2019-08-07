@@ -2,10 +2,13 @@ import React from 'react';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import firebase from 'firebase/app';
+import Popup from "reactjs-popup";
+import {modalStyle} from '../Dashboard/Dashboard';
 
 import './Nav.css';
 import Landing from '../Landing/Landing';
 import Dashboard from '../Dashboard/Dashboard';
+import tutorial from '../../images/tutorial.mp4';
 require('dotenv').config();
 
 
@@ -49,6 +52,7 @@ class Nav extends React.Component {
                 firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
                     uid: firebase.auth().currentUser.uid,
                     name: firebase.auth().currentUser.displayName,
+                    phone: firebase.auth().currentUser.phoneNumber,
                     email: firebase.auth().currentUser.email,
                     photoUrl: firebase.auth().currentUser.photoURL,
                 }, function(error) {
@@ -101,7 +105,34 @@ class Nav extends React.Component {
 
                 <footer>
                     <div className="footer-content">
-                        simplmeals created by Brian Sayre
+                        &copy; 2019 simplmeals - <i>contact@simplmeals.com</i> -&nbsp;
+                            <Popup className="modal" contentStyle={modalStyle} trigger={<span className="footer-button">Tutorial</span>} modal>
+                            {close => (
+                                <div className="modal-content">
+
+                                    <video autoplay="autoplay" playbackRate="2.0" loop="loop" width="100%" height="100%" src={tutorial} />
+                                    <br />
+                                    <br />
+                                    <button
+                                        type="submit"
+                                        className="button"
+                                        id="modal-button"
+                                        onClick={() => {
+                                            close();
+                                        }}>
+                                        Close
+                                    </button>
+                                </div>
+                            )}
+                        </Popup>
+
+                        {this.state.loggedIn ? 
+                        (
+                            <span> - <span className="footer-button" onClick={this.signOut}>Sign Out</span></span>
+                        ) : ( 
+                            <span></span>
+                        )}
+                        
                     </div>
                 </footer>
 

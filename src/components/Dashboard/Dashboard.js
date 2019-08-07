@@ -14,6 +14,7 @@ export const modalStyle = {
     background: "white",
     width: "100%",
     maxHeight: "80vh",
+    borderRadius: ".25rem",
 };
 
 class Dashboard extends React.Component {

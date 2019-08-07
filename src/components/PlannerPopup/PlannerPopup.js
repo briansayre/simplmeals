@@ -25,7 +25,7 @@ class PlannerPopup extends React.Component {
 
         // get name and instructions
         var name = '';
-        var instructions = '';
+        //var instructions = '';
         var stillName = true;
         for (var i = 0; i < recipe.length; i++) {
             if (recipe[i] === ',') {
@@ -35,7 +35,7 @@ class PlannerPopup extends React.Component {
             if (stillName) {
                 name += recipe[i];
             } else {
-                instructions += recipe[i];
+                //instructions += recipe[i];
             }
         }
 
@@ -44,7 +44,7 @@ class PlannerPopup extends React.Component {
         var ref = database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/');
         var key = '';
         var databaseName = '';
-        var databaseInstructions = '';
+        //var databaseInstructions = '';
         var databaseDates = [];
         var databaseMeals = [];
         ref.on('value', ((snapshot) => {
@@ -53,11 +53,12 @@ class PlannerPopup extends React.Component {
                 var keys = Object.keys(objects);
                 for (var i = 0; i < keys.length; i++) {
                     var k = keys[i];
+                    console.log(name);
                     databaseName = objects[k].name;
-                    databaseInstructions = objects[k].instructions;
+                    //databaseInstructions = objects[k].instructions;
                     databaseDates = objects[k].dates;
                     databaseMeals = objects[k].meals;
-                    if ((name === databaseName) && (instructions === databaseInstructions || databaseInstructions === '')) {
+                    if ((name === databaseName)) {
                         key = k;
                         break;
                     }
@@ -76,12 +77,14 @@ class PlannerPopup extends React.Component {
         formattedDate += '-' + ("0" + day).slice(-2);
         var currentDate = [formattedDate];
         var currentMeal = [this.props.meal];
-        if (databaseDates) {
-            var newDates = databaseDates.concat(currentDate);
-            var newMeals = databaseMeals.concat(currentMeal);
-            database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: newDates,  meals: newMeals });
-        } else {
-            database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: currentDate,  meals: currentMeal });
+        if (key !== ''){
+            if (databaseDates) {
+                var newDates = databaseDates.concat(currentDate);
+                var newMeals = databaseMeals.concat(currentMeal);
+                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: newDates,  meals: newMeals });
+            } else {
+                database.ref('users/' + firebase.auth().currentUser.uid + '/recipes/' + key + '/').update({ dates: currentDate,  meals: currentMeal });
+            }
         }
     }
 
@@ -188,7 +191,7 @@ class PlannerPopup extends React.Component {
                 side.push(recipe);
             }else if (category === 'dessert') {
                 dessert.push(recipe);
-            } else {
+            } else if (category === 'other'){
                 other.push(recipe);
             }
         }
