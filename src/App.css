@@ -10,23 +10,21 @@
 
 /* Stacks all modules on top of eachother and gets rid of landing images */
 @media only screen and (max-width: 67rem) {
-
   div.module-container {
     width: 21.875rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+    box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.25);
   }
 
   div.right-side {
     height: 0;
   }
 
-
   div.module {
-    margin-top: -20px;
+    margin-top: -1.25rem;
     border-radius: 0;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
-  
+
   div.module-title {
     border-radius: 0;
   }
@@ -48,12 +46,10 @@
     width: 15.625rem;
     height: 3.125rem;
   }
-
 }
 
 /* Fixes planner popup layout and module title heights*/
 @media only screen and (max-width: 40.625rem) {
-
   div.login {
     position: relative;
     top: 9.375rem;
@@ -74,26 +70,22 @@
     min-width: 12.5rem;
   }
 
-  
   div.module-title {
     padding-bottom: 1rem;
-    
   }
-  
+
   div.module-title-secondary {
     padding-bottom: 1rem;
   }
-  
+
   button#add-button {
     top: 3.4rem;
   }
-
 }
 
 body {
-  background-color: #FaFaFA;
+  background-color: #fafafa;
 }
-
 
 .App {
   margin: 0;
@@ -108,8 +100,8 @@ body {
   height: 21.875rem;
   background-image: url("./images/food.png");
   background-position: center;
-  background-repeat: no-repeat; 
-  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, .5);
+  background-repeat: no-repeat;
+  box-shadow: 0 0.625rem 0.625rem -0.625rem rgba(0, 0, 0, 0.5);
   background-size: cover;
   margin-bottom: 3.125rem;
 }
@@ -123,10 +115,10 @@ body {
   margin-right: auto;
 }
 
-.image-captions { 
-  font-family: 'Bitter', serif;
+.image-captions {
+  font-family: "Bitter", serif;
   text-align: center;
-  color: #048E00;
+  color: #048e00;
 }
 
 .explain {
@@ -134,12 +126,12 @@ body {
   border: none;
   text-align: center;
   font-size: 1.5625rem;
-  color: #048E00;
+  color: #048e00;
 }
 
 p {
   margin: 0;
-  padding:  0.3125rem;
+  padding: 0.3125rem;
 }
 
 .module-container {
@@ -154,28 +146,27 @@ p {
 }
 
 .module {
-  border-radius:  0.25rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.625rem rgba(0, 0, 0, 0.25);
   background-color: white;
   margin-top: 1.5625rem;
   width: 30%;
   min-width: 21.875rem;
-  height:  47rem;
+  height: 47rem;
   position: relative;
 }
 
 .module-title {
-  border-radius:  0.25rem  0.25rem 0  0 ;
+  border-radius: 0.25rem 0.25rem 0 0;
   font-weight: bold;
   text-align: center;
   margin: 0;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  height:  1rem;
+  height: 1rem;
   color: white;
-  background-color: #048E00;
+  background-color: #048e00;
   width: 100%;
-  
 }
 
 .module-title-secondary {
@@ -183,18 +174,18 @@ p {
   margin: 0;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  height:  1rem;
+  height: 1rem;
   color: white;
-  background-color: #06C100;
+  background-color: #06c100;
   width: 100%;
 }
 
 .module-title-secondary-dark {
   margin: 0;
   padding-top: 0.75rem;
-  height:  1.75rem;
+  height: 1.75rem;
   color: white;
-  background-color: #048E00;
+  background-color: #048e00;
   width: 100%;
 }
 
@@ -205,39 +196,36 @@ p {
 }
 
 button {
-  outline:none;
+  outline: none;
 }
 
 .button {
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   display: inline-block;
   border: none;
   margin: 0;
   text-decoration: none;
-  background: #06C100;
+  background: #06c100;
   color: white;
   font-size: 1rem;
-  height:  1.75rem;
+  height: 1.75rem;
   cursor: pointer;
   text-align: center;
-  transition: background 250ms ease-in-out, 
-              transform 150ms ease;
+  transition: background 250ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-.button:hover,
-.button:focus {
-  color: #048E00;
+.button:hover {
+  color: #048e00;
 }
 
 #modal-button {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, .25);
   font-size: 1rem;
   width: 10rem;
   height: 2rem;
-  padding:  0.3125rem;
-  margin:  0.3125rem;
+  padding: 0.3125rem;
+  margin: 0.3125rem;
 }
 
 #add-button {
@@ -252,9 +240,9 @@ button {
 }
 
 #add-food-button {
-  background-color: #048E00;
-  float:right;
-  height:100%;
+  background-color: #048e00;
+  float: right;
+  height: 100%;
   width: 1.875rem;
   padding: 0;
   font-size: 1.55rem;
@@ -263,7 +251,7 @@ button {
 }
 
 #add-food-button:hover {
-  color: #06C100;
+  color: #06c100;
 }
 
 .arrow {
@@ -273,19 +261,18 @@ button {
   margin-left: 0.625rem;
   margin-right: 0.625rem;
   text-decoration: none;
-  background: #06C100;
+  background: #06c100;
   color: white;
-  font-size: .8rem;
+  font-size: 0.8rem;
   cursor: pointer;
   text-align: center;
-  transition: background 250ms ease-in-out, 
-              transform 150ms ease;
+  transition: background 250ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 .arrow:hover {
-  color: #048E00;
+  color: #048e00;
 }
 .modal-content {
   display: block;
@@ -302,25 +289,24 @@ input {
   border: solid 0.0625rem #c7c7c7;
   padding-left: 0.625rem;
   height: 1.5625rem;
-  outline:none;
+  outline: none;
 }
 
 textarea {
   background: white;
-  outline:none;
+  outline: none;
   border-radius: 0.25rem;
+  max-width: 40rem;
   margin: 0.1875rem;
   border: solid 0.0625rem #c7c7c7;
   padding: 0.625rem;
   height: 3.5625rem;
 }
 
-
-
 .calendar {
   margin-left: auto;
   margin-right: auto;
-  background: #06C100;
+  background: #06c100;
 }
 
 #form {
@@ -330,7 +316,7 @@ textarea {
 
 .loading {
   text-align: center;
-  color: #06C100;
+  color: #06c100;
   height: 80vh;
   padding-top: 40vh;
 }
@@ -338,22 +324,22 @@ textarea {
 .recipe-item-list-button {
   border: none;
   border-bottom: 0.0625rem solid #c7c7c7;
+  overflow: hidden;
   background: none;
   width: 100%;
-  padding: .5rem 0 .5rem .5rem;
+  padding: 0.5rem;
   text-align: left;
   cursor: pointer;
   font-size: 1rem;
 }
 
-
 .recipe-modal {
-  width:100%;
+  width: 100%;
   text-align: center;
 }
 
 .ingredients-modal {
-  overflow: hidden; 
+  overflow: hidden;
   width: 20rem;
   margin-left: auto;
   margin-right: auto;
@@ -397,7 +383,7 @@ textarea {
 .planner-popup-recipe-list button:hover {
   border: 0.0625rem solid #c7c7c7;
   border-bottom: none;
-  background-color: #06C100;
+  background-color: #06c100;
   color: white;
 }
 
@@ -409,7 +395,7 @@ textarea {
 .planner-list-item {
   font-size: 1rem;
   border-bottom: 0.0625rem solid #c7c7c7;
-  padding: .5rem 0 .5rem .5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   margin: 0 0.3125rem 0 0.3125rem;
 }
 
@@ -417,20 +403,17 @@ textarea {
   float: right;
   position: relative;
   font-size: 1.5rem;
-  color: white;
+  color: #c7c7c7;
   bottom: 0.25rem;
   right: -0.1875rem;
   border: none;
   background: white;
-
 }
 
 .x:hover {
   color: black;
   cursor: pointer;
-  
 }
-
 
 .list-item-amount {
   float: right;
@@ -442,22 +425,4 @@ textarea {
   float: left;
   margin-top: -0.1875rem;
   margin-right: 0.625rem;
-}
-
-footer {
-  color: #048E00;
-  width: 100%;
-  margin-bottom: 0;
-  margin-top: 1.875rem;
-}
-
-.footer-content {
-  border-top: 0.0625rem solid #048E00;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  margin-top: 0.9375rem;
-  padding: 0.9375rem;
-  max-width: 62.5rem;
 }

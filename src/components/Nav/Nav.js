@@ -105,12 +105,12 @@ class Nav extends React.Component {
 
                 <footer>
                     <div className="footer-content">
-                        &copy; 2019 simplmeals - <i>contact@simplmeals.com</i> -&nbsp;
+                        <i><a href="mailto: contact@simplmeals.com" className="email">contact@simplmeals.com</a></i> |&nbsp;
                             <Popup className="modal" contentStyle={modalStyle} trigger={<span className="footer-button">Tutorial</span>} modal>
                             {close => (
                                 <div className="modal-content">
 
-                                    <video autoplay="autoplay" playbackRate="2.0" loop="loop" width="100%" height="100%" src={tutorial} />
+                                    <video autoplay="autoplay" alt="Loading..." loop="loop" width="95%" height="100%" src={tutorial} />
                                     <br />
                                     <br />
                                     <button
@@ -128,10 +128,11 @@ class Nav extends React.Component {
 
                         {this.state.loggedIn ? 
                         (
-                            <span> - <span className="footer-button" onClick={this.signOut}>Sign Out</span></span>
+                            <span> | <span className="footer-button" onClick={this.signOut}>Sign Out</span></span>
                         ) : ( 
                             <span></span>
                         )}
+                         <br />&copy; Copyright 2019 simplmeals
                         
                     </div>
                 </footer>
