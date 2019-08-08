@@ -122,7 +122,7 @@ body {
 }
 
 .explain {
-  margin: 3.75rem;
+  margin: 2rem 3.75rem 4.5rem 3.75rem;
   border: none;
   text-align: center;
   font-size: 1.5625rem;
@@ -131,7 +131,7 @@ body {
 
 p {
   margin: 0;
-  padding: 0.3125rem;
+  padding: 0.25rem;
 }
 
 .module-container {
