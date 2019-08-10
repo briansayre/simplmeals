@@ -160,7 +160,6 @@ class Recipes extends React.Component {
 						{close => (
 							<div className="modal-content">
 								<RecipeForm className="form" />
-
 								<button
 									className="button"
 									id="modal-button"
@@ -174,8 +173,11 @@ class Recipes extends React.Component {
 						)}
 					</Popup>
 				</div>
-
-				<div className="module-content">{this.displayRecipes()}</div>
+				<div className="overflow-control">
+					<div className="module-content">
+						{this.displayRecipes()}
+					</div>
+				</div>
 			</div>
 		);
 	}

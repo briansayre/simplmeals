@@ -54,7 +54,6 @@ class PlannerPopup extends React.Component {
 				var keys = Object.keys(objects);
 				for (var i = 0; i < keys.length; i++) {
 					var k = keys[i];
-					console.log(name);
 					databaseName = objects[k].name;
 					//databaseInstructions = objects[k].instructions;
 					databaseDates = objects[k].dates;

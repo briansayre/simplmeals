@@ -152,7 +152,7 @@ p {
   margin-top: 1.5625rem;
   width: 30%;
   min-width: 21.875rem;
-  height: 47rem;
+  height: 78vh;
   position: relative;
 }
 
@@ -191,8 +191,6 @@ p {
 
 .module-content {
   padding: 0.625rem;
-  overflow-y: auto;
-  max-height: 40.4375rem;
 }
 
 button {
@@ -387,9 +385,9 @@ textarea {
   color: white;
 }
 
-.planned-section {
+.overflow-control {
   overflow-y: auto;
-  max-height: 41.5625rem;
+  max-height: 65vh;
 }
 
 .planner-list-item {

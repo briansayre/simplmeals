@@ -2,7 +2,7 @@ import React from "react";
 import "./List.css";
 //import Popup from "reactjs-popup";
 //import {modalStyle} from '../Dashboard/Dashboard';
-import ListItem from "../ListItem/ListItem";
+import ListItem from "../ListItem/ListItem"
 
 class List extends React.Component {
 	constructor(props) {
@@ -12,11 +12,16 @@ class List extends React.Component {
 			thisWeekAmounts: [],
 			nextWeekIngredients: [],
 			nextWeekAmounts: [],
+			weekAfterNextIngredients: [],
+			weekAfterNextAmounts: [],
 			addIngredientName: "",
 			addAmoutName: "",
-			thisWeek: true,
+			whichWeek: 0,
+			weeks: ["This Week", "Next Week", "Week After Next"],
 		};
-		this.changeDisplay = this.changeDisplay.bind(this);
+		this.changeDisplayRight = this.changeDisplayRight.bind(this);
+		this.changeDisplayLeft = this.changeDisplayLeft.bind(this);
+		this.display = this.display.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -33,7 +38,7 @@ class List extends React.Component {
 			if (this.state.addAmoutName === "" || !this.state.addAmoutName) {
 				this.setState({ addAmoutName: "No amount" });
 			}
-			if (this.state.thisWeek) {
+			if (this.state.whichWeek === 0) {
 				this.setState({
 					thisWeekIngredients: [
 						...this.state.thisWeekIngredients,
@@ -46,7 +51,7 @@ class List extends React.Component {
 						this.state.addAmoutName,
 					],
 				});
-			} else {
+			} else if (this.state.whichWeek === 1) {
 				this.setState({
 					nextWeekIngredients: [
 						...this.state.nextWeekIngredients,
@@ -59,6 +64,19 @@ class List extends React.Component {
 						this.state.addAmoutName,
 					],
 				});
+			} else if (this.state.whichWeek === 2) {
+				this.setState({
+					weekAfterNextIngredients: [
+						...this.state.weekAfterNextIngredients,
+						this.state.addIngredientName,
+					],
+				});
+				this.setState({
+					weekAfterNextAmounts: [
+						...this.state.weekAfterNextAmounts,
+						this.state.addAmoutName,
+					],
+				});
 			}
 		} else {
 			alert("Please enter a name");
@@ -66,28 +84,60 @@ class List extends React.Component {
 		event.preventDefault();
 	}
 
-	changeDisplay() {
-		this.setState({ thisWeek: !this.state.thisWeek });
+	changeDisplayRight() {
+		var display = this.state.whichWeek + 1;
+		if (display === 3) {
+			display = 0;
+		}
+		this.setState({ whichWeek: display});
 	}
 
-	displayThis() {
-		return this.state.thisWeekIngredients.map((name, index) => (
-			<ListItem
-				key={index}
-				ingredient={name}
-				amount={this.state.thisWeekAmounts[index]}
-			/>
-		));
+	changeDisplayLeft() {
+		var display = this.state.whichWeek - 1;
+		if (display === -1) {
+			display = 2;
+		}
+		this.setState({ whichWeek: display});
 	}
 
-	displayNext() {
-		return this.state.nextWeekIngredients.map((name, index) => (
-			<ListItem
-				key={index}
-				ingredient={name}
-				amount={this.state.nextWeekAmounts[index]}
-			/>
-		));
+	display() {
+		if (this.state.whichWeek === 0) {
+			return (
+				<div>
+					{this.state.thisWeekIngredients.map((name, index) => (
+						<ListItem
+							key={index}
+							ingredient={name}
+							amount={this.state.thisWeekAmounts[index]}
+						/>
+					))}
+				</div>
+			);
+		} else if (this.state.whichWeek === 1) {
+			return (
+				<div>
+					{this.state.nextWeekIngredients.map((name, index) => (
+						<ListItem
+							key={index}
+							ingredient={name}
+							amount={this.state.nextWeekAmounts[index]}
+						/>
+					))}
+				</div>
+			);
+		} else if (this.state.whichWeek === 2) {
+			return (
+				<div>
+					{this.state.weekAfterNextIngredients.map((name, index) => (
+						<ListItem
+							key={index}
+							ingredient={name}
+							amount={this.state.weekAfterNextAmounts[index]}
+						/>
+					))}
+				</div>
+			);
+		}
 	}
 
 	fillArrays() {
@@ -100,16 +150,20 @@ class List extends React.Component {
 		}
 		// get ingredients for this week
 
-		// Fill in this weeks and next weeks array with the dates
+		// Fill in this weeks, next weeks, and week after next array with the dates
 		var thisWeekDates = [];
 		var nextWeekDates = [];
-		for (var i = 0; i < 14; i++) {
+		var weekAfterNextDates = [];
+		for (var i = 0; i < 21; i++) {
 			if (i < 7) {
 				var newDate = new Date(date);
 				thisWeekDates.push(newDate);
-			} else {
+			} else if (i < 14) {
 				var newDate2 = new Date(date);
 				nextWeekDates.push(newDate2);
+			} else {
+				var newDate3 = new Date(date);
+				weekAfterNextDates.push(newDate3);
 			}
 			date.setDate(date.getDate() + 1);
 		}
@@ -118,6 +172,8 @@ class List extends React.Component {
 		var thisWeekAmounts = [];
 		var nextWeekIngredients = [];
 		var nextWeekAmounts = [];
+		var weekAfterNextIngredients = [];
+		var weekAfterNextAmounts = [];
 
 		for (var j = 0; j < recipes.length; j++) {
 			// j = recipes index
@@ -157,6 +213,22 @@ class List extends React.Component {
 								.concat(recipes[j].amounts)
 								.slice(0);
 						}
+
+						if (
+							weekAfterNextDates[l].getFullYear() ===
+								parseInt(recipes[j].dates[k].slice(0, 4)) &&
+							weekAfterNextDates[l].getMonth() + 1 ===
+								parseInt(recipes[j].dates[k].slice(5, 7)) &&
+							weekAfterNextDates[l].getDate() ===
+								parseInt(recipes[j].dates[k].slice(8, 10))
+						) {
+							weekAfterNextIngredients = weekAfterNextIngredients
+								.concat(recipes[j].ingredients)
+								.slice(0);
+							weekAfterNextAmounts = weekAfterNextAmounts
+								.concat(recipes[j].amounts)
+								.slice(0);
+						}
 					}
 				}
 			}
@@ -178,6 +250,14 @@ class List extends React.Component {
 		var filteredNextWeekAmounts = nextWeekAmounts.filter(function(el) {
 			return el !== undefined;
 		});
+		var filteredWeekAfterNextIngredients = weekAfterNextIngredients.filter(function(
+			el,
+		) {
+			return el !== undefined;
+		});
+		var filteredWeekAfterNextAmounts = weekAfterNextAmounts.filter(function(el) {
+			return el !== undefined;
+		});
 
 		//var uniqueThisWeekIngredients = thisWeekIngredients.filter(function(item, index){ return thisWeekIngredients.indexOf(item) >= index; });
 
@@ -186,6 +266,8 @@ class List extends React.Component {
 			thisWeekAmounts: filteredThisWeekAmounts,
 			nextWeekIngredients: filteredNextWeekIngredients,
 			nextWeekAmounts: filteredNextWeekAmounts,
+			weekAfterNextIngredients: filteredWeekAfterNextIngredients,
+			weekAfterNextAmounts: filteredWeekAfterNextAmounts,
 		});
 	}
 
@@ -231,16 +313,16 @@ class List extends React.Component {
 					<button
 						className="arrow"
 						id="cycle-left"
-						onClick={this.changeDisplay}
+						onClick={this.changeDisplayLeft}
 					>
 						{" "}
 						&#x276E;{" "}
 					</button>
-					{this.state.thisWeek ? "This Week" : "Next Week"}
+					{this.state.weeks[this.state.whichWeek]}
 					<button
 						className="arrow"
 						id="cycle-right"
-						onClick={this.changeDisplay}
+						onClick={this.changeDisplayRight}
 					>
 						{" "}
 						&#x276F;{" "}
@@ -279,11 +361,10 @@ class List extends React.Component {
                     )}
                             </Popup>*/}
 				</div>
-
-				<div className="module-content">
-					{this.state.thisWeek
-						? this.displayThis()
-						: this.displayNext()}
+				<div className="overflow-control">
+					<div className="module-content">
+						{this.display()}
+					</div>
 				</div>
 			</div>
 		);

@@ -139,157 +139,164 @@ class Planner extends React.Component {
 								&#x276F;{" "}
 							</button>
 						</div>
-
-						<div className="planned-section">
-							<div className="meal-plan" id="breakfast">
-								<div className="module-title-secondary-dark">
-									&nbsp; Breakfast
-									<Popup
-										className="modal"
-										contentStyle={modalStyle}
-										trigger={
-											<button
-												className="button"
-												id="add-food-button"
-											>
-												{" "}
-												+{" "}
-											</button>
-										}
-										modal
-									>
-										{close => (
-											<div className="modal-content">
-												<PlannerPopup
-													recipes={this.props.recipes}
-													meal="breakfast"
-													date={date}
-												/>
-												<center>
-													<button
-														className="button"
-														id="modal-button"
-														onClick={() => {
-															close();
-														}}
-													>
-														Close
-													</button>
-												</center>
-											</div>
-										)}
-									</Popup>
+						<div className="overflow-control">
+							<div className="planned-section">
+								<div className="meal-plan" id="breakfast">
+									<div className="module-title-secondary-dark">
+										&nbsp; Breakfast
+										<Popup
+											className="modal"
+											contentStyle={modalStyle}
+											trigger={
+												<button
+													className="button"
+													id="add-food-button"
+												>
+													{" "}
+													+{" "}
+												</button>
+											}
+											modal
+										>
+											{close => (
+												<div className="modal-content">
+													<PlannerPopup
+														recipes={
+															this.props.recipes
+														}
+														meal="breakfast"
+														date={date}
+													/>
+													<center>
+														<button
+															className="button"
+															id="modal-button"
+															onClick={() => {
+																close();
+															}}
+														>
+															Close
+														</button>
+													</center>
+												</div>
+											)}
+										</Popup>
+									</div>
+									{this.state.breakfast.map((name, index) => (
+										<PlannerListItem
+											key={index}
+											meal="breakfast"
+											date={date}
+											name={name}
+										/>
+									))}
 								</div>
-								{this.state.breakfast.map((name, index) => (
-									<PlannerListItem
-										key={index}
-										meal="breakfast"
-										date={date}
-										name={name}
-									/>
-								))}
-							</div>
 
-							<div className="meal-plan" id="lunch">
-								<div className="module-title-secondary-dark">
-									&nbsp; Lunch
-									<Popup
-										className="modal"
-										contentStyle={modalStyle}
-										trigger={
-											<button
-												className="button"
-												id="add-food-button"
-											>
-												{" "}
-												+{" "}
-											</button>
-										}
-										modal
-									>
-										{close => (
-											<div className="modal-content">
-												<PlannerPopup
-													recipes={this.props.recipes}
-													meal="lunch"
-													date={date}
-												/>
-												<center>
-													<button
-														className="button"
-														id="modal-button"
-														onClick={() => {
-															this.fillArrays();
-															close();
-														}}
-													>
-														Close
-													</button>
-												</center>
-											</div>
-										)}
-									</Popup>
+								<div className="meal-plan" id="lunch">
+									<div className="module-title-secondary-dark">
+										&nbsp; Lunch
+										<Popup
+											className="modal"
+											contentStyle={modalStyle}
+											trigger={
+												<button
+													className="button"
+													id="add-food-button"
+												>
+													{" "}
+													+{" "}
+												</button>
+											}
+											modal
+										>
+											{close => (
+												<div className="modal-content">
+													<PlannerPopup
+														recipes={
+															this.props.recipes
+														}
+														meal="lunch"
+														date={date}
+													/>
+													<center>
+														<button
+															className="button"
+															id="modal-button"
+															onClick={() => {
+																this.fillArrays();
+																close();
+															}}
+														>
+															Close
+														</button>
+													</center>
+												</div>
+											)}
+										</Popup>
+									</div>
+									{this.state.lunch.map((name, index) => (
+										<PlannerListItem
+											key={index}
+											meal="lunch"
+											date={date}
+											name={name}
+										/>
+									))}
 								</div>
-								{this.state.lunch.map((name, index) => (
-									<PlannerListItem
-										key={index}
-										meal="lunch"
-										date={date}
-										name={name}
-									/>
-								))}
-							</div>
 
-							<div className="meal-plan" id="dinner">
-								<div className="module-title-secondary-dark">
-									&nbsp; Dinner
-									<Popup
-										className="modal"
-										contentStyle={modalStyle}
-										trigger={
-											<button
-												className="button"
-												id="add-food-button"
-											>
-												{" "}
-												+{" "}
-											</button>
-										}
-										modal
-									>
-										{close => (
-											<div className="modal-content">
-												<PlannerPopup
-													recipes={this.props.recipes}
-													meal="dinner"
-													date={date}
-												/>
-												<br />
-												<br />
-												<center>
-													<button
-														className="button"
-														id="modal-button"
-														onClick={() => {
-															this.fillArrays();
-															close();
-														}}
-													>
-														Close
-													</button>
-												</center>
-											</div>
-										)}
-									</Popup>
+								<div className="meal-plan" id="dinner">
+									<div className="module-title-secondary-dark">
+										&nbsp; Dinner
+										<Popup
+											className="modal"
+											contentStyle={modalStyle}
+											trigger={
+												<button
+													className="button"
+													id="add-food-button"
+												>
+													{" "}
+													+{" "}
+												</button>
+											}
+											modal
+										>
+											{close => (
+												<div className="modal-content">
+													<PlannerPopup
+														recipes={
+															this.props.recipes
+														}
+														meal="dinner"
+														date={date}
+													/>
+													<br />
+													<br />
+													<center>
+														<button
+															className="button"
+															id="modal-button"
+															onClick={() => {
+																this.fillArrays();
+																close();
+															}}
+														>
+															Close
+														</button>
+													</center>
+												</div>
+											)}
+										</Popup>
+									</div>
+									{this.state.dinner.map((name, index) => (
+										<PlannerListItem
+											key={index}
+											meal="dinner"
+											date={date}
+											name={name}
+										/>
+									))}
 								</div>
-								{this.state.dinner.map((name, index) => (
-									<PlannerListItem
-										key={index}
-										meal="dinner"
-										date={date}
-										name={name}
-									/>
-								))}
 							</div>
 						</div>
 					</div>

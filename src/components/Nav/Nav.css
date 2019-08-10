@@ -109,13 +109,6 @@
   cursor: pointer;
 }
 
-video {
-  border-bottom: 0.1875rem solid black;
-  border-right: 0.0625rem solid black;
-  border-left: 0.0625rem solid black;
-  border-top: 0.0625rem solid black;
-}
-
 footer {
   color: #048e00;
   width: 100%;
