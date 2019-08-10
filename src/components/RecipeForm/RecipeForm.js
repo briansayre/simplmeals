@@ -16,9 +16,7 @@ class RecipeForm extends React.Component {
 			uid: "",
 		};
 		this.handleNameChange = this.handleNameChange.bind(this);
-		this.handleInstructionsChange = this.handleInstructionsChange.bind(
-			this,
-		);
+		this.handleInstructionsChange = this.handleInstructionsChange.bind(this);
 		this.handleIngredientChange = this.handleIngredientChange.bind(this);
 		this.handleAmountChange = this.handleAmountChange.bind(this);
 		this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -153,7 +151,7 @@ class RecipeForm extends React.Component {
 					{this.state.ingredients.map((input, index) => {
 						input = [];
 						return (
-							<div key={index}>
+							<div className="added-ingredient-inputs" key={index}>
 								<input
 									type="text"
 									placeholder="Ingredient"
