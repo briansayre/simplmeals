@@ -13,8 +13,8 @@ require('dotenv').config();
 
 
 const config = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "simplmeals.com",
+    apiKey: "AIzaSyARbJURIqskPfndvo57b3Ac8xuHdbS8kGo",
+    authDomain: "simplmeals-1561736691951.web.app",
     databaseURL: "https://simplmeals-1561736691951.firebaseio.com",
     projectId: "simplmeals-1561736691951",
     storageBucket: "simplmeals-1561736691951.appspot.com",
@@ -105,7 +105,7 @@ class Nav extends React.Component {
 
                 <footer>
                     <div className="footer-content">
-                        <i><a href="mailto: contact@simplmeals.com" className="email">contact@simplmeals.com</a></i> |&nbsp;
+                        <i><a href="mailto: briansayre01@gmail.com" className="email">briansayre01@gmail.com</a></i> |&nbsp;
                             <Popup className="modal" contentStyle={modalStyle} trigger={<span className="footer-button">Tutorial</span>} modal>
                             {close => (
                                 <div className="modal-content">
@@ -132,7 +132,7 @@ class Nav extends React.Component {
                         ) : ( 
                             <span></span>
                         )}
-                         <br />&copy; Copyright 2019 simplmeals
+                         <br /> Simplmeals made by Brian Sayre
                         
                     </div>
                 </footer>
